@@ -46,7 +46,7 @@ public partial class @PlayerActionControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Run"",
+                    ""name"": ""BloomingBlows"",
                     ""type"": ""Button"",
                     ""id"": ""8b48d805-7e25-42af-aab9-b4ef56e87d87"",
                     ""expectedControlType"": ""Button"",
@@ -308,7 +308,7 @@ public partial class @PlayerActionControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Run"",
+                    ""action"": ""BloomingBlows"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -319,7 +319,7 @@ public partial class @PlayerActionControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Run"",
+                    ""action"": ""BloomingBlows"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -354,7 +354,7 @@ public partial class @PlayerActionControls: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
+        m_Player_BloomingBlows = m_Player.FindAction("BloomingBlows", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Ability1 = m_Player.FindAction("Ability1", throwIfNotFound: true);
         m_Player_Ability2 = m_Player.FindAction("Ability2", throwIfNotFound: true);
@@ -422,7 +422,7 @@ public partial class @PlayerActionControls: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_Run;
+    private readonly InputAction m_Player_BloomingBlows;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Ability1;
     private readonly InputAction m_Player_Ability2;
@@ -433,7 +433,7 @@ public partial class @PlayerActionControls: IInputActionCollection2, IDisposable
         public PlayerActions(@PlayerActionControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @Run => m_Wrapper.m_Player_Run;
+        public InputAction @BloomingBlows => m_Wrapper.m_Player_BloomingBlows;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @Ability1 => m_Wrapper.m_Player_Ability1;
         public InputAction @Ability2 => m_Wrapper.m_Player_Ability2;
@@ -453,9 +453,9 @@ public partial class @PlayerActionControls: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @Run.started += instance.OnRun;
-            @Run.performed += instance.OnRun;
-            @Run.canceled += instance.OnRun;
+            @BloomingBlows.started += instance.OnBloomingBlows;
+            @BloomingBlows.performed += instance.OnBloomingBlows;
+            @BloomingBlows.canceled += instance.OnBloomingBlows;
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
@@ -478,9 +478,9 @@ public partial class @PlayerActionControls: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @Run.started -= instance.OnRun;
-            @Run.performed -= instance.OnRun;
-            @Run.canceled -= instance.OnRun;
+            @BloomingBlows.started -= instance.OnBloomingBlows;
+            @BloomingBlows.performed -= instance.OnBloomingBlows;
+            @BloomingBlows.canceled -= instance.OnBloomingBlows;
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
@@ -514,7 +514,7 @@ public partial class @PlayerActionControls: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnRun(InputAction.CallbackContext context);
+        void OnBloomingBlows(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnAbility1(InputAction.CallbackContext context);
         void OnAbility2(InputAction.CallbackContext context);

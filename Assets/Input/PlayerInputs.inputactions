@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Run",
+                    "name": "BloomingBlows",
                     "type": "Button",
                     "id": "8b48d805-7e25-42af-aab9-b4ef56e87d87",
                     "expectedControlType": "Button",
@@ -286,7 +286,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Run",
+                    "action": "BloomingBlows",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -297,7 +297,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Run",
+                    "action": "BloomingBlows",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: LilliaAttr
   m_EditorClassIdentifier: 
   walkSpeed: 3
-  runSpeed: 5
+  runSpeedPerStack: 3
   jumpForce: 3

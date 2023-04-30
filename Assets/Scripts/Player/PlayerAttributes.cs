@@ -6,6 +6,6 @@ using UnityEngine;
 public class PlayerAttributes : ScriptableObject
 {
     public float walkSpeed;
-    public float runSpeed;
+    public float runSpeedPerStack;
     public float jumpForce;
 }

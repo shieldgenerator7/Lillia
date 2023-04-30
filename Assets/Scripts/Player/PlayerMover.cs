@@ -33,7 +33,7 @@ public class PlayerMover : MonoBehaviour
         //Movement
         Vector2 vel = rb2d.velocity;
         vel.x = playerState.moveDirection
-            * ((playerState.running) ? attributes.runSpeed : attributes.walkSpeed);
+            * (attributes.walkSpeed + attributes.runSpeedPerStack * playerState.stacks);
         if (playerState.jumping && playerState.grounded)
         {
             vel.y = attributes.jumpForce;

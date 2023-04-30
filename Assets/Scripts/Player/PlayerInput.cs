@@ -47,14 +47,14 @@ public class PlayerInput : MonoBehaviour
             onInputStateChanged?.Invoke(inputState);
         };
         //Run
-        input.Run.performed += _ =>
+        input.BloomingBlows.performed += _ =>
         {
-            inputState.run = true;
+            inputState.bloomingblows = true;
             onInputStateChanged?.Invoke(inputState);
         };
-        input.Run.canceled += _ =>
+        input.BloomingBlows.canceled += _ =>
         {
-            inputState.run = false;
+            inputState.bloomingblows = false;
             onInputStateChanged?.Invoke(inputState);
         };
         //Interact

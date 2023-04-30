@@ -39,6 +39,10 @@ public struct PlayerState
     /// </summary>
     public bool cellinged;
     /// <summary>
+    /// True: intends on using Blooming Blows
+    /// </summary>
+    public bool usingBloomingBlows;
+    /// <summary>
     /// True: intends on using ability 1
     /// </summary>
     public bool ability1;
@@ -53,9 +57,13 @@ public struct PlayerState
         FERAL,
     }
     public Form form;
+    /// <summary>
+    /// How many stacks of Blooming Blows that Lillia has
+    /// </summary>
+    public float stacks;
 
     public override string ToString()
     {
-        return $"move: {moveDirection}, running: {running}, jumping: {jumping}, grounded: {grounded}, form: {form}";
+        return $"move: {moveDirection}, running: {running}, jumping: {jumping}, grounded: {grounded}, stacks: {stacks}";
     }
 }

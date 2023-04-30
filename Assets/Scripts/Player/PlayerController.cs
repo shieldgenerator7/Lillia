@@ -31,7 +31,8 @@ public class PlayerController : MonoBehaviour
     {
         //Movement
         playerState.moveDirection = inputState.movementDirection.x;
-        playerState.running = inputState.run;
+        //Blooming Blows
+        playerState.usingBloomingBlows = inputState.bloomingblows;
         //Look Direction
         playerState.lookDirection = inputState.lookDirection;
         //Jumping
@@ -98,5 +99,15 @@ public class PlayerController : MonoBehaviour
             playerState.lastGroundTime = Time.time;
             onPlayerStateChanged?.Invoke(playerState);
         }
+    }
+
+    public void BloomingBlowsHitSomething(bool hittable, bool wall)
+    {
+        if (hittable)
+        {
+            playerState.stacks++;
+        }
+        playerState.running = playerState.stacks > 0;
+        onPlayerStateChanged?.Invoke(playerState);
     }
 }
