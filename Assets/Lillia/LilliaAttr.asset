@@ -25,4 +25,4 @@ MonoBehaviour:
   jumpForcePerStack: 0.75
   wallBounceSpeedUpFactor: 1.05
   wallBounceJumpFactor: 0.75
-  wallBounceDuration: 0.5
+  wallBounceDuration: 0.2
