@@ -6,13 +6,6 @@ public class PlayerAnimator : MonoBehaviour
 {
     public Animator animator;
     public PlayerController playerController;
-    [Header("Bow Pieces")]
-    public Transform center;
-    public Transform bow;
-    public Transform rightBowHand;
-    public Transform leftBowHand;
-    public float bowHandDistance = 2;
-    public float arrowHandDistance = -0.1f;
 
     // Start is called before the first frame update
     void Start()
@@ -38,13 +31,5 @@ public class PlayerAnimator : MonoBehaviour
                 Mathf.Abs(scale.x) * Mathf.Sign(lookDirection)
                 );
         }
-        //Aiming
-        Transform bowHand = (lookDirection > 0) ? leftBowHand : rightBowHand;
-        Transform arrowHand = (lookDirection > 0) ? rightBowHand : leftBowHand;
-        bowHand.position = (Vector2)center.position + (playerState.lookDirection * bowHandDistance);
-        arrowHand.position = (Vector2)center.position + (playerState.lookDirection * arrowHandDistance);
-        bow.position = bowHand.position;
-        bow.right = playerState.lookDirection;
-        bow.localScale = bow.localScale.setX(Mathf.Sign(playerController.transform.localScale.x));
     }
 }

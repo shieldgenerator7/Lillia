@@ -12,6 +12,10 @@ GameObject:
   - component: {fileID: 1719893899150862393}
   - component: {fileID: 945849306727561427}
   - component: {fileID: 4741852705930984158}
+  - component: {fileID: 909505948861640685}
+  - component: {fileID: 6636442099060658131}
+  - component: {fileID: 804428360538672667}
+  - component: {fileID: 7107039046693426699}
   m_Layer: 0
   m_Name: Lillia
   m_TagString: Untagged
@@ -33,7 +37,7 @@ Transform:
   m_Children:
   - {fileID: 4545578356742216811}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1719893899150862393
 Rigidbody2D:
@@ -132,6 +136,61 @@ CapsuleCollider2D:
   m_Offset: {x: 0.15, y: -0.13}
   m_Size: {x: 0.16, y: 0.76}
   m_Direction: 0
+--- !u!114 &909505948861640685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851021604660254680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef4ca1b92bf73d641a3a854adee5fcfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInput: {fileID: 6636442099060658131}
+  playerController: {fileID: 804428360538672667}
+  playerMover: {fileID: 7107039046693426699}
+--- !u!114 &6636442099060658131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851021604660254680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc4a11710a574fb48967c7f4843055be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  center: {fileID: 0}
+--- !u!114 &804428360538672667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851021604660254680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 070f40347c9dcdb4584e41a5671eff9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coyoteTime: 0.1
+--- !u!114 &7107039046693426699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851021604660254680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59aaae67bac94844fa2153e6787f4526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attributesAnthro: {fileID: 11400000, guid: 61fecb23b0858ef4ba8ef93990c75fff, type: 2}
+  attributesFeral: {fileID: 11400000, guid: 61fecb23b0858ef4ba8ef93990c75fff, type: 2}
 --- !u!1 &6806668733604664280
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,6 +201,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4545578356742216811}
   - component: {fileID: 5987912468298312681}
+  - component: {fileID: 8226199411362272271}
+  - component: {fileID: 3259904035858519184}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -216,3 +277,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8226199411362272271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6806668733604664280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67a5092934f86214aafb536d813b5e9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 3259904035858519184}
+  playerController: {fileID: 804428360538672667}
+--- !u!95 &3259904035858519184
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6806668733604664280}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
