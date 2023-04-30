@@ -22,11 +22,25 @@ public class PlayerController : MonoBehaviour
 
     public void FixedUpdate()
     {
+        //Falling
         if (rb2d.velocity.y <= 0 && playerState.jumping)
         {
             playerState.jumping = false;
             playerState.falling = !playerState.grounded;
             onPlayerStateChanged?.Invoke(playerState);
+        }
+        //Stack Decay
+        if (playerState.stacks > 0)
+        {
+            if (Time.fixedTime >= playerState.lastStackAddTime + playerAttributes.stackDecayDelay)
+            {
+                if (Time.fixedTime >= playerState.lastStackDecayTime + playerAttributes.stackDecayDelayPerStack) {
+                    playerState.lastStackDecayTime = Time.fixedTime;
+                    setStacks(playerState.stacks - 1);
+                    playerState.running = playerState.stacks > 0;
+                    onPlayerStateChanged?.Invoke(playerState);
+                }
+            }
         }
     }
 
@@ -97,6 +111,7 @@ public class PlayerController : MonoBehaviour
         if (hittable)
         {
             setStacks(playerState.stacks + 1);
+            playerState.lastStackAddTime = Time.fixedTime;
         }
         playerState.running = playerState.stacks > 0;
         onPlayerStateChanged?.Invoke(playerState);

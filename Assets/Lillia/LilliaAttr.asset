@@ -16,3 +16,5 @@ MonoBehaviour:
   runSpeedPerStack: 3
   maxStacks: 4
   jumpForce: 3
+  stackDecayDelay: 4
+  stackDecayDelayPerStack: 1

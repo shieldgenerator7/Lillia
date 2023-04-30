@@ -9,4 +9,6 @@ public class PlayerAttributes : ScriptableObject
     public float runSpeedPerStack;
     public int maxStacks;
     public float jumpForce;
+    public float stackDecayDelay;
+    public float stackDecayDelayPerStack;
 }

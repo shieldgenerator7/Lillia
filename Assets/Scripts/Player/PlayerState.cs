@@ -54,6 +54,14 @@ public struct PlayerState
     /// How many stacks of Blooming Blows that Lillia has
     /// </summary>
     public int stacks;
+    /// <summary>
+    /// The timestamp of the last time a stack was added
+    /// </summary>
+    public float lastStackAddTime;
+    /// <summary>
+    /// The timestamp of the last time a stack was removed
+    /// </summary>
+    public float lastStackDecayTime;
 
     public override string ToString()
     {
