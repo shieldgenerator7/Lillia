@@ -17,6 +17,6 @@ public class PlayerAttributes : ScriptableObject
     public float momentumInstantSnapThreshold;
     public float jumpForcePerStack;
     public float wallBounceSpeedUpFactor;
-    public float wallBounceJumpForce;
+    public float wallBounceJumpFactor;
     public float wallBounceDuration;
 }

@@ -22,17 +22,20 @@ public class PlayerMover : MonoBehaviour
         float moveX = playerState.moveDirection
             * (attributes.walkSpeed + attributes.runSpeedPerStack * playerState.stacks);
         //Wall bounce
-        if (playerState.wallBouncing && playerState.lastWallBounceTime == Time.time)
+        if (playerState.wallBouncing)
         {
-            //Reverse direction
-            vel.x *= -1;
-            //Increase speed
-            vel.x *= attributes.wallBounceSpeedUpFactor;
-            //"Jump"
-            vel.y = attributes.wallBounceJumpForce;
+            if (playerState.lastWallBounceTime == Time.time)
+            {
+                //Reverse direction
+                vel.x *= -1;
+                //"Jump"
+                vel.y = Mathf.Abs(vel.x) * attributes.wallBounceJumpFactor;
+                //Increase speed
+                vel.x *= attributes.wallBounceSpeedUpFactor;
+            }
         }
         //Momentum dampening
-        if (moveX != vel.x)
+        else if (moveX != vel.x)
         {
             vel.x = Mathf.Lerp(vel.x, moveX, Time.deltaTime * attributes.momentumChangeFactor);
             if (Mathf.Abs(moveX - vel.x) < attributes.momentumInstantSnapThreshold)
