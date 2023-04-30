@@ -34,7 +34,7 @@ public class PlayerMover : MonoBehaviour
             vel.y = attributes.jumpForce;
             if (playerState.airJumpsUsed > 0 && !playerState.grounded)
             {
-                vel.y += Mathf.Abs(vel.x * attributes.momentumIntoEepFactor);
+                vel.y += playerState.stacks * attributes.jumpForcePerStack;
                 vel.x = 0;
             }
         }

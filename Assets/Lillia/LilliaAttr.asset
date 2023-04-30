@@ -23,3 +23,4 @@ MonoBehaviour:
   momentumChangeFactor: 2
   momentumInstantSnapThreshold: 2
   momentumIntoEepFactor: 3
+  jumpForcePerStack: 0.5
