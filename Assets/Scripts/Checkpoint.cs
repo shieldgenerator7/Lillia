@@ -5,14 +5,20 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour
 {
     public bool startingCheckpoint = false;
+    public Color activeColor = Color.white;
+    public Color inactiveColor = Color.white;
 
     public static Checkpoint current;
 
+    private SpriteRenderer sr;
+
     private void Start()
     {
+        sr = GetComponent<SpriteRenderer>();
+        sr.color = inactiveColor;
         if (startingCheckpoint)
         {
-            current = this;
+            switchCheckPoint(this);
             FindObjectOfType<PlayerController>().transform.position = transform.position;
         }
     }
@@ -21,7 +27,20 @@ public class Checkpoint : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<PlayerController>())
         {
-            current = this;
+            switchCheckPoint(this);
+        }
+    }
+
+    private void switchCheckPoint(Checkpoint newCurrent)
+    {
+        if (current)
+        {
+            current.sr.color = inactiveColor;
+        }
+        current = newCurrent;
+        if (current)
+        {
+            current.sr.color = activeColor;
         }
     }
 }
