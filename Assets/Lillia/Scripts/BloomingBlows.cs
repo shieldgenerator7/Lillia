@@ -41,8 +41,10 @@ public class BloomingBlows : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Hittable"))
+        Hittable hittable = collision.GetComponent<Hittable>();
+        if (hittable)
         {
+            hittable.hit();
             hitSomething();
         }
     }

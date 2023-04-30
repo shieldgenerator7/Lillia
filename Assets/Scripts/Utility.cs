@@ -14,6 +14,14 @@ public static class Utility
         => new Vector3(v.x, v.y, z);
     #endregion
 
+    #region Color Extension Methods
+    public static Color setAlpha(this Color c, float a)
+    {
+        c.a = a;
+        return c;
+    }
+    #endregion
+
     //2022-07-09: copied from Stonicorn.Utility
     public static Plane raycastPlane = new Plane(Vector3.forward, Vector3.zero);
     public static Vector2 ScreenToWorldPoint(Vector3 screenPoint)
