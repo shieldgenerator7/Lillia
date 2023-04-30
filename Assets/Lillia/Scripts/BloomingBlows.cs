@@ -36,16 +36,15 @@ public class BloomingBlows : MonoBehaviour
         if (playerState.usingBloomingBlows != active)
         {
             Active = playerState.usingBloomingBlows;
-            if (active)
-            {
-                hitSomething();
-            }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        hitSomething();
+        if (collision.gameObject.CompareTag("Hittable"))
+        {
+            hitSomething();
+        }
     }
 
     void hitSomething()
