@@ -178,6 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coyoteTime: 0.1
+  playerAttributes: {fileID: 11400000, guid: 61fecb23b0858ef4ba8ef93990c75fff, type: 2}
 --- !u!114 &7107039046693426699
 MonoBehaviour:
   m_ObjectHideFlags: 0

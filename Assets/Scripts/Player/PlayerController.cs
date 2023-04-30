@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     public float coyoteTime = 0.1f;
 
+    public PlayerAttributes playerAttributes;
+
     private PlayerState playerState;
     public delegate void OnPlayerStateChanged(PlayerState playerState);
     public event OnPlayerStateChanged onPlayerStateChanged;
@@ -94,9 +96,18 @@ public class PlayerController : MonoBehaviour
     {
         if (hittable)
         {
-            playerState.stacks++;
+            setStacks(playerState.stacks + 1);
         }
         playerState.running = playerState.stacks > 0;
         onPlayerStateChanged?.Invoke(playerState);
+    }
+
+    private void setStacks(int stacks)
+    {
+        playerState.stacks = Mathf.Clamp(
+            stacks,
+            0,
+            playerAttributes.maxStacks
+            );
     }
 }

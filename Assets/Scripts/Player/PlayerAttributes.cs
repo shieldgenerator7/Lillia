@@ -7,5 +7,6 @@ public class PlayerAttributes : ScriptableObject
 {
     public float walkSpeed;
     public float runSpeedPerStack;
+    public int maxStacks;
     public float jumpForce;
 }

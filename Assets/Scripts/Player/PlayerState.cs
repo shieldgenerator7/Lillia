@@ -53,7 +53,7 @@ public struct PlayerState
     /// <summary>
     /// How many stacks of Blooming Blows that Lillia has
     /// </summary>
-    public float stacks;
+    public int stacks;
 
     public override string ToString()
     {
