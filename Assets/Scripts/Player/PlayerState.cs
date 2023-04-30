@@ -62,6 +62,10 @@ public struct PlayerState
     /// The timestamp of the last time a stack was removed
     /// </summary>
     public float lastStackDecayTime;
+    /// <summary>
+    /// How many jumps in midair have been used since the last grounded time 
+    /// </summary>
+    public int airJumpsUsed;
 
     public override string ToString()
     {

@@ -5,7 +5,6 @@ using UnityEngine.InputSystem.LowLevel;
 
 public class PlayerController : MonoBehaviour
 {
-    public float coyoteTime = 0.1f;
     public Transform bottom;
 
     public PlayerAttributes playerAttributes;
@@ -60,15 +59,27 @@ public class PlayerController : MonoBehaviour
         {
             //Check grounded state just to be safe
             playerState.grounded = checkGrounded();
+            bool grounded = playerState.grounded;
+            if (grounded)
+            {
+                playerState.airJumpsUsed = 0;
+            }
+            bool coyoteTime = (Time.time <= playerState.lastGroundTime + playerAttributes.coyoteTime);
             //
             if (!playerState.jumping && inputState.jump
-                && (playerState.grounded || Time.time <= playerState.lastGroundTime + coyoteTime)
+                && (grounded || coyoteTime
+                    || playerState.airJumpsUsed < playerAttributes.maxAirJumps
+                )
                 && !playerState.jumpConsumed
                 )
             {
                 playerState.jumping = true;
                 playerState.jumpConsumed = true;
                 playerState.falling = false;
+                if (!grounded && !coyoteTime)
+                {
+                    playerState.airJumpsUsed++;
+                }
                 //playerState.grounded = true;
             }
             else if (playerState.jumping && !inputState.jump)
@@ -98,6 +109,7 @@ public class PlayerController : MonoBehaviour
         if (collision.contacts.Length > 0 && collision.contacts[0].point.y < bottom.position.y)
         {
             playerState.grounded = true;
+            playerState.airJumpsUsed = 0;
             playerState.lastGroundTime = Time.time;
             grounds.Add(collision.gameObject);
             onPlayerStateChanged?.Invoke(playerState);
