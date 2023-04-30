@@ -20,3 +20,5 @@ MonoBehaviour:
   stackDecayDelay: 4
   stackDecayDelayPerStack: 1
   maxAirJumps: 1
+  momentumChangeFactor: 2
+  momentumInstantSnapThreshold: 2

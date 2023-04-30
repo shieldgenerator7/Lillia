@@ -13,4 +13,6 @@ public class PlayerAttributes : ScriptableObject
     public float stackDecayDelay;
     public float stackDecayDelayPerStack;
     public int maxAirJumps;
+    public float momentumChangeFactor;
+    public float momentumInstantSnapThreshold;
 }

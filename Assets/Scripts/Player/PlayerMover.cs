@@ -19,8 +19,16 @@ public class PlayerMover : MonoBehaviour
     {
         //Movement
         Vector2 vel = rb2d.velocity;
-        vel.x = playerState.moveDirection
+        float moveX = playerState.moveDirection
             * (attributes.walkSpeed + attributes.runSpeedPerStack * playerState.stacks);
+        if (moveX != vel.x)
+        {
+            vel.x = Mathf.Lerp(vel.x, moveX, Time.deltaTime * attributes.momentumChangeFactor);
+            if (Mathf.Abs(moveX - vel.x) < attributes.momentumInstantSnapThreshold)
+            {
+                vel.x = moveX;
+            }
+        }
         if (playerState.jumping && Time.time == playerState.lastJumpTime)
         {
             vel.y = attributes.jumpForce;
