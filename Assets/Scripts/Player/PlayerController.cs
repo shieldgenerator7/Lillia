@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 
 public class PlayerController : MonoBehaviour
 {
@@ -60,18 +61,6 @@ public class PlayerController : MonoBehaviour
         if (!inputState.jump)
         {
             playerState.jumpConsumed = false;
-        }
-        //Transforming
-        if (playerState.grounded)
-        {
-            if (inputState.movementDirection.y < 0)
-            {
-                playerState.form = PlayerState.Form.FERAL;
-            }
-            if (inputState.movementDirection.y > 0)
-            {
-                playerState.form = PlayerState.Form.ANTHRO;
-            }
         }
         //Ability
         playerState.ability1 = inputState.ability1;

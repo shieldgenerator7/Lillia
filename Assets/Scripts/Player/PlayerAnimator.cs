@@ -16,14 +16,12 @@ public class PlayerAnimator : MonoBehaviour
     // Update is called once per frame
     void UpdateAnimator(PlayerState playerState)
     {
-        bool feral = playerState.form == PlayerState.Form.FERAL;
         bool moving = playerState.moveDirection != 0;
-        //Anthro/Feral form
-        animator.SetBool("feral", feral);
+        //Speed
         animator.SetBool("walking", moving && !playerState.running);
         animator.SetBool("running", moving && playerState.running);
         //Flip X
-        float lookDirection = (feral) ? playerState.moveDirection : playerState.lookDirection.x;
+        float lookDirection = playerState.moveDirection;
         if (lookDirection != 0)
         {
             Vector3 scale = playerController.transform.localScale;

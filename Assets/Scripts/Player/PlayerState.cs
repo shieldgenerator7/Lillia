@@ -50,13 +50,6 @@ public struct PlayerState
     /// True: intends on using ability 2
     /// </summary>
     public bool ability2;
-
-    public enum Form
-    {
-        ANTHRO,
-        FERAL,
-    }
-    public Form form;
     /// <summary>
     /// How many stacks of Blooming Blows that Lillia has
     /// </summary>

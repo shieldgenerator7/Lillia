@@ -99,7 +99,7 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-        Vector2 centerPos = center?.position ?? transform.position;
+        Vector2 centerPos = (center) ? center.position : transform.position;
         Vector2 prevLookDirection = inputState.lookDirection;
         Vector3 mousePos = Mouse.current.position.ReadValue();
         Vector2 lookPosition = Utility.ScreenToWorldPoint(mousePos);
