@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
 public class PlayerMover : MonoBehaviour
@@ -20,7 +21,7 @@ public class PlayerMover : MonoBehaviour
         Vector2 vel = rb2d.velocity;
         vel.x = playerState.moveDirection
             * (attributes.walkSpeed + attributes.runSpeedPerStack * playerState.stacks);
-        if (playerState.jumping && playerState.grounded)
+        if (playerState.jumping && Time.time == playerState.lastJumpTime)
         {
             vel.y = attributes.jumpForce;
         }

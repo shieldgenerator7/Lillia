@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour
                 playerState.jumping = true;
                 playerState.jumpConsumed = true;
                 playerState.falling = false;
+                playerState.lastJumpTime = Time.time;
                 if (!grounded && !coyoteTime)
                 {
                     playerState.airJumpsUsed++;

@@ -21,6 +21,7 @@ public struct PlayerState
     /// </summary>
     public bool jumping;
     public bool jumpConsumed;
+    public float lastJumpTime;
     /// <summary>
     /// True: in air and intends to be going down
     /// </summary>
