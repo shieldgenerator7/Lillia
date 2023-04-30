@@ -21,6 +21,17 @@ public class PlayerMover : MonoBehaviour
         Vector2 vel = rb2d.velocity;
         float moveX = playerState.moveDirection
             * (attributes.walkSpeed + attributes.runSpeedPerStack * playerState.stacks);
+        //Wall bounce
+        if (playerState.wallBouncing && playerState.lastWallBounceTime == Time.time)
+        {
+            //Reverse direction
+            vel.x *= -1;
+            //Increase speed
+            vel.x *= attributes.wallBounceSpeedUpFactor;
+            //"Jump"
+            vel.y = attributes.wallBounceJumpForce;
+        }
+        //Momentum dampening
         if (moveX != vel.x)
         {
             vel.x = Mathf.Lerp(vel.x, moveX, Time.deltaTime * attributes.momentumChangeFactor);
@@ -29,6 +40,7 @@ public class PlayerMover : MonoBehaviour
                 vel.x = moveX;
             }
         }
+        //Jumping
         if (playerState.jumping && Time.time == playerState.lastJumpTime)
         {
             vel.y = attributes.jumpForce;
@@ -38,13 +50,15 @@ public class PlayerMover : MonoBehaviour
                 vel.x = 0;
             }
         }
-        else if (!playerState.jumping && !playerState.grounded)
+        //(Elective) Falling
+        else if (!playerState.jumping && !playerState.grounded && !playerState.wallBouncing)
         {
             if (vel.y > 0)
             {
                 vel.y = 0;
             }
         }
+        //Assign velocity
         rb2d.velocity = vel;
     }
 }

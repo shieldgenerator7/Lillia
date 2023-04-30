@@ -22,4 +22,7 @@ MonoBehaviour:
   maxAirJumps: 1
   momentumChangeFactor: 2
   momentumInstantSnapThreshold: 2
-  jumpForcePerStack: 0.5
+  jumpForcePerStack: 0.75
+  wallBounceSpeedUpFactor: 1.2
+  wallBounceJumpForce: 2
+  wallBounceDuration: 1

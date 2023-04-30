@@ -23,12 +23,13 @@ public class PlayerController : MonoBehaviour
 
     public void FixedUpdate()
     {
+        bool playerStateChanged = false;
         //Falling
         if (rb2d.velocity.y <= 0 && playerState.jumping)
         {
             playerState.jumping = false;
             playerState.falling = !playerState.grounded;
-            onPlayerStateChanged?.Invoke(playerState);
+            playerStateChanged = true;
         }
         //Stack Decay
         if (playerState.stacks > 0)
@@ -40,9 +41,23 @@ public class PlayerController : MonoBehaviour
                     playerState.lastStackDecayTime = Time.fixedTime;
                     setStacks(playerState.stacks - 1);
                     playerState.running = playerState.stacks > 0;
-                    onPlayerStateChanged?.Invoke(playerState);
+                    playerStateChanged = true;
                 }
             }
+        }
+        //Wall Bounce expiring
+        if (playerState.wallBouncing)
+        {
+            if (Time.fixedTime > playerState.lastWallBounceTime + playerAttributes.wallBounceDuration)
+            {
+                playerState.wallBouncing = false;
+                playerStateChanged = true;
+            }
+        }
+        //
+        if (playerStateChanged)
+        {
+            onPlayerStateChanged?.Invoke(playerState);
         }
     }
 
@@ -164,6 +179,15 @@ public class PlayerController : MonoBehaviour
         {
             setStacks(playerState.stacks + 1);
             playerState.lastStackAddTime = Time.fixedTime;
+        }
+        if (wall)
+        {
+            //Refresh blooming blows duration
+            playerState.lastStackAddTime = Time.fixedTime;
+            //Wall bounce
+            playerState.wallBouncing = true;
+            playerState.lastWallBounceTime = Time.time;
+            playerState.moveDirection *= -1;
         }
         playerState.running = playerState.stacks > 0;
         onPlayerStateChanged?.Invoke(playerState);

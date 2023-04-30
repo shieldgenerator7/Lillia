@@ -35,6 +35,8 @@ public struct PlayerState
     /// True: up against a wall
     /// </summary>
     public bool walled;
+    public bool wallBouncing;
+    public float lastWallBounceTime;
     /// <summary>
     /// True: a ceiling is in range of the player's feet
     /// </summary>

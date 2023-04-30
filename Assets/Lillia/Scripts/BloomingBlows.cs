@@ -45,12 +45,11 @@ public class BloomingBlows : MonoBehaviour
         if (hittable)
         {
             hittable.hit();
-            hitSomething();
+            playerController.BloomingBlowsHitSomething(true, false);
         }
-    }
-
-    void hitSomething()
-    {
-        playerController.BloomingBlowsHitSomething(true, false);
+        else
+        {
+            playerController.BloomingBlowsHitSomething(false, true);
+        }
     }
 }
