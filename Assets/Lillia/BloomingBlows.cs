@@ -35,7 +35,7 @@ public class BloomingBlows : MonoBehaviour
         Debug.Log($"checkForActivation playerState: {playerState.usingBloomingBlows}");
         if (playerState.usingBloomingBlows != active)
         {
-            active = playerState.usingBloomingBlows;
+            Active = playerState.usingBloomingBlows;
             if (active)
             {
                 hitSomething();
