@@ -15,6 +15,5 @@ public class PlayerAttributes : ScriptableObject
     public int maxAirJumps;
     public float momentumChangeFactor;
     public float momentumInstantSnapThreshold;
-    public float momentumIntoEepFactor;
     public float jumpForcePerStack;
 }
