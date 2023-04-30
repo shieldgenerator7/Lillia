@@ -6,6 +6,7 @@ using UnityEngine.InputSystem.LowLevel;
 public class PlayerController : MonoBehaviour
 {
     public float coyoteTime = 0.1f;
+    public Transform bottom;
 
     public PlayerAttributes playerAttributes;
 
@@ -14,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public event OnPlayerStateChanged onPlayerStateChanged;
 
     private Rigidbody2D rb2d;
+    private HashSet<GameObject> grounds = new HashSet<GameObject>();
 
     public void Start()
     {
@@ -34,7 +36,8 @@ public class PlayerController : MonoBehaviour
         {
             if (Time.fixedTime >= playerState.lastStackAddTime + playerAttributes.stackDecayDelay)
             {
-                if (Time.fixedTime >= playerState.lastStackDecayTime + playerAttributes.stackDecayDelayPerStack) {
+                if (Time.fixedTime >= playerState.lastStackDecayTime + playerAttributes.stackDecayDelayPerStack)
+                {
                     playerState.lastStackDecayTime = Time.fixedTime;
                     setStacks(playerState.stacks - 1);
                     playerState.running = playerState.stacks > 0;
@@ -55,6 +58,9 @@ public class PlayerController : MonoBehaviour
         //Jumping
         if (playerState.jumping != inputState.jump)
         {
+            //Check grounded state just to be safe
+            playerState.grounded = checkGrounded();
+            //
             if (!playerState.jumping && inputState.jump
                 && (playerState.grounded || Time.time <= playerState.lastGroundTime + coyoteTime)
                 && !playerState.jumpConsumed
@@ -89,21 +95,54 @@ public class PlayerController : MonoBehaviour
     ///TODO: move to some other script, perhaps the environment state updater one
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.contacts.Length > 0 && collision.contacts[0].point.y < transform.position.y)
+        if (collision.contacts.Length > 0 && collision.contacts[0].point.y < bottom.position.y)
         {
             playerState.grounded = true;
             playerState.lastGroundTime = Time.time;
+            grounds.Add(collision.gameObject);
             onPlayerStateChanged?.Invoke(playerState);
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.contacts.Length == 0 || collision.contacts[0].point.y < transform.position.y)
+        if (collision.contacts.Length == 0 || collision.contacts[0].point.y < bottom.position.y)
         {
-            playerState.grounded = false;
+            grounds.Remove(collision.gameObject);
+            if (grounds.Count == 0)
+            {
+                playerState.grounded = false;
+            }
             playerState.lastGroundTime = Time.time;
             onPlayerStateChanged?.Invoke(playerState);
         }
+    }
+
+    private bool checkGrounded()
+    {
+        RaycastHit2D[] rch2ds = Physics2D.BoxCastAll(
+            bottom.position,
+            new Vector2(0.5f, 0.1f),
+            0,
+            Vector2.zero
+            );
+        for (int i = 0; i < rch2ds.Length; i++)
+        {
+            RaycastHit2D rch2d = rch2ds[i];
+            Rigidbody2D rb2d = rch2d.rigidbody;
+            if (rb2d)
+            {
+                //cant land on other things that move 
+                //might change in future,
+                //right now, its an easy way to prevent
+                //player detecting themselves as a ground to stand on
+                continue;
+            }
+            if (rch2d.point.y < bottom.position.y)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void BloomingBlowsHitSomething(bool hittable, bool wall)
