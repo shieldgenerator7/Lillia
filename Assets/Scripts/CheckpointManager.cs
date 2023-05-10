@@ -23,6 +23,13 @@ public class CheckpointManager : MonoBehaviour
         });
 
         teleportToStart();
+        if (end)
+        {
+            end.onCheckPointReached += (cp) =>
+            {
+                FindObjectOfType<LevelManager>().nextLevel();
+            };
+        }
     }
 
     private void switchCheckPoint(Checkpoint newCurrent)

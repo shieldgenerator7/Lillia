@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,11 @@ public class LevelManager : MonoBehaviour
         }
         loadedLevelIndex = index;
         SceneManager.LoadSceneAsync(levels[loadedLevelIndex], LoadSceneMode.Additive);
+    }
+
+    public void nextLevel()
+    {
+        loadLevel(loadedLevelIndex + 1);
     }
 
     private void Start()
