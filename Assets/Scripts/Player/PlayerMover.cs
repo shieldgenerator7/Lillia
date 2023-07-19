@@ -50,6 +50,17 @@ public class PlayerMover : MonoBehaviour
                 vel.x = 0;
             }
         }
+        //Air Blooming Blows
+        if (playerState.usingBloomingBlows)
+        {
+            if (!playerState.grounded && playerState.airBloomingBlowsUsed <= attributes.maxAirBloomingBlows)
+            {
+                if (vel.y < 0)
+                {
+                    vel.y = attributes.airBloomingBlowsJumpForce;
+                }
+            }
+        }
         //(Elective) Falling
         else if (!playerState.jumping && !playerState.grounded && !playerState.wallBouncing)
         {

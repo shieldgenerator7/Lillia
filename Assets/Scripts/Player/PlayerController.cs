@@ -67,6 +67,13 @@ public class PlayerController : MonoBehaviour
         playerState.moveDirection = inputState.movementDirection.x;
         //Blooming Blows
         playerState.usingBloomingBlows = inputState.bloomingblows;
+        if (playerState.usingBloomingBlows)
+        {
+            if (!playerState.grounded)
+            {
+                playerState.airBloomingBlowsUsed++;
+            }
+        }
         //Look Direction
         playerState.lookDirection = inputState.lookDirection;
         //Jumping
@@ -78,6 +85,7 @@ public class PlayerController : MonoBehaviour
             if (grounded)
             {
                 playerState.airJumpsUsed = 0;
+                playerState.airBloomingBlowsUsed = 0;
             }
             bool coyoteTime = (Time.time <= playerState.lastGroundTime + playerAttributes.coyoteTime);
             //

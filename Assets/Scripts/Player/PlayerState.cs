@@ -69,6 +69,10 @@ public struct PlayerState
     /// How many jumps in midair have been used since the last grounded time 
     /// </summary>
     public int airJumpsUsed;
+    /// <summary>
+    /// How many blooming blows used since the last grounded time
+    /// </summary>
+    public int airBloomingBlowsUsed;
 
     public override string ToString()
     {

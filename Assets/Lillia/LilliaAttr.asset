@@ -19,6 +19,8 @@ MonoBehaviour:
   coyoteTime: 0.2
   stackDecayDelay: 4
   stackDecayDelayPerStack: 2
+  maxAirBloomingBlows: 1
+  airBloomingBlowsJumpForce: 2
   maxAirJumps: 1
   momentumChangeFactor: 2
   momentumInstantSnapThreshold: 2

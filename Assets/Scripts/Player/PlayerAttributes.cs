@@ -12,6 +12,8 @@ public class PlayerAttributes : ScriptableObject
     public float coyoteTime = 0.1f;
     public float stackDecayDelay;
     public float stackDecayDelayPerStack;
+    public int maxAirBloomingBlows;
+    public float airBloomingBlowsJumpForce;
     public int maxAirJumps;
     public float momentumChangeFactor;
     public float momentumInstantSnapThreshold;
