@@ -18,7 +18,7 @@ MonoBehaviour:
   jumpForce: 4
   coyoteTime: 0.2
   stackDecayDelay: 4
-  stackDecayDelayPerStack: 1
+  stackDecayDelayPerStack: 2
   maxAirJumps: 1
   momentumChangeFactor: 2
   momentumInstantSnapThreshold: 2
