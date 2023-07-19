@@ -49,7 +49,12 @@ public class BloomingBlows : MonoBehaviour
         }
         else
         {
-            playerController.BloomingBlowsHitSomething(false, true);
+            float wallOffDirection = Mathf.Sign(transform.position.x - collision.gameObject.transform.position.x);
+            float moveDirection = Mathf.Sign(playerController.moveDirection.x);
+            if (wallOffDirection == moveDirection)
+            {
+                playerController.BloomingBlowsHitSomething(false, true);
+            }
         }
     }
 }

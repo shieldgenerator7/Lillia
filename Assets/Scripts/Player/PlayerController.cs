@@ -187,7 +187,7 @@ public class PlayerController : MonoBehaviour
             //Wall bounce
             playerState.wallBouncing = true;
             playerState.lastWallBounceTime = Time.time;
-            playerState.moveDirection *= -1;
+            playerState.moveDirection *= 1;
         }
         playerState.running = playerState.stacks > 0;
         onPlayerStateChanged?.Invoke(playerState);
@@ -201,4 +201,6 @@ public class PlayerController : MonoBehaviour
             playerAttributes.maxStacks
             );
     }
+
+    public Vector2 moveDirection => rb2d.velocity;
 }
