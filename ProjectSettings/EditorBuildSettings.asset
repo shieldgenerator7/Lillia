@@ -18,3 +18,4 @@ EditorBuildSettings:
     path: Assets/Scenes/Level_Win.unity
     guid: 63882b4f2b10e5b45be613d230c7f2bf
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
