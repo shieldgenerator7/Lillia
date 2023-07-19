@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public PlayerAttributes playerAttributes;
 
     private PlayerState playerState;
+    public PlayerState PlayerState => playerState;
     public delegate void OnPlayerStateChanged(PlayerState playerState);
     public event OnPlayerStateChanged onPlayerStateChanged;
 
@@ -75,7 +76,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         //Look Direction
-        playerState.lookDirection = inputState.lookDirection;
+        playerState.lookDirection = inputState.movementDirection;
         //Jumping
         if (playerState.jumping != inputState.jump)
         {
