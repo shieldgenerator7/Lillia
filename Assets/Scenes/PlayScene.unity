@@ -238,7 +238,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -282,7 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tFollow: {fileID: 125999768}
-  offset: {x: 1.5, y: 0.7, z: -10}
+  offset: {x: 2.5, y: 0.7, z: -10}
 --- !u!1001 &5218961431621589654
 PrefabInstance:
   m_ObjectHideFlags: 0
