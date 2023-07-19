@@ -40,7 +40,7 @@ public struct PlayerState
     /// <summary>
     /// True: a ceiling is in range of the player's feet
     /// </summary>
-    public bool cellinged;
+    public bool ceilinged;
     /// <summary>
     /// True: intends on using Blooming Blows
     /// </summary>
