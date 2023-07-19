@@ -25,8 +25,6 @@ public class PlayerMover : MonoBehaviour
         {
             if (playerState.lastWallBounceTime == Time.time)
             {
-                //Reverse direction
-                vel.x *= -1;
                 //"Jump"
                 vel.y = Mathf.Abs(vel.x) * attributes.wallBounceJumpFactor;
                 //Increase speed
