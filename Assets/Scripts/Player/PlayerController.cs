@@ -212,4 +212,9 @@ public class PlayerController : MonoBehaviour
     }
 
     public Vector2 moveDirection => rb2d.velocity;
+
+    public void stop()
+    {
+        rb2d.velocity = Vector2.zero;
+    }
 }

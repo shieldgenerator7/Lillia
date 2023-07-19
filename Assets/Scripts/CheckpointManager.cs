@@ -48,11 +48,18 @@ public class CheckpointManager : MonoBehaviour
     public void teleportToStart()
     {
         switchCheckPoint(start);
-        FindObjectOfType<PlayerController>().transform.position = start.transform.position;
+        teleportPlayer(start.transform.position);
     }
 
     public void teleportToCurrent()
     {
-        FindObjectOfType<PlayerController>().transform.position = current.transform.position;
+        teleportPlayer(current.transform.position);
+    }
+
+    public void teleportPlayer(Vector2 pos)
+    {
+        PlayerController playerController = FindObjectOfType<PlayerController>();
+        playerController.transform.position = pos;
+        playerController.stop();
     }
 }
