@@ -29,6 +29,10 @@ public class GameManager : MonoBehaviour
         checkpointManager.OnCheckpointRecalling += onCheckpointRecalling;
         //
         gameTimer = timerManager.startTimer();
+        gameTimer.onTimerTicked += (duration) =>
+        {
+            statisticsManager.updateRun(duration);
+        };
         timerUI.init(gameTimer);
         nextLevelTimer = timerManager.startTimer();
         nextLevelTimer.stop();
@@ -112,10 +116,10 @@ public class GameManager : MonoBehaviour
 
     public void FinishRun()
     {
-        statisticsManager.finishRun();
         gameTimer.stop();
         nextLevelTimer.reset(Time.time);
         nextLevelTimer.start();
+        statisticsManager.finishRun();
         timerUI.bestTime = statisticsManager.bestRun.duration;
     }
 

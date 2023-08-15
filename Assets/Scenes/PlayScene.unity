@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 56600665}
   - component: {fileID: 56600663}
   - component: {fileID: 56600666}
+  - component: {fileID: 56600667}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -183,11 +184,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8632534320399b49b622432d20f3be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextLevelDelay: 3
   playerInput: {fileID: 1518226481}
   playerController: {fileID: 1518226480}
   checkpointManager: {fileID: 56600665}
   levelManager: {fileID: 56600663}
   timerManager: {fileID: 56600666}
+  statisticsManager: {fileID: 56600667}
   timerUI: {fileID: 632372416}
 --- !u!114 &56600665
 MonoBehaviour:
@@ -212,6 +215,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a0da710abedeeb46ba3f9801258d674, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &56600667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56600661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d19ebf050642e448fcccfb18c93d0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &125999768 stripped
@@ -466,6 +481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 632372415}
+  bestTime: 999.99
 --- !u!222 &632372417
 CanvasRenderer:
   m_ObjectHideFlags: 0
