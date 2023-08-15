@@ -50,6 +50,9 @@ public class GameManager : MonoBehaviour
         //Reset fruits
         FindObjectsByType<Fruit>(FindObjectsSortMode.None).ToList()
             .ForEach(fruit => fruit.Available = true);
+        //Reset time
+        gameTimer.reset(Time.time);
+        gameTimer.start();
     }
 
     void onEndCheckpointReached(Checkpoint cp)
@@ -61,6 +64,5 @@ public class GameManager : MonoBehaviour
     void onCheckpointRecalling(Checkpoint checkpoint)
     {
         playerController.resetState(checkpoint.transform.position);
-        gameTimer.reset(Time.time);
     }
 }
