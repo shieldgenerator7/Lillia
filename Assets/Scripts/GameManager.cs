@@ -43,11 +43,11 @@ public class GameManager : MonoBehaviour
         onSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
     }
 
+    #region Delegate Handlers
+
     void onSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
-        gameTimer.reset(Time.time);
-        gameTimer.start();
-        nextLevelTimer.stop();
+        StartRun();
         checkpointManager.registerCheckpointDelegates();
         FindObjectsByType<Hazard>(FindObjectsSortMode.None).ToList()
             .ForEach(hazard => hazard.onPlayerHit += onHazardHit);
@@ -55,31 +55,65 @@ public class GameManager : MonoBehaviour
 
     void onReset()
     {
-        onHazardHit(null);
-        nextLevelTimer.stop();
+        //Teleport player
+        checkpointManager.teleportToStart();
+        //Reset
+        ResetRun();
+        //Start
+        StartRun();
     }
 
     void onHazardHit(Hazard hazard)
     {
         //Teleport player
         checkpointManager.teleportToCurrent();
-        //Reset fruits
-        FindObjectsByType<Fruit>(FindObjectsSortMode.None).ToList()
-            .ForEach(fruit => fruit.Available = true);
-        //Reset time
-        gameTimer.reset(Time.time);
-        gameTimer.start();
+        //Reset
+        ResetRun();
+        //Start
+        StartRun();
     }
 
     void onEndCheckpointReached(Checkpoint cp)
     {
-        gameTimer.stop();
-        nextLevelTimer.reset(Time.time);
-        nextLevelTimer.start();
+        FinishRun();
     }
 
     void onCheckpointRecalling(Checkpoint checkpoint)
     {
         playerController.resetState(checkpoint.transform.position);
     }
+
+    #endregion
+
+    #region Game Commands
+
+    public void StartRun()
+    {
+        gameTimer.reset(Time.time);
+        gameTimer.start();
+        nextLevelTimer.stop();
+    }
+
+    public void ResetRun()
+    {
+        //Reset fruits
+        FindObjectsByType<Fruit>(FindObjectsSortMode.None).ToList()
+            .ForEach(fruit => fruit.Available = true);
+        //Reset time
+        gameTimer.reset(Time.time);
+        gameTimer.stop();
+        nextLevelTimer.reset(Time.time);
+        nextLevelTimer.stop();
+        //Reset player
+        playerController.resetState(checkpointManager.Start.transform.position);
+    }
+
+    public void FinishRun()
+    {
+        gameTimer.stop();
+        nextLevelTimer.reset(Time.time);
+        nextLevelTimer.start();
+    }
+
+    #endregion
 }
