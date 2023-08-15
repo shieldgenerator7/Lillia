@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class FileManager : MonoBehaviour
 {
-    public string filename = "lillia_runs";
+    public string filename = "dreamfawn_runs";
     public string fileExtension = "txt";
     public string delimiter = "\n";
 
