@@ -13,7 +13,16 @@ public class StatisticsManager : MonoBehaviour
     public void init(List<RunStats> stats)
     {
         this.stats = stats;
-        bestRun = stats.OrderBy(run => run.duration).First();
+        if (stats.Count > 0)
+        {
+            bestRun = stats.OrderBy(run => run.duration).First();
+        }
+        else
+        {
+            RunStats run = new RunStats();
+            run.duration = 999.99f;
+            bestRun = run;
+        }
     }
 
     public void startRun()
