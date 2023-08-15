@@ -18,9 +18,10 @@ public class GameManager : MonoBehaviour
     public FileManager fileManager;
 
     public TimerUI timerUI;
+    public PlayerTrigger resetTrigger;
+    public PlayerTrigger nextLevelTrigger;
 
     private Timer gameTimer;
-    private Timer nextLevelTimer;
 
     private void Awake()
     {
@@ -31,6 +32,15 @@ public class GameManager : MonoBehaviour
         playerInput.onReset += onReset;
         checkpointManager.OnEndCheckpointReached += onEndCheckpointReached;
         checkpointManager.OnCheckpointRecalling += onCheckpointRecalling;
+        resetTrigger.OnPlayerEntered += () =>
+        {
+            ResetRun();
+            StartRun();
+        };
+        nextLevelTrigger.OnPlayerEntered += () =>
+        {
+            levelManager.nextLevel();
+        };
         //
         gameTimer = timerManager.startTimer();
         gameTimer.onTimerTicked += (duration) =>
@@ -38,16 +48,6 @@ public class GameManager : MonoBehaviour
             statisticsManager.updateRun(duration);
         };
         timerUI.init(gameTimer);
-        nextLevelTimer = timerManager.startTimer();
-        nextLevelTimer.stop();
-        nextLevelTimer.onTimerTicked += (duration) =>
-        {
-            if (duration >= nextLevelDelay)
-            {
-                levelManager.nextLevel();
-                nextLevelTimer.stop();
-            }
-        };
         Application.quitting += () =>
         {
             fileManager.save(statisticsManager.stats);
@@ -107,7 +107,6 @@ public class GameManager : MonoBehaviour
     {
         gameTimer.reset(Time.time);
         gameTimer.start();
-        nextLevelTimer.stop();
         statisticsManager.startRun();
     }
 
@@ -119,8 +118,6 @@ public class GameManager : MonoBehaviour
         //Reset time
         gameTimer.reset(Time.time);
         gameTimer.stop();
-        nextLevelTimer.reset(Time.time);
-        nextLevelTimer.stop();
         //Reset player
         playerController.resetState();
     }
@@ -128,8 +125,6 @@ public class GameManager : MonoBehaviour
     public void FinishRun()
     {
         gameTimer.stop();
-        nextLevelTimer.reset(Time.time);
-        nextLevelTimer.start();
         statisticsManager.finishRun();
         timerUI.bestTime = statisticsManager.bestRun.duration;
         fileManager.save(statisticsManager.stats);
