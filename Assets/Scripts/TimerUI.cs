@@ -7,6 +7,8 @@ public class TimerUI : MonoBehaviour
 {
     public TMP_Text text;
 
+    public float bestTime = 999.99f;
+
     Timer timer;
     public void init(Timer timer)
     {
@@ -16,6 +18,6 @@ public class TimerUI : MonoBehaviour
 
     void onTimerTicked(float duration)
     {
-        text.text = $"{duration:N2}";
+        text.text = $"{duration:N2}\n{bestTime:N2}";
     }
 }

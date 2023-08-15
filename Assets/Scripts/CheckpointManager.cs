@@ -11,6 +11,8 @@ public class CheckpointManager : MonoBehaviour
     [SerializeField]
     private CheckpointCollection checkpoints;
 
+    public Checkpoint Start => checkpoints.start;
+
 
     public delegate void CheckpointEvent(Checkpoint cp);
 

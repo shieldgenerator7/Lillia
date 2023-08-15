@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public CheckpointManager checkpointManager;
     public LevelManager levelManager;
     public TimerManager timerManager;
+    public StatisticsManager statisticsManager;
 
     public TimerUI timerUI;
 
@@ -92,6 +93,7 @@ public class GameManager : MonoBehaviour
         gameTimer.reset(Time.time);
         gameTimer.start();
         nextLevelTimer.stop();
+        statisticsManager.startRun();
     }
 
     public void ResetRun()
@@ -110,9 +112,11 @@ public class GameManager : MonoBehaviour
 
     public void FinishRun()
     {
+        statisticsManager.finishRun();
         gameTimer.stop();
         nextLevelTimer.reset(Time.time);
         nextLevelTimer.start();
+        timerUI.bestTime = statisticsManager.bestRun.duration;
     }
 
     #endregion
