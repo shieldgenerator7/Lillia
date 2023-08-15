@@ -9,6 +9,11 @@ public class GameManager : MonoBehaviour
     public PlayerController playerController;
     public CheckpointManager checkpointManager;
     public LevelManager levelManager;
+    public TimerManager timerManager;
+
+    public TimerUI timerUI;
+
+    private Timer gameTimer;
 
     private void Awake()
     {
@@ -16,11 +21,16 @@ public class GameManager : MonoBehaviour
         checkpointManager.OnEndCheckpointReached += onEndCheckpointReached;
         checkpointManager.OnCheckpointRecalling += onCheckpointRecalling;
         //
+        gameTimer = timerManager.startTimer();
+        timerUI.init(gameTimer);
+        //
         onSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
     }
 
     void onSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
+        gameTimer.reset(Time.time);
+        gameTimer.start();
         checkpointManager.registerCheckpointDelegates();
         FindObjectsByType<Hazard>(FindObjectsSortMode.None).ToList()
             .ForEach(hazard => hazard.onPlayerHit += onHazardHit);
@@ -38,10 +48,12 @@ public class GameManager : MonoBehaviour
     void onEndCheckpointReached(Checkpoint cp)
     {
         levelManager.nextLevel();
+        gameTimer.stop();
     }
 
     void onCheckpointRecalling(Checkpoint checkpoint)
     {
         playerController.resetState(checkpoint.transform.position);
+        gameTimer.reset(Time.time);
     }
 }
