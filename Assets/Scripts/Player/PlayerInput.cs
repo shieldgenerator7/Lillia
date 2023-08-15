@@ -90,7 +90,14 @@ public class PlayerInput : MonoBehaviour
             inputState.ability2 = false;
             onInputStateChanged?.Invoke(inputState);
         };
+        //Reset
+        input.Reset.performed += _ =>
+        {
+            onReset?.Invoke();
+        };
     }
+    public delegate void OnReset();
+    public event OnReset onReset;
 
     private void OnDisable()
     {

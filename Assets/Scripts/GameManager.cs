@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public PlayerInput playerInput;
     public PlayerController playerController;
     public CheckpointManager checkpointManager;
     public LevelManager levelManager;
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         SceneManager.sceneLoaded += onSceneLoaded;
+        playerInput.onReset += onReset;
         checkpointManager.OnEndCheckpointReached += onEndCheckpointReached;
         checkpointManager.OnCheckpointRecalling += onCheckpointRecalling;
         //
@@ -34,6 +36,11 @@ public class GameManager : MonoBehaviour
         checkpointManager.registerCheckpointDelegates();
         FindObjectsByType<Hazard>(FindObjectsSortMode.None).ToList()
             .ForEach(hazard => hazard.onPlayerHit += onHazardHit);
+    }
+
+    void onReset()
+    {
+        onHazardHit(null);
     }
 
     void onHazardHit(Hazard hazard)
