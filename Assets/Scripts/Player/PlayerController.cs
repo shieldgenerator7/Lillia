@@ -222,5 +222,6 @@ public class PlayerController : MonoBehaviour
     {
         transform.position = pos;
         stop();
+        setStacks(0);
     }
 }
