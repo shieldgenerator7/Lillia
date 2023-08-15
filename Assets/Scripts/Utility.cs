@@ -4,6 +4,16 @@ using UnityEngine;
 
 public static class Utility 
 {
+    #region Float Extension Methods
+
+    public static float Round(float value , int decimals)
+    {
+        float powerOf10 = Mathf.Pow(10, decimals);
+        return Mathf.Round(value * powerOf10) / powerOf10;
+    }
+
+    #endregion
+
     #region Vector3 Extension Methods
     //2022-07-10: copied from Stonicorn.Utility
     public static Vector3 setX(this Vector3 v, float x)

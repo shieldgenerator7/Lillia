@@ -16,6 +16,6 @@ public class TimerUI : MonoBehaviour
 
     void onTimerTicked(float duration)
     {
-        text.text = $"{duration}";
+        text.text = $"{duration:N2}";
     }
 }
