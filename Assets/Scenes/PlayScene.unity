@@ -171,7 +171,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levels:
   - Level_Test_2
-  - Level_Test
   - Level_Win
 --- !u!114 &56600664
 MonoBehaviour:
