@@ -7,16 +7,12 @@ using UnityEngine;
 
 public class FileManager : MonoBehaviour
 {
-    public string filename = "lillia_runs.txt";
+    public string filename = "lillia_runs";
+    public string fileExtension = "txt";
     public string delimiter = "\n";
 
-    private string FilePath => $"{Application.persistentDataPath}\\{filename}.txt";
-
-    private void Start()
-    {
-        
-        Debug.Log(Application.persistentDataPath);
-    }
+    private string FilePath
+        => $"{Application.persistentDataPath}\\{filename}.{fileExtension}";
 
     public void save(List<RunStats> stats)
     {
@@ -39,7 +35,7 @@ public class FileManager : MonoBehaviour
                 stats.Add(run);
             });
         }
-        catch(FileNotFoundException fnfe)
+        catch (FileNotFoundException fnfe)
         {
             //do nothing
         }

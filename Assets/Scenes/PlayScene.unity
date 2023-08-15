@@ -243,7 +243,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 540d69912b298864595e713b68396b3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filename: lillia_runs.txt
+  filename: lillia_runs
+  fileExtension: txt
   delimiter: '
 
 '
