@@ -289,7 +289,7 @@ public class CustomMenu
     public static bool checkTiledHitBoxes()
     {
         int changedCount = 0;
-        GameObject.FindObjectsOfType<SpriteRenderer>().ToList()
+        GameObject.FindObjectsByType<SpriteRenderer>(FindObjectsSortMode.None).ToList()
             .FindAll(sr => sr.drawMode == SpriteDrawMode.Tiled)
             .OrderBy(sr => sr.gameObject.scene.buildIndex)
             .ThenBy(sr => sr.name).ToList()
