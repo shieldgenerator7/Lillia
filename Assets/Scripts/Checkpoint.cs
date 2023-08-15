@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
+    [Tooltip("True if the player is allowed to teleport here after death")]
+    public bool canTeleportHere = true;
+
     public Color activeColor = Color.white;
     public Color inactiveColor = Color.white;
 

@@ -20,7 +20,10 @@ public class CheckpointManager : MonoBehaviour
         checkpoints.checkPoints.ForEach(cp =>
         {
             cp.markCurrent(false);
-            cp.onCheckPointReached += switchCheckPoint;
+            if (cp.canTeleportHere)
+            {
+                cp.onCheckPointReached += switchCheckPoint;
+            }
         });
 
         teleportToStart();

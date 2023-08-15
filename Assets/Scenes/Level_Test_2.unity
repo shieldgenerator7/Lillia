@@ -1523,6 +1523,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1288216627}
     m_Modifications:
     - target: {fileID: 1933975924178363384, guid: cf01bd0e625cb0e46a7062cb920888b0, type: 3}
+      propertyPath: canTeleportHere
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1933975924178363384, guid: cf01bd0e625cb0e46a7062cb920888b0, type: 3}
       propertyPath: startingCheckpoint
       value: 1
       objectReference: {fileID: 0}
