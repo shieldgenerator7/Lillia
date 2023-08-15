@@ -32,6 +32,12 @@ public class StatisticsManager : MonoBehaviour
 
     public void finishRun()
     {
+        Debug.Log($"Adding run: time: {currentRun.duration}");
+        if (stats.Contains(currentRun))
+        {
+            Debug.LogError($"Trying to add run a 2nd time!: duration: {currentRun.duration}");
+            return;
+        }
         stats.Add(currentRun);
         bestRun = stats.OrderBy(run => run.duration).First();
     }
