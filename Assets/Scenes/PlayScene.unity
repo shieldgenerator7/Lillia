@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 56600663}
   - component: {fileID: 56600666}
   - component: {fileID: 56600667}
+  - component: {fileID: 56600668}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -191,6 +192,7 @@ MonoBehaviour:
   levelManager: {fileID: 56600663}
   timerManager: {fileID: 56600666}
   statisticsManager: {fileID: 56600667}
+  fileManager: {fileID: 56600668}
   timerUI: {fileID: 632372416}
 --- !u!114 &56600665
 MonoBehaviour:
@@ -229,6 +231,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27d19ebf050642e448fcccfb18c93d0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &56600668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56600661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 540d69912b298864595e713b68396b3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  filename: lillia_runs.txt
 --- !u!4 &125999768 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8546214906423153129, guid: bfe4cfff32a86364a9aebed9d9ed3552, type: 3}

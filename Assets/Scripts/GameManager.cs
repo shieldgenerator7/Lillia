@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public LevelManager levelManager;
     public TimerManager timerManager;
     public StatisticsManager statisticsManager;
+    public FileManager fileManager;
 
     public TimerUI timerUI;
 
@@ -43,6 +44,10 @@ public class GameManager : MonoBehaviour
                 levelManager.nextLevel();
                 nextLevelTimer.stop();
             }
+        };
+        Application.quitting += () =>
+        {
+            fileManager.save(statisticsManager.stats);
         };
         //
         onSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
@@ -124,6 +129,7 @@ public class GameManager : MonoBehaviour
         nextLevelTimer.start();
         statisticsManager.finishRun();
         timerUI.bestTime = statisticsManager.bestRun.duration;
+        fileManager.save(statisticsManager.stats);
     }
 
     #endregion
