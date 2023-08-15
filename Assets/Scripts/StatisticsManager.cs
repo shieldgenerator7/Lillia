@@ -10,6 +10,12 @@ public class StatisticsManager : MonoBehaviour
     RunStats currentRun;
     public RunStats bestRun { get; private set; }
 
+    public void init(List<RunStats> stats)
+    {
+        this.stats = stats;
+        bestRun = stats.OrderBy(run => run.duration).First();
+    }
+
     public void startRun()
     {
         currentRun = new RunStats();

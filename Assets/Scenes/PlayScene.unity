@@ -244,6 +244,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   filename: lillia_runs.txt
+  delimiter: '
+
+'
 --- !u!4 &125999768 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8546214906423153129, guid: bfe4cfff32a86364a9aebed9d9ed3552, type: 3}

@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        statisticsManager.init(fileManager.load());
+        timerUI.bestTime = statisticsManager.bestRun.duration;
+        //
         SceneManager.sceneLoaded += onSceneLoaded;
         playerInput.onReset += onReset;
         checkpointManager.OnEndCheckpointReached += onEndCheckpointReached;
