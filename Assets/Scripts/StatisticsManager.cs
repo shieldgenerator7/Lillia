@@ -38,6 +38,11 @@ public class StatisticsManager : MonoBehaviour
             Debug.LogError($"Trying to add run a 2nd time!: duration: {currentRun.duration}");
             return;
         }
+        if (Mathf.Approximately(currentRun.duration, 0))
+        {
+            Debug.LogError($"Trying to add invalid run!: duration: {currentRun.duration}");
+            return;
+        }
         stats.Add(currentRun);
         bestRun = stats.OrderBy(run => run.duration).First();
     }

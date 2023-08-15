@@ -34,8 +34,7 @@ public class GameManager : MonoBehaviour
         checkpointManager.OnCheckpointRecalling += onCheckpointRecalling;
         resetTrigger.OnPlayerEntered += () =>
         {
-            ResetRun();
-            StartRun();
+            onReset();
         };
         nextLevelTrigger.OnPlayerEntered += () =>
         {
