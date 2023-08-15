@@ -13,16 +13,15 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         SceneManager.sceneLoaded += onSceneLoaded;
+        checkpointManager.OnEndCheckpointReached += onEndCheckpointReached;
+        checkpointManager.OnCheckpointRecalling += onCheckpointRecalling;
         //
         onSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
     }
 
     void onSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
-        checkpointManager = FindAnyObjectByType<CheckpointManager>();
-        checkpointManager.OnEndCheckpointReached += onEndCheckpointReached;
-        checkpointManager.OnCheckpointRecalling += onCheckpointRecalling;
-        //
+        checkpointManager.registerCheckpointDelegates();
         FindObjectsByType<Hazard>(FindObjectsSortMode.None).ToList()
             .ForEach(hazard => hazard.onPlayerHit += onHazardHit);
     }

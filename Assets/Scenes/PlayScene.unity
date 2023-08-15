@@ -130,6 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 56600662}
   - component: {fileID: 56600664}
+  - component: {fileID: 56600665}
   - component: {fileID: 56600663}
   m_Layer: 0
   m_Name: GameManager
@@ -182,8 +183,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 1518226480}
-  checkpointManager: {fileID: 0}
+  checkpointManager: {fileID: 56600665}
   levelManager: {fileID: 56600663}
+--- !u!114 &56600665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56600661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80d9ae3d97919384d92d121ce369b9f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  start: {fileID: 0}
+  end: {fileID: 0}
+  checkpoints: []
 --- !u!4 &125999768 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8546214906423153129, guid: bfe4cfff32a86364a9aebed9d9ed3552, type: 3}

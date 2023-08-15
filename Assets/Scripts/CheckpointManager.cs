@@ -5,32 +5,30 @@ using UnityEngine;
 
 public class CheckpointManager : MonoBehaviour
 {
-    public Checkpoint start;
-    public Checkpoint end;
 
     private Checkpoint current;
 
     [SerializeField]
-    private List<Checkpoint> checkpoints;
+    private CheckpointCollection checkpoints;
 
 
     public delegate void CheckpointEvent(Checkpoint cp);
 
-    private void Start()
+    public void registerCheckpointDelegates()
     {
-        checkpoints = FindObjectsOfType<Checkpoint>().ToList();
-        checkpoints.ForEach(cp =>
+        checkpoints = FindAnyObjectByType<CheckpointCollection>();
+        checkpoints.checkPoints.ForEach(cp =>
         {
             cp.markCurrent(false);
             cp.onCheckPointReached += switchCheckPoint;
         });
 
         teleportToStart();
-        if (end)
+        if (checkpoints.end)
         {
-            end.onCheckPointReached += (cp) =>
+            checkpoints.end.onCheckPointReached += (cp) =>
             {
-                OnEndCheckpointReached?.Invoke(end);
+                OnEndCheckpointReached?.Invoke(checkpoints.end);
             };
         }
     }
@@ -46,15 +44,15 @@ public class CheckpointManager : MonoBehaviour
         if (current)
         {
             current.markCurrent(true);
+            OnCheckpointReached?.Invoke(current);
         }
-        OnCheckpointReached?.Invoke(current);
     }
     public event CheckpointEvent OnCheckpointReached;
 
     public void teleportToStart()
     {
-        switchCheckPoint(start);
-        recallPlayer(start);
+        switchCheckPoint(checkpoints.start);
+        recallPlayer(checkpoints.start);
     }
 
     public void teleportToCurrent()
