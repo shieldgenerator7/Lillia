@@ -21,6 +21,8 @@ public class CheckpointCollectionEditor : Editor
             cpc.sort();
             cpc.start = cpc.checkPoints.First();
             cpc.end = cpc.checkPoints.Last();
+            EditorUtility.SetDirty(cpc);
+            EditorUtility.SetDirty(cpc.gameObject);
         }
     }
 }
