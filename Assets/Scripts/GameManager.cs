@@ -55,7 +55,10 @@ public class GameManager : MonoBehaviour
         checkpointManager.registerCheckpointDelegates();
         FindObjectsByType<Hazard>(FindObjectsSortMode.None).ToList()
             .ForEach(hazard => hazard.onPlayerHit += onHazardHit);
-        StartRun();
+        if (checkpointManager.End)
+        {
+            StartRun();
+        }
     }
 
     void onReset()

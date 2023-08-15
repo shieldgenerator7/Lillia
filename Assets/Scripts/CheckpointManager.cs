@@ -12,6 +12,7 @@ public class CheckpointManager : MonoBehaviour
     private CheckpointCollection checkpoints;
 
     public Checkpoint Start => checkpoints.start;
+    public Checkpoint End => checkpoints.end;
 
 
     public delegate void CheckpointEvent(Checkpoint cp);
