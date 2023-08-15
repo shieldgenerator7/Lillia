@@ -48,10 +48,10 @@ public class GameManager : MonoBehaviour
 
     void onSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
-        StartRun();
         checkpointManager.registerCheckpointDelegates();
         FindObjectsByType<Hazard>(FindObjectsSortMode.None).ToList()
             .ForEach(hazard => hazard.onPlayerHit += onHazardHit);
+        StartRun();
     }
 
     void onReset()
@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
         nextLevelTimer.reset(Time.time);
         nextLevelTimer.stop();
         //Reset player
-        playerController.resetState(checkpointManager.Start.transform.position);
+        playerController.resetState();
     }
 
     public void FinishRun()

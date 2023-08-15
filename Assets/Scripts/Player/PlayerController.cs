@@ -218,6 +218,11 @@ public class PlayerController : MonoBehaviour
         rb2d.velocity = Vector2.zero;
     }
 
+    public void resetState ()
+    {
+        resetState(transform.position);
+    }
+
     public void resetState(Vector2 pos)
     {
         transform.position = pos;
