@@ -129,6 +129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 56600662}
+  - component: {fileID: 56600664}
   - component: {fileID: 56600663}
   m_Layer: 0
   m_Name: GameManager
@@ -168,6 +169,21 @@ MonoBehaviour:
   - Level_Test_2
   - Level_Test
   - Level_Win
+--- !u!114 &56600664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56600661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8632534320399b49b622432d20f3be7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 1518226480}
+  checkpointManager: {fileID: 0}
+  levelManager: {fileID: 56600663}
 --- !u!4 &125999768 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8546214906423153129, guid: bfe4cfff32a86364a9aebed9d9ed3552, type: 3}
@@ -280,6 +296,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tFollow: {fileID: 125999768}
   offset: {x: 2.5, y: 0.7, z: -10}
+--- !u!114 &1518226480 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 804428360538672667, guid: bfe4cfff32a86364a9aebed9d9ed3552, type: 3}
+  m_PrefabInstance: {fileID: 5218961431621589654}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 070f40347c9dcdb4584e41a5671eff9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5218961431621589654
 PrefabInstance:
   m_ObjectHideFlags: 0

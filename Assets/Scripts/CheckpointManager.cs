@@ -13,6 +13,9 @@ public class CheckpointManager : MonoBehaviour
     [SerializeField]
     private List<Checkpoint> checkpoints;
 
+
+    public delegate void CheckpointEvent(Checkpoint cp);
+
     private void Start()
     {
         checkpoints = FindObjectsOfType<Checkpoint>().ToList();
@@ -27,10 +30,11 @@ public class CheckpointManager : MonoBehaviour
         {
             end.onCheckPointReached += (cp) =>
             {
-                FindObjectOfType<LevelManager>().nextLevel();
+                OnEndCheckpointReached?.Invoke(end);
             };
         }
     }
+    public event CheckpointEvent OnEndCheckpointReached;
 
     private void switchCheckPoint(Checkpoint newCurrent)
     {
@@ -43,23 +47,24 @@ public class CheckpointManager : MonoBehaviour
         {
             current.markCurrent(true);
         }
+        OnCheckpointReached?.Invoke(current);
     }
+    public event CheckpointEvent OnCheckpointReached;
 
     public void teleportToStart()
     {
         switchCheckPoint(start);
-        teleportPlayer(start.transform.position);
+        recallPlayer(start);
     }
 
     public void teleportToCurrent()
     {
-        teleportPlayer(current.transform.position);
+        recallPlayer(current);
     }
 
-    public void teleportPlayer(Vector2 pos)
+    private void recallPlayer(Checkpoint cp)
     {
-        PlayerController playerController = FindObjectOfType<PlayerController>();
-        playerController.transform.position = pos;
-        playerController.stop();
+        OnCheckpointRecalling(cp);
     }
+    public event CheckpointEvent OnCheckpointRecalling;
 }

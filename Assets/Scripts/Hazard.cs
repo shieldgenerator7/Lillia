@@ -7,7 +7,8 @@ public abstract class Hazard : MonoBehaviour
 {
     protected void killPlayer()
     {
-        FindObjectOfType<CheckpointManager>().teleportToCurrent();
-        FindObjectsOfType<Fruit>().ToList().ForEach(fruit => fruit.Available = true);
+        onPlayerHit?.Invoke(this);
     }
+    public delegate void OnPlayerHit(Hazard hazard);
+    public event OnPlayerHit onPlayerHit;
 }
