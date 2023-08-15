@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [Tooltip("How long to wait after a level is finished before going to next level")]
+    public float nextLevelDelay = 3;
+
     public PlayerInput playerInput;
     public PlayerController playerController;
     public CheckpointManager checkpointManager;
@@ -15,6 +18,7 @@ public class GameManager : MonoBehaviour
     public TimerUI timerUI;
 
     private Timer gameTimer;
+    private Timer nextLevelTimer;
 
     private void Awake()
     {
@@ -25,6 +29,16 @@ public class GameManager : MonoBehaviour
         //
         gameTimer = timerManager.startTimer();
         timerUI.init(gameTimer);
+        nextLevelTimer = timerManager.startTimer();
+        nextLevelTimer.stop();
+        nextLevelTimer.onTimerTicked += (duration) =>
+        {
+            if (duration >= nextLevelDelay)
+            {
+                levelManager.nextLevel();
+                nextLevelTimer.stop();
+            }
+        };
         //
         onSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
     }
@@ -33,6 +47,7 @@ public class GameManager : MonoBehaviour
     {
         gameTimer.reset(Time.time);
         gameTimer.start();
+        nextLevelTimer.stop();
         checkpointManager.registerCheckpointDelegates();
         FindObjectsByType<Hazard>(FindObjectsSortMode.None).ToList()
             .ForEach(hazard => hazard.onPlayerHit += onHazardHit);
@@ -41,6 +56,7 @@ public class GameManager : MonoBehaviour
     void onReset()
     {
         onHazardHit(null);
+        nextLevelTimer.stop();
     }
 
     void onHazardHit(Hazard hazard)
@@ -57,8 +73,9 @@ public class GameManager : MonoBehaviour
 
     void onEndCheckpointReached(Checkpoint cp)
     {
-        levelManager.nextLevel();
         gameTimer.stop();
+        nextLevelTimer.reset(Time.time);
+        nextLevelTimer.start();
     }
 
     void onCheckpointRecalling(Checkpoint checkpoint)
