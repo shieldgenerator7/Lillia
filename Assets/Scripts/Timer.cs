@@ -44,5 +44,7 @@ public class Timer
     public void reset(float time)
     {
         this.startTime = time;
+        this.currentTime = time;
+        onTimerTicked?.Invoke(Duration);
     }
 }

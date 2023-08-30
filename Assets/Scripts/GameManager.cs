@@ -45,9 +45,10 @@ public class GameManager : MonoBehaviour
         gameTimer.onTimerTicked += (duration) =>
         {
             statisticsManager.updateRun(duration);
+            timerUI.updateTime(duration);
         };
-        timerUI.init(gameTimer);
         gameTimer.stop();
+        statisticsManager.onBestTimeChanged += timerUI.updateBestTime;
         //
         Application.quitting += () =>
         {
@@ -67,6 +68,7 @@ public class GameManager : MonoBehaviour
             playerInput.onInputStateChanged -= onReset_Input;
             playerInput.onInputStateChanged += onReset_Input;
             statisticsManager.startRun(levelManager.LevelId);
+            timerUI.bestTime = statisticsManager.bestRun.duration;
         }
     }
 

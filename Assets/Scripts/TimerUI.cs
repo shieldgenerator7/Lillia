@@ -7,16 +7,20 @@ public class TimerUI : MonoBehaviour
 {
     public TMP_Text text;
 
+    public float duration = 0.00f;
     public float bestTime = 999.99f;
 
-    Timer timer;
-    public void init(Timer timer)
+    public void updateTime(float duration)
     {
-        this.timer = timer;
-        timer.onTimerTicked += onTimerTicked;
+        this.duration = duration;
+        update();
     }
-
-    void onTimerTicked(float duration)
+    public void updateBestTime(float bestTime)
+    {
+        this.bestTime = bestTime;
+        update();
+    }
+    private void update()
     {
         text.text = $"{duration:N2}\n{bestTime:N2}";
     }

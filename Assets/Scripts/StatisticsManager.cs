@@ -22,6 +22,8 @@ public class StatisticsManager : MonoBehaviour
         _updateBestRun();
     }
 
+    public delegate void OnDurationStatChanged(float duration);
+
     public void finishRun()
     {
         Debug.Log($"Adding run: time: {currentRun.duration}");
@@ -57,5 +59,7 @@ public class StatisticsManager : MonoBehaviour
             run.duration = 999.99f;
             bestRun = run;
         }
+        onBestTimeChanged?.Invoke(bestRun.duration);
     }
+    public event OnDurationStatChanged onBestTimeChanged;
 }
