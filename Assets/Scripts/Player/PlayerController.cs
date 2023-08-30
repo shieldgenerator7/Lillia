@@ -131,7 +131,8 @@ public class PlayerController : MonoBehaviour
     ///TODO: move to some other script, perhaps the environment state updater one
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.contacts.Length > 0 && collision.contacts[0].point.y < bottom.position.y)
+        if (collision.contacts.Length > 0 && collision.contacts[0].point.y < bottom.position.y
+            && collision.collider.bounds.max.y <= bottom.position.y)
         {
             playerState.grounded = true;
             playerState.airJumpsUsed = 0;
