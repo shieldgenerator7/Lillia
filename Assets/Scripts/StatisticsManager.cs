@@ -9,11 +9,9 @@ public class StatisticsManager : MonoBehaviour
     RunStats currentRun;
     public RunStats bestRun { get; private set; }
 
-    public void init(Statistics stats, string levelId)
+    public void init(Statistics stats)
     {
         this.stats = stats;
-        currentRun = new RunStats();
-        currentRun.levelId = levelId;
         _updateBestRun();
     }
 
@@ -21,6 +19,7 @@ public class StatisticsManager : MonoBehaviour
     {
         currentRun = new RunStats();
         currentRun.levelId = levelId;
+        _updateBestRun();
     }
 
     public void finishRun()
