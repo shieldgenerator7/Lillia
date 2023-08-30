@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -11,16 +12,8 @@ public class StatisticsManager : MonoBehaviour
     public void init(Statistics stats)
     {
         this.stats = stats;
-        if (stats.runStats.Count > 0)
-        {
-            bestRun = stats.runStats.OrderBy(run => run.duration).First();
-        }
-        else
-        {
-            RunStats run = new RunStats();
-            run.duration = 999.99f;
-            bestRun = run;
-        }
+        currentRun = new RunStats();
+        _updateBestRun();
     }
 
     public void startRun()
@@ -42,11 +35,25 @@ public class StatisticsManager : MonoBehaviour
             return;
         }
         stats.runStats.Add(currentRun);
-        bestRun = stats.runStats.OrderBy(run => run.duration).First();
+        _updateBestRun();
     }
 
     public void updateRun(float duration)
     {
         currentRun.duration = duration;
+    }
+
+    private void _updateBestRun()
+    {
+        if (runs.Count > 0)
+        {
+            bestRun = runs.OrderBy(run => run.duration).First();
+        }
+        else
+        {
+            RunStats run = new RunStats();
+            run.duration = 999.99f;
+            bestRun = run;
+        }
     }
 }
