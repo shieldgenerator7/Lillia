@@ -47,6 +47,10 @@ public class LevelManager : MonoBehaviour
         {
             loadLevel(0);
         }
+        else
+        {
+            onLevelLoaded?.Invoke();
+        }
     }
 
     void onSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
