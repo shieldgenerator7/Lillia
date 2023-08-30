@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
         statisticsManager.init(fileManager.load() ?? new Statistics(), levelManager.getLevelId(0));
         timerUI.bestTime = statisticsManager.bestRun.duration;
         //
-        SceneManager.sceneLoaded += onSceneLoaded;
+        levelManager.onLevelLoaded += onLevelLoaded;
         playerInput.onReset += onReset;
         checkpointManager.OnEndCheckpointReached += onEndCheckpointReached;
         checkpointManager.OnCheckpointRecalling += onCheckpointRecalling;
@@ -53,13 +53,11 @@ public class GameManager : MonoBehaviour
         {
             fileManager.save(statisticsManager.stats);
         };
-        //
-        onSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
     }
 
     #region Delegate Handlers
 
-    void onSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+    void onLevelLoaded()
     {
         checkpointManager.registerCheckpointDelegates();
         FindObjectsByType<Hazard>(FindObjectsSortMode.None).ToList()

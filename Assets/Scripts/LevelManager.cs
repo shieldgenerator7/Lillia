@@ -42,9 +42,21 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        SceneManager.sceneLoaded += onSceneLoaded;
         if (!SceneManager.GetSceneByName(levels[0]).isLoaded)
         {
             loadLevel(0);
         }
     }
+
+    void onSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+    {
+        if (scene.name == levels[loadedLevelIndex])
+        {
+            onLevelLoaded?.Invoke();
+        }
+    }
+    public delegate void OnLevelLoaded();
+    public event OnLevelLoaded onLevelLoaded;
+
 }
