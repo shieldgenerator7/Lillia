@@ -8,12 +8,23 @@ public class PlayerMover : MonoBehaviour
 
     private Rigidbody2D rb2d;
 
+    private PlayerState playerState = new PlayerState();
+
     // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
     }
 
+    public void updatePlayerState(PlayerState playerState)
+    {
+        this.playerState = playerState;
+        processPlayerState(playerState);
+    }
+    private void FixedUpdate()
+    {
+        processPlayerState(playerState);
+    }
     public void processPlayerState(PlayerState playerState)
     {
         //Movement

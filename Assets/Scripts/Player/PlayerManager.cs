@@ -12,6 +12,6 @@ public class PlayerManager : MonoBehaviour
     void Awake()
     {
         playerInput.onInputStateChanged += playerController.processInputState;
-        playerController.onPlayerStateChanged += playerMover.processPlayerState;
+        playerController.onPlayerStateChanged += playerMover.updatePlayerState;
     }
 }
