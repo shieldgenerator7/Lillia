@@ -5,17 +5,17 @@ using UnityEngine;
 
 public class StatisticsManager : MonoBehaviour
 {
-    public List<RunStats> stats = new List<RunStats>();
+    public Statistics stats = new Statistics();
 
     RunStats currentRun;
     public RunStats bestRun { get; private set; }
 
-    public void init(List<RunStats> stats)
+    public void init(Statistics stats)
     {
         this.stats = stats;
-        if (stats.Count > 0)
+        if (stats.runStats.Count > 0)
         {
-            bestRun = stats.OrderBy(run => run.duration).First();
+            bestRun = stats.runStats.OrderBy(run => run.duration).First();
         }
         else
         {
@@ -33,7 +33,7 @@ public class StatisticsManager : MonoBehaviour
     public void finishRun()
     {
         Debug.Log($"Adding run: time: {currentRun.duration}");
-        if (stats.Contains(currentRun))
+        if (stats.runStats.Contains(currentRun))
         {
             Debug.LogError($"Trying to add run a 2nd time!: duration: {currentRun.duration}");
             return;
@@ -43,8 +43,8 @@ public class StatisticsManager : MonoBehaviour
             Debug.LogError($"Trying to add invalid run!: duration: {currentRun.duration}");
             return;
         }
-        stats.Add(currentRun);
-        bestRun = stats.OrderBy(run => run.duration).First();
+        stats.runStats.Add(currentRun);
+        bestRun = stats.runStats.OrderBy(run => run.duration).First();
     }
 
     public void updateRun(float duration)
