@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        statisticsManager.init(fileManager.load() ?? new Statistics());
+        statisticsManager.init(fileManager.load() ?? new Statistics(), levelManager.getLevelId(0));
         timerUI.bestTime = statisticsManager.bestRun.duration;
         //
         SceneManager.sceneLoaded += onSceneLoaded;
@@ -118,7 +118,7 @@ public class GameManager : MonoBehaviour
     {
         gameTimer.reset(Time.time);
         gameTimer.start();
-        statisticsManager.startRun();
+        statisticsManager.startRun(levelManager.LevelId);
     }
 
     public void ResetRun()

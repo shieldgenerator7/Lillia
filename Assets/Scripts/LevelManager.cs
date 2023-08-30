@@ -10,6 +10,21 @@ public class LevelManager : MonoBehaviour
 
     private int loadedLevelIndex = -1;
 
+    public string LevelId
+        => getLevelId(loadedLevelIndex);
+
+    public string getLevelId(int index)
+        => getLevelId(SceneManager.GetSceneByName(levels[index]));
+    public string getLevelId(Scene scene)
+    {
+        string id = scene.name;
+        if (id?.ToLower().StartsWith("level_") ?? false)
+        {
+            id = id.Substring(6);
+        }
+        return id;
+    }
+
     public void loadLevel(int index = 0)
     {
         if (loadedLevelIndex >= 0)

@@ -9,16 +9,18 @@ public class StatisticsManager : MonoBehaviour
     RunStats currentRun;
     public RunStats bestRun { get; private set; }
 
-    public void init(Statistics stats)
+    public void init(Statistics stats, string levelId)
     {
         this.stats = stats;
         currentRun = new RunStats();
+        currentRun.levelId = levelId;
         _updateBestRun();
     }
 
-    public void startRun()
+    public void startRun(string levelId)
     {
         currentRun = new RunStats();
+        currentRun.levelId = levelId;
     }
 
     public void finishRun()
@@ -45,6 +47,7 @@ public class StatisticsManager : MonoBehaviour
 
     private void _updateBestRun()
     {
+        List<RunStats> runs = stats.runStats.FindAll(run => run.levelId == currentRun.levelId).ToList();
         if (runs.Count > 0)
         {
             bestRun = runs.OrderBy(run => run.duration).First();
