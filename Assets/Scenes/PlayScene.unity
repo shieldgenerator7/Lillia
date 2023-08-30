@@ -172,8 +172,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels:
-  - Level_Test_2
   - Level_Test_3
+  - Level_Test_2
   - Level_Win
 --- !u!114 &56600664
 MonoBehaviour:
@@ -506,6 +506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 632372415}
+  duration: 0
   bestTime: 999.99
 --- !u!222 &632372417
 CanvasRenderer:
