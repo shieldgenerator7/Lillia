@@ -173,6 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levels:
   - Level_Test_2
+  - Level_Test_3
   - Level_Win
 --- !u!114 &56600664
 MonoBehaviour:
@@ -234,6 +235,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27d19ebf050642e448fcccfb18c93d0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats:
+    runStats: []
 --- !u!114 &56600668
 MonoBehaviour:
   m_ObjectHideFlags: 0
