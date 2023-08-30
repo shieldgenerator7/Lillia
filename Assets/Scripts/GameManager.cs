@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
         };
         nextLevelTrigger.OnPlayerEntered += () =>
         {
+            ResetRun();
             levelManager.nextLevel();
         };
         //
