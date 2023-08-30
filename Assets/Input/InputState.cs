@@ -5,8 +5,6 @@ using UnityEngine;
 public struct InputState
 {
     public Vector2 movementDirection;
-    public Vector2 lookPosition;
-    public Vector2 lookDirection;
     public bool jump;
     public bool bloomingblows;
     public bool interact;

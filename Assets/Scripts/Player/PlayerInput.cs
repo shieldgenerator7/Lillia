@@ -104,19 +104,4 @@ public class PlayerInput : MonoBehaviour
         playerActionControls.Disable();
     }
 
-    private void Update()
-    {
-        Vector2 centerPos = (center) ? center.position : transform.position;
-        Vector2 prevLookDirection = inputState.lookDirection;
-        Vector3 mousePos = Mouse.current.position.ReadValue();
-        Vector2 lookPosition = Utility.ScreenToWorldPoint(mousePos);
-
-        inputState.lookDirection = (lookPosition - centerPos).normalized;
-
-        if (inputState.lookDirection != prevLookDirection)
-        {
-            onInputStateChanged?.Invoke(inputState);
-        }
-    }
-
 }
