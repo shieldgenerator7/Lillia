@@ -14,11 +14,11 @@ public class LevelManager : MonoBehaviour
         => getLevelId(loadedLevelIndex);
 
     public string getLevelId(int index)
-        => getLevelId(SceneManager.GetSceneByName(levels[index]));
-    public string getLevelId(Scene scene)
+        => getLevelId(levels[index]);
+    public string getLevelId(string sceneName)
     {
-        string id = scene.name;
-        if (id?.ToLower().StartsWith("level_") ?? false)
+        string id = sceneName;
+        if (id.ToLower().StartsWith("level_"))
         {
             id = id.Substring(6);
         }
