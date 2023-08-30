@@ -47,6 +47,8 @@ public class GameManager : MonoBehaviour
             statisticsManager.updateRun(duration);
         };
         timerUI.init(gameTimer);
+        gameTimer.stop();
+        //
         Application.quitting += () =>
         {
             fileManager.save(statisticsManager.stats);
@@ -64,7 +66,8 @@ public class GameManager : MonoBehaviour
             .ForEach(hazard => hazard.onPlayerHit += onHazardHit);
         if (checkpointManager.End)
         {
-            StartRun();
+            playerInput.onInputStateChanged -= onReset_Input;
+            playerInput.onInputStateChanged += onReset_Input;
         }
     }
 
@@ -74,8 +77,16 @@ public class GameManager : MonoBehaviour
         checkpointManager.teleportToStart();
         //Reset
         ResetRun();
+        //
+        playerInput.onInputStateChanged -= onReset_Input;
+        playerInput.onInputStateChanged += onReset_Input;
+    }
+    void onReset_Input(InputState inputState)
+    {
         //Start
         StartRun();
+        //
+        playerInput.onInputStateChanged -= onReset_Input;
     }
 
     void onHazardHit(Hazard hazard)
@@ -84,8 +95,9 @@ public class GameManager : MonoBehaviour
         checkpointManager.teleportToCurrent();
         //Reset
         ResetRun();
-        //Start
-        StartRun();
+        //
+        playerInput.onInputStateChanged -= onReset_Input;
+        playerInput.onInputStateChanged += onReset_Input;
     }
 
     void onEndCheckpointReached(Checkpoint cp)
