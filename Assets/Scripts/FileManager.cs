@@ -12,7 +12,7 @@ public class FileManager : MonoBehaviour
 
     public void save(Statistics stats)
     {
-        string content = JsonUtility.ToJson(stats);
+        string content = JsonUtility.ToJson(stats, true);
         //2023-08-15: copied from https://stackoverflow.com/a/46569458/2336212
         File.WriteAllText(FilePath, content);
     }
