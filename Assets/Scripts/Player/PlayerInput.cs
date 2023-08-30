@@ -88,9 +88,15 @@ public class PlayerInput : MonoBehaviour
         {
             onReset?.Invoke();
         };
+        //Pause
+        input.Pause.performed += _ =>
+        {
+            onPause?.Invoke();
+        };
     }
-    public delegate void OnReset();
-    public event OnReset onReset;
+    public delegate void OnUIAction();
+    public event OnUIAction onReset;
+    public event OnUIAction onPause;
 
     private void OnDisable()
     {

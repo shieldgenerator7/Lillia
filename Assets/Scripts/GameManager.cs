@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,8 +21,11 @@ public class GameManager : MonoBehaviour
     public TimerUI timerUI;
     public PlayerTrigger resetTrigger;
     public PlayerTrigger nextLevelTrigger;
+    public Image imgPaused; 
 
     private Timer gameTimer;
+
+    private bool gameActive = true;//true: not paused
 
     private void Awake()
     {
@@ -30,6 +34,12 @@ public class GameManager : MonoBehaviour
         //
         levelManager.onLevelLoaded += onLevelLoaded;
         playerInput.onReset += onReset;
+        playerInput.onPause += () =>
+        {
+            gameActive = !gameActive;
+            Time.timeScale = (gameActive) ? 1 : 0;
+            imgPaused.gameObject.SetActive(!gameActive);
+        };
         checkpointManager.OnEndCheckpointReached += onEndCheckpointReached;
         checkpointManager.OnCheckpointRecalling += onCheckpointRecalling;
         resetTrigger.OnPlayerEntered += () =>
