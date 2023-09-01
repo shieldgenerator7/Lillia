@@ -120,9 +120,6 @@ public class PlayerController : MonoBehaviour
         {
             playerState.jumpConsumed = false;
         }
-        //Ability
-        playerState.ability1 = inputState.ability1;
-        playerState.ability2 = inputState.ability2;
         //Delegate
         onPlayerStateChanged?.Invoke(playerState);
     }

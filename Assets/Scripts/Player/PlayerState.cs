@@ -46,14 +46,6 @@ public struct PlayerState
     /// </summary>
     public bool usingBloomingBlows;
     /// <summary>
-    /// True: intends on using ability 1
-    /// </summary>
-    public bool ability1;
-    /// <summary>
-    /// True: intends on using ability 2
-    /// </summary>
-    public bool ability2;
-    /// <summary>
     /// How many stacks of Blooming Blows that Lillia has
     /// </summary>
     public int stacks;

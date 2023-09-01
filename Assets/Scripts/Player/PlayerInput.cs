@@ -3,8 +3,6 @@ using static PlayerActionControls;
 
 public class PlayerInput : MonoBehaviour
 {
-    public Transform center;
-
     private PlayerActionControls playerActionControls;
 
     private InputState inputState;
@@ -39,7 +37,7 @@ public class PlayerInput : MonoBehaviour
             inputState.jump = false;
             onInputStateChanged?.Invoke(inputState);
         };
-        //Run
+        //BloomingBlows
         input.BloomingBlows.performed += _ =>
         {
             inputState.bloomingblows = true;
@@ -48,6 +46,17 @@ public class PlayerInput : MonoBehaviour
         input.BloomingBlows.canceled += _ =>
         {
             inputState.bloomingblows = false;
+            onInputStateChanged?.Invoke(inputState);
+        };
+        //SwirlSeed
+        input.SwirlSeed.performed += _ =>
+        {
+            inputState.swirlseed = true;
+            onInputStateChanged?.Invoke(inputState);
+        };
+        input.SwirlSeed.canceled += _ =>
+        {
+            inputState.swirlseed = false;
             onInputStateChanged?.Invoke(inputState);
         };
         //Interact
@@ -59,28 +68,6 @@ public class PlayerInput : MonoBehaviour
         input.Interact.canceled += _ =>
         {
             inputState.interact = false;
-            onInputStateChanged?.Invoke(inputState);
-        };
-        //Ability1
-        input.Ability1.performed += _ =>
-        {
-            inputState.ability1 = true;
-            onInputStateChanged?.Invoke(inputState);
-        };
-        input.Ability1.canceled += _ =>
-        {
-            inputState.ability1 = false;
-            onInputStateChanged?.Invoke(inputState);
-        };
-        //Ability2
-        input.Ability2.performed += _ =>
-        {
-            inputState.ability2 = true;
-            onInputStateChanged?.Invoke(inputState);
-        };
-        input.Ability2.canceled += _ =>
-        {
-            inputState.ability2 = false;
             onInputStateChanged?.Invoke(inputState);
         };
         //Reset

@@ -7,12 +7,11 @@ public struct InputState
     public Vector2 movementDirection;
     public bool jump;
     public bool bloomingblows;
+    public bool swirlseed;
     public bool interact;
-    public bool ability1;
-    public bool ability2;
 
     public override string ToString()
     {
-        return $"move: {movementDirection}, jump: {jump}, bloomingblows: {bloomingblows},";
+        return $"move: {movementDirection}, jump: {jump}, bloomingblows: {bloomingblows}, swirlseed: {swirlseed}";
     }
 }
