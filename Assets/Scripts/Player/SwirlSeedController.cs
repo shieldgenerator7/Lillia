@@ -34,8 +34,11 @@ public class SwirlSeedController : MonoBehaviour
             if (state.phase == SwirlSeedState.Phase.ATTACHED)
             {
                 //Throw
-                rb2d.velocity = (playerAttributes.swirlSeedLaunchVector * Mathf.Sign(state.velX)) + new Vector2(state.velX, 0);
                 attach(false);
+                rb2d.velocity = new Vector2(
+                    playerAttributes.swirlSeedLaunchVector.x * playerState.lookDirection.x + state.velX,
+                    playerAttributes.swirlSeedLaunchVector.y
+                    );
             }
             //If not attached,
             else
@@ -52,6 +55,10 @@ public class SwirlSeedController : MonoBehaviour
         {
             buttonDown = false;
         }
+    }
+    public void updatePlayerState(PlayerState playerState)
+    {
+        this.playerState = playerState;
     }
 
     public void attach(bool attach)

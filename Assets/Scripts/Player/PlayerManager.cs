@@ -15,5 +15,6 @@ public class PlayerManager : MonoBehaviour
         playerInput.onInputStateChanged += playerController.processInputState;
         playerController.onPlayerStateChanged += playerMover.updatePlayerState;
         playerInput.onInputStateChanged += swirlSeedController.processInputState;
+        playerController.onPlayerStateChanged += swirlSeedController.updatePlayerState;
     }
 }
