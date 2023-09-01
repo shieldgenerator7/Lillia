@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwirlSeedController : MonoBehaviour
+public class SwirlSeedController : Resettable
 {
 
     public Transform attachPoint;
@@ -116,5 +116,13 @@ public class SwirlSeedController : MonoBehaviour
             case SwirlSeedState.Phase.STOPPED: break;
             default: throw new UnityException("Unknown state! " + state.phase);
         }
+    }
+
+    public override void recordInitialState()
+    {
+    }
+    public override void reset()
+    {
+        attach(true);
     }
 }
