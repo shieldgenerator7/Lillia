@@ -14,6 +14,8 @@ public class PlayerAttributes : ScriptableObject
     public float stackDecayDelayPerStack;
     public int maxAirBloomingBlows;
     public float airBloomingBlowsJumpForce;
+    public Vector2 swirlSeedLaunchVector;
+    public float swirlSeedPickupRange = 2;
     public int maxAirJumps;
     public float momentumChangeFactor;
     public float momentumInstantSnapThreshold;

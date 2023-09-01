@@ -175,6 +175,7 @@ Transform:
   - {fileID: 1284621139245901122}
   - {fileID: 6190402590524778490}
   - {fileID: 9128540072047253993}
+  - {fileID: 309624395026603054}
   - {fileID: 407474958975835865}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -294,6 +295,7 @@ MonoBehaviour:
   playerInput: {fileID: 6636442099060658131}
   playerController: {fileID: 804428360538672667}
   playerMover: {fileID: 7107039046693426699}
+  swirlSeedController: {fileID: 4811940642408707481}
 --- !u!114 &6636442099060658131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,7 +308,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc4a11710a574fb48967c7f4843055be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  center: {fileID: 0}
 --- !u!114 &804428360538672667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,7 +345,9 @@ GameObject:
   m_Component:
   - component: {fileID: 407474958975835865}
   - component: {fileID: 3907252231793254276}
+  - component: {fileID: 4118317997071837163}
   - component: {fileID: 763382351667375274}
+  - component: {fileID: 4811940642408707481}
   m_Layer: 0
   m_Name: swirlseed
   m_TagString: Untagged
@@ -419,6 +422,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &4118317997071837163
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4354489146725476176}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!58 &763382351667375274
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -426,7 +456,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4354489146725476176}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -455,6 +485,21 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.086
+--- !u!114 &4811940642408707481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4354489146725476176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac6f9198be7e50e4094aae28c00eb457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attachPoint: {fileID: 309624395026603054}
+  parentRB2D: {fileID: 1719893899150862393}
+  playerAttributes: {fileID: 11400000, guid: 61fecb23b0858ef4ba8ef93990c75fff, type: 2}
 --- !u!1 &6806668733604664280
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,3 +792,34 @@ MonoBehaviour:
   playerController: {fileID: 804428360538672667}
   animator: {fileID: 6297597409765638429}
   coll2d: {fileID: 1578348773907506269}
+--- !u!1 &8574971758365861943
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 309624395026603054}
+  m_Layer: 0
+  m_Name: swirlseed_point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &309624395026603054
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8574971758365861943}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.108, y: 0.091, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8546214906423153129}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
