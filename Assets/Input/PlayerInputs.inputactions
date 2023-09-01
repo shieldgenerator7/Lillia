@@ -42,24 +42,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Ability1",
-                    "type": "Button",
-                    "id": "7f282d3f-770a-40fd-b2b9-059268c9ce16",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Ability2",
-                    "type": "Button",
-                    "id": "7e41e170-629a-4e31-86fa-e781ecc0f436",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Pause",
                     "type": "Button",
                     "id": "1fafa012-0dc7-4d37-8618-303455bb3e2f",
@@ -191,8 +173,8 @@
                 },
                 {
                     "name": "",
-                    "id": "61bf71d6-f71c-491b-b948-fe6a43818ac4",
-                    "path": "<Gamepad>/buttonSouth",
+                    "id": "5f2e7fd1-35be-44aa-b320-b18560f95567",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -202,8 +184,8 @@
                 },
                 {
                     "name": "",
-                    "id": "5f2e7fd1-35be-44aa-b320-b18560f95567",
-                    "path": "<Keyboard>/space",
+                    "id": "61bf71d6-f71c-491b-b948-fe6a43818ac4",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -225,7 +207,7 @@
                 {
                     "name": "",
                     "id": "fc4c1a5a-5b5a-4ad5-86e7-290c7b0956da",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -268,30 +250,41 @@
                 },
                 {
                     "name": "",
-                    "id": "472b64fc-8603-474d-a085-0f2554e192c8",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Ability1",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "62dbb1d2-0f76-4c79-95c5-6d5482f52106",
-                    "path": "<Gamepad>/rightTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Ability1",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "70261391-b572-4f04-8592-f479bd95e03f",
                     "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BloomingBlows",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7d48451f-bd10-42ad-bf92-b5ee850c07d4",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BloomingBlows",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eab2475d-cc8a-4c9e-9d22-a590a086fdc1",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BloomingBlows",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "472b64fc-8603-474d-a085-0f2554e192c8",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -312,23 +305,12 @@
                 },
                 {
                     "name": "",
-                    "id": "34002fe2-50a9-4a6c-92b2-be988a019c49",
-                    "path": "<Mouse>/rightButton",
+                    "id": "52278604-bc26-4c50-bccb-fcea9c7676aa",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Ability2",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "85df3f25-ce40-4882-971e-3f7eab4ac75b",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Ability2",
+                    "action": "BloomingBlows",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -346,11 +328,22 @@
                 {
                     "name": "",
                     "id": "efac0033-dd6c-477d-82f1-abd7f526da84",
-                    "path": "<Gamepad>/start",
+                    "path": "<Gamepad>/dpad/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Reset",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "85df3f25-ce40-4882-971e-3f7eab4ac75b",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BloomingBlows",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
