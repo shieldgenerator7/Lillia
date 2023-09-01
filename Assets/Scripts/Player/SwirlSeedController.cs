@@ -40,16 +40,6 @@ public class SwirlSeedController : Resettable
                     playerAttributes.swirlSeedLaunchVector.y
                     );
             }
-            //If not attached,
-            else
-            {
-                //And in range
-                if (Vector2.Distance(transform.position, parent.position) <= playerAttributes.swirlSeedPickupRange)
-                {
-                    //Pickup
-                    attach(true);
-                }
-            }
         }
         else
         {
@@ -128,6 +118,13 @@ public class SwirlSeedController : Resettable
         {
             hittable.hit();
             onHitSomething?.Invoke();
+            return;
+        }
+        PlayerController playerController = collision.GetComponent<PlayerController>();
+        if (playerController)
+        {
+            attach(true);
+            return;
         }
     }
     public delegate void OnHitSomething();
