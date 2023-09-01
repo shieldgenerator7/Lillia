@@ -48,4 +48,12 @@ public class Fruit : Hittable
             }
         }
     }
+
+    public override void recordInitialState()
+    {
+    }
+    public override void reset()
+    {
+        Available = true;
+    }
 }

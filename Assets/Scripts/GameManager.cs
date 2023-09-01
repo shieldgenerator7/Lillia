@@ -135,9 +135,9 @@ public class GameManager : MonoBehaviour
 
     public void ResetRun()
     {
-        //Reset fruits
-        FindObjectsByType<Fruit>(FindObjectsSortMode.None).ToList()
-            .ForEach(fruit => fruit.Available = true);
+        //Reset fruits & other mechanics
+        FindObjectsByType<Resettable>(FindObjectsSortMode.None).ToList()
+            .ForEach(rst => rst.reset());
         //Reset time
         gameTimer.reset(Time.time);
         gameTimer.stop();
