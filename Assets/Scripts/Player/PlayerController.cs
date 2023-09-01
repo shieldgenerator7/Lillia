@@ -76,7 +76,14 @@ public class PlayerController : MonoBehaviour
             }
         }
         //Look Direction
-        playerState.lookDirection = inputState.movementDirection;
+        if (inputState.movementDirection.x != 0)
+        {
+            playerState.lookDirection = inputState.movementDirection;
+        }
+        else if (playerState.lookDirection.x == 0)
+        {
+            playerState.lookDirection.x = 1;
+        }
         //Jumping
         if (playerState.jumping != inputState.jump)
         {

@@ -21,7 +21,7 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetBool("walking", moving && !playerState.running);
         animator.SetBool("running", moving && playerState.running);
         //Flip X
-        float lookDirection = playerState.moveDirection;
+        float lookDirection = playerState.lookDirection.x;
         if (lookDirection != 0)
         {
             Vector3 scale = playerController.transform.localScale;

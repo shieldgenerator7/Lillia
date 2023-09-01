@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6190402590524778490}
   - component: {fileID: 882937812630168142}
   - component: {fileID: 8149305351623604595}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: flower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9128540072047253993}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 6636442099060658131}
   - component: {fileID: 804428360538672667}
   - component: {fileID: 7107039046693426699}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lillia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 763382351667375274}
   - component: {fileID: 4811940642408707481}
   - component: {fileID: 1774306924153607761}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: swirlseed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -467,7 +467,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -518,7 +518,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -548,7 +548,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4073383744661948807}
   - component: {fileID: 9109526670144675866}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -634,7 +634,7 @@ GameObject:
   - component: {fileID: 5987912468298312681}
   - component: {fileID: 8226199411362272271}
   - component: {fileID: 3259904035858519184}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -757,7 +757,7 @@ GameObject:
   - component: {fileID: 6297597409765638429}
   - component: {fileID: 1578348773907506269}
   - component: {fileID: 3753830213848511188}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BloomingBlows
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -923,7 +923,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 309624395026603054}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: swirlseed_point
   m_TagString: Untagged
   m_Icon: {fileID: 0}

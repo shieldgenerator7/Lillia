@@ -36,7 +36,7 @@ public class SwirlSeedController : Resettable
                 //Throw
                 attach(false);
                 rb2d.velocity = new Vector2(
-                    playerAttributes.swirlSeedLaunchVector.x * playerState.lookDirection.x + state.velX,
+                    playerAttributes.swirlSeedLaunchVector.x * Mathf.Sign(playerState.lookDirection.x) + state.velX,
                     playerAttributes.swirlSeedLaunchVector.y
                     );
             }

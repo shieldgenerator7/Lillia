@@ -21,7 +21,7 @@ MonoBehaviour:
   stackDecayDelayPerStack: 2
   maxAirBloomingBlows: 1
   airBloomingBlowsJumpForce: 2
-  swirlSeedLaunchVector: {x: 4, y: 8}
+  swirlSeedLaunchVector: {x: 2, y: 4}
   swirlSeedPickupRange: 2
   maxAirJumps: 1
   momentumChangeFactor: 2
