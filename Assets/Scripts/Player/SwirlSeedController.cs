@@ -48,7 +48,7 @@ public class SwirlSeedController : MonoBehaviour
                     //Pickup
                     state.phase = SwirlSeedState.Phase.ATTACHED;
                     transform.parent = parent;
-                    transform.localPosition = Vector2.zero;
+                    transform.position = attachPoint.transform.position;
                     state.velX = 0;
                     rb2d.velocity = Vector2.zero;
                     rb2d.isKinematic = true;
