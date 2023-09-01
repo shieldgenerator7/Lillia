@@ -64,6 +64,15 @@ public partial class @PlayerActionControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""SwirlSeed"",
+                    ""type"": ""Button"",
+                    ""id"": ""b17bbfc9-0a0b-4ae9-8aff-7fb1bae2dbaf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""1fafa012-0dc7-4d37-8618-303455bb3e2f"",
@@ -360,12 +369,78 @@ public partial class @PlayerActionControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""b9c519e8-0d87-4423-bbe6-d25ae5b98609"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwirlSeed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""25880e77-5cbc-4989-a25f-f80f40fd54f8"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwirlSeed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""34002fe2-50a9-4a6c-92b2-be988a019c49"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwirlSeed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aee3c82a-f3c5-4d5e-804b-091c0094674d"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwirlSeed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""17c199d6-9768-40be-b5ec-02235945dd4e"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwirlSeed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""85df3f25-ce40-4882-971e-3f7eab4ac75b"",
                     ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""BloomingBlows"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""68880914-2dff-4e03-b861-b8dd2df30321"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwirlSeed"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -380,6 +455,7 @@ public partial class @PlayerActionControls: IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_BloomingBlows = m_Player.FindAction("BloomingBlows", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_SwirlSeed = m_Player.FindAction("SwirlSeed", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_Reset = m_Player.FindAction("Reset", throwIfNotFound: true);
     }
@@ -447,6 +523,7 @@ public partial class @PlayerActionControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_BloomingBlows;
     private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_SwirlSeed;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_Reset;
     public struct PlayerActions
@@ -457,6 +534,7 @@ public partial class @PlayerActionControls: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @BloomingBlows => m_Wrapper.m_Player_BloomingBlows;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @SwirlSeed => m_Wrapper.m_Player_SwirlSeed;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @Reset => m_Wrapper.m_Player_Reset;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -480,6 +558,9 @@ public partial class @PlayerActionControls: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @SwirlSeed.started += instance.OnSwirlSeed;
+            @SwirlSeed.performed += instance.OnSwirlSeed;
+            @SwirlSeed.canceled += instance.OnSwirlSeed;
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
@@ -502,6 +583,9 @@ public partial class @PlayerActionControls: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @SwirlSeed.started -= instance.OnSwirlSeed;
+            @SwirlSeed.performed -= instance.OnSwirlSeed;
+            @SwirlSeed.canceled -= instance.OnSwirlSeed;
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
@@ -531,6 +615,7 @@ public partial class @PlayerActionControls: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnBloomingBlows(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnSwirlSeed(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnReset(InputAction.CallbackContext context);
     }

@@ -42,6 +42,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "SwirlSeed",
+                    "type": "Button",
+                    "id": "b17bbfc9-0a0b-4ae9-8aff-7fb1bae2dbaf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Pause",
                     "type": "Button",
                     "id": "1fafa012-0dc7-4d37-8618-303455bb3e2f",
@@ -338,12 +347,78 @@
                 },
                 {
                     "name": "",
+                    "id": "b9c519e8-0d87-4423-bbe6-d25ae5b98609",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwirlSeed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "25880e77-5cbc-4989-a25f-f80f40fd54f8",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwirlSeed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "34002fe2-50a9-4a6c-92b2-be988a019c49",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwirlSeed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aee3c82a-f3c5-4d5e-804b-091c0094674d",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwirlSeed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "17c199d6-9768-40be-b5ec-02235945dd4e",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwirlSeed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "85df3f25-ce40-4882-971e-3f7eab4ac75b",
                     "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "BloomingBlows",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "68880914-2dff-4e03-b861-b8dd2df30321",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwirlSeed",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
