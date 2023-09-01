@@ -118,6 +118,18 @@ public class SwirlSeedController : Resettable
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Hittable hittable = collision.GetComponent<Hittable>();
+        if (hittable)
+        {
+            hittable.hit();
+            onHitSomething?.Invoke();
+        }
+    }
+    public delegate void OnHitSomething();
+    public event OnHitSomething onHitSomething;
+
     public override void recordInitialState()
     {
     }
