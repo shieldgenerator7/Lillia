@@ -86,6 +86,7 @@ public class SwirlSeedController : Resettable
 
     private void Update()
     {
+        if (state.phase == SwirlSeedState.Phase.ATTACHED) { return; }
         if (state.phase == SwirlSeedState.Phase.ROLLING)
         {
             rb2d.velocity = new Vector2(state.velX, rb2d.velocity.y);
@@ -94,6 +95,7 @@ public class SwirlSeedController : Resettable
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (state.phase == SwirlSeedState.Phase.ATTACHED) { return; }
         switch (state.phase)
         {
             case SwirlSeedState.Phase.ATTACHED: break;
@@ -120,6 +122,7 @@ public class SwirlSeedController : Resettable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (state.phase == SwirlSeedState.Phase.ATTACHED) { return; }
         Hittable hittable = collision.GetComponent<Hittable>();
         if (hittable)
         {
