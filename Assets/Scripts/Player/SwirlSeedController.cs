@@ -14,6 +14,7 @@ public class SwirlSeedController : MonoBehaviour
     private Transform parent;
 
     private SwirlSeedState state = new();
+    private PlayerState playerState;
 
     private bool buttonDown = false;
 
@@ -33,11 +34,8 @@ public class SwirlSeedController : MonoBehaviour
             if (state.phase == SwirlSeedState.Phase.ATTACHED)
             {
                 //Throw
-                state.phase = SwirlSeedState.Phase.FLYING;
-                transform.parent = null;
-                state.velX = parentRB2D.velocity.x;
-                rb2d.isKinematic = false;
                 rb2d.velocity = (playerAttributes.swirlSeedLaunchVector * Mathf.Sign(state.velX)) + new Vector2(state.velX, 0);
+                attach(false);
             }
             //If not attached,
             else
@@ -46,12 +44,7 @@ public class SwirlSeedController : MonoBehaviour
                 if (Vector2.Distance(transform.position, parent.position) <= playerAttributes.swirlSeedPickupRange)
                 {
                     //Pickup
-                    state.phase = SwirlSeedState.Phase.ATTACHED;
-                    transform.parent = parent;
-                    transform.position = attachPoint.transform.position;
-                    state.velX = 0;
-                    rb2d.velocity = Vector2.zero;
-                    rb2d.isKinematic = true;
+                    attach(true);
                 }
             }
         }
@@ -65,7 +58,22 @@ public class SwirlSeedController : MonoBehaviour
     {
         if (attach)
         {
-
+            state.phase = SwirlSeedState.Phase.ATTACHED;
+            transform.parent = parent;
+            transform.position = attachPoint.transform.position;
+            state.velX = 0;
+            rb2d.velocity = Vector2.zero;
+            rb2d.isKinematic = true;
+        }
+        else
+        {
+            if (state.phase == SwirlSeedState.Phase.ATTACHED)
+            {
+                state.phase = SwirlSeedState.Phase.FLYING;
+                state.velX = parentRB2D.velocity.x;
+            }
+            transform.parent = null;
+            rb2d.isKinematic = false;
         }
     }
 
