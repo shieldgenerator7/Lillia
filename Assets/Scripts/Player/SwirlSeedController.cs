@@ -97,6 +97,7 @@ public class SwirlSeedController : Resettable
                 {
                     //Make it roll
                     state.phase = SwirlSeedState.Phase.ROLLING;
+                    state.velX = rb2d.velocity.x;
                 }
                 break;
             case SwirlSeedState.Phase.ROLLING:
