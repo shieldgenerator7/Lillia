@@ -19,10 +19,10 @@ public class LevelManager : MonoBehaviour
     {
         if (loadedLevelIndex >= 0)
         {
-            SceneManager.UnloadSceneAsync(levels[loadedLevelIndex].scene.name);
+            SceneManager.UnloadSceneAsync(levels[loadedLevelIndex].sceneName);
         }
         loadedLevelIndex = index;
-        SceneManager.LoadSceneAsync(levels[loadedLevelIndex].scene.name, LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync(levels[loadedLevelIndex].sceneName, LoadSceneMode.Additive);
     }
 
     public void nextLevel()
@@ -33,7 +33,7 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         SceneManager.sceneLoaded += onSceneLoaded;
-        if (!SceneManager.GetSceneByName(levels[0].scene.name).isLoaded)
+        if (!SceneManager.GetSceneByName(levels[0].sceneName).isLoaded)
         {
             loadLevel(0);
         }
@@ -45,7 +45,7 @@ public class LevelManager : MonoBehaviour
 
     void onSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
-        if (scene.name == levels[loadedLevelIndex].scene.name)
+        if (scene.name == levels[loadedLevelIndex].sceneName)
         {
             onLevelLoaded?.Invoke(levels[loadedLevelIndex]);
         }

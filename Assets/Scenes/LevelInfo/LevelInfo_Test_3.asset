@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: LevelInfo_Test_3
   m_EditorClassIdentifier: 
   levelName: Level_Test_3
+  sceneName: Level_Test_3
   id: Test_3
-  scene: {fileID: 102900000, guid: f99051ee5dc228f4c8dc6d1d4807cb57, type: 3}
   startPos: {x: -0.18, y: -1.8908, z: 0}
   bloomingBlows: 1
   watchOutEepJump: 1
