@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAnimator : MonoBehaviour
+public class PlayerAnimator : Resettable
 {
     public Animator animator;
     public PlayerController playerController;
@@ -24,10 +24,24 @@ public class PlayerAnimator : MonoBehaviour
         float lookDirection = playerState.lookDirection.x;
         if (lookDirection != 0)
         {
-            Vector3 scale = playerController.transform.localScale;
-            playerController.transform.localScale = scale.setX(
-                Mathf.Abs(scale.x) * Mathf.Sign(lookDirection)
-                );
+            flip(lookDirection > 0);
         }
+    }
+
+    void flip(bool right)
+    {
+        Vector3 scale = playerController.transform.localScale;
+        playerController.transform.localScale = scale.setX(
+            Mathf.Abs(scale.x) * ((right) ? 1 : -1)
+            );
+    }
+
+    public override void recordInitialState()
+    {
+    }
+
+    public override void reset()
+    {
+        flip(true);
     }
 }
