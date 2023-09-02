@@ -68,7 +68,7 @@ public class CheckpointManager : MonoBehaviour
 
     private void recallPlayer(Checkpoint cp)
     {
-        OnCheckpointRecalling(cp);
+        OnCheckpointRecalling?.Invoke(cp);
     }
     public event CheckpointEvent OnCheckpointRecalling;
 }
