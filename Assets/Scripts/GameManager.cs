@@ -81,6 +81,8 @@ public class GameManager : MonoBehaviour
             statisticsManager.startRun(levelManager.LevelId);
             timerUI.bestTime = statisticsManager.bestRun.duration;
         }
+        FindObjectsByType<Resettable>(FindObjectsSortMode.None).ToList()
+            .ForEach(rst => rst.recordInitialState());
     }
 
     void onReset()
