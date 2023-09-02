@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.LowLevel;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Resettable
 {
     public Transform bottom;
 
@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb2d;
     private HashSet<GameObject> grounds = new HashSet<GameObject>();
+    private Vector2 origPos;
 
     public void Start()
     {
@@ -223,15 +224,15 @@ public class PlayerController : MonoBehaviour
         rb2d.velocity = Vector2.zero;
     }
 
-    public void resetState ()
+    public override void recordInitialState()
     {
-        resetState(transform.position);
+        origPos = transform.position;
     }
 
-    public void resetState(Vector2 pos)
+    public override void reset()
     {
-        transform.position = pos;
         stop();
-        setStacks(0);
+        playerState = new PlayerState();
+        transform.position = origPos;
     }
 }

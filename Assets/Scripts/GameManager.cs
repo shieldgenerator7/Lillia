@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
             statisticsManager.startRun(levelManager.LevelId);
             timerUI.bestTime = statisticsManager.bestRun.duration;
         }
+        playerController.transform.position = checkpointManager.Start.transform.position;
         FindObjectsByType<Resettable>(FindObjectsSortMode.None).ToList()
             .ForEach(rst => rst.recordInitialState());
     }
@@ -121,7 +122,7 @@ public class GameManager : MonoBehaviour
 
     void onCheckpointRecalling(Checkpoint checkpoint)
     {
-        playerController.resetState(checkpoint.transform.position);
+        playerController.transform.position = checkpoint.transform.position;
     }
 
     #endregion
@@ -143,8 +144,6 @@ public class GameManager : MonoBehaviour
         //Reset time
         gameTimer.reset(Time.time);
         gameTimer.stop();
-        //Reset player
-        playerController.resetState();
     }
 
     public void FinishRun()
