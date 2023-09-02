@@ -60,6 +60,8 @@ public class SwirlSeedController : Resettable
             transform.position = attachPoint.transform.position;
             state.velX = 0;
             rb2d.velocity = Vector2.zero;
+            rb2d.angularVelocity = 0;
+            transform.rotation = Quaternion.identity;
             rb2d.isKinematic = true;
         }
         else
