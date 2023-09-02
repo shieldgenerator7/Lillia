@@ -6,33 +6,23 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    public List<string> levels;
+    public List<LevelInfo> levels;
 
     private int loadedLevelIndex = -1;
-
     public string LevelId
-        => getLevelId(loadedLevelIndex);
+        => levels[loadedLevelIndex].id;
 
     public string getLevelId(int index)
-        => getLevelId(levels[index]);
-    public string getLevelId(string sceneName)
-    {
-        string id = sceneName;
-        if (id.ToLower().StartsWith("level_"))
-        {
-            id = id.Substring(6);
-        }
-        return id;
-    }
+        => levels[index].id;
 
     public void loadLevel(int index = 0)
     {
         if (loadedLevelIndex >= 0)
         {
-            SceneManager.UnloadSceneAsync(levels[loadedLevelIndex]);
+            SceneManager.UnloadSceneAsync(levels[loadedLevelIndex].scene.name);
         }
         loadedLevelIndex = index;
-        SceneManager.LoadSceneAsync(levels[loadedLevelIndex], LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync(levels[loadedLevelIndex].scene.name, LoadSceneMode.Additive);
     }
 
     public void nextLevel()
@@ -43,7 +33,7 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         SceneManager.sceneLoaded += onSceneLoaded;
-        if (!SceneManager.GetSceneByName(levels[0]).isLoaded)
+        if (!SceneManager.GetSceneByName(levels[0].scene.name).isLoaded)
         {
             loadLevel(0);
         }
@@ -55,7 +45,7 @@ public class LevelManager : MonoBehaviour
 
     void onSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
-        if (scene.name == levels[loadedLevelIndex])
+        if (scene.name == levels[loadedLevelIndex].scene.name)
         {
             onLevelLoaded?.Invoke();
         }

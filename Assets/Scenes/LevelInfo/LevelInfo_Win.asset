@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3737f272ec5a59b48b88bde62e287448, type: 3}
   m_Name: LevelInfo_Win
   m_EditorClassIdentifier: 
-  levelName: Level_Test_3
+  levelName: Level_Win
+  id: Win
+  scene: {fileID: 102900000, guid: 63882b4f2b10e5b45be613d230c7f2bf, type: 3}
   startPos: {x: -0.18, y: -1.8761208, z: 0}
   bloomingBlows: 1
   watchOutEepJump: 1

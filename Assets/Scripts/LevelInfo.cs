@@ -9,6 +9,7 @@ public class LevelInfo : ScriptableObject
 {
     [Tooltip("The name of the level to display on screen")]
     public string levelName;
+    public string id;
     public SceneAsset scene;
     public Vector3 startPos;
     [Header("Abilities")]

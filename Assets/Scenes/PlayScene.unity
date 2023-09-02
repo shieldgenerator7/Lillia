@@ -172,9 +172,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels:
-  - Level_Test_3
-  - Level_Test_2
-  - Level_Win
+  - {fileID: 11400000, guid: 9a99dcd88f837aa4fa30042f8832606b, type: 2}
+  - {fileID: 11400000, guid: 5c58c9974f7b52843a6546a31f5e45f6, type: 2}
+  - {fileID: 11400000, guid: 1029976f27d8c664b8dcdaa18d385a4a, type: 2}
 --- !u!114 &56600664
 MonoBehaviour:
   m_ObjectHideFlags: 0
