@@ -126,6 +126,12 @@ public class SwirlSeedController : Resettable
             attach(true);
             return;
         }
+        BloomingBlows bloomingBlows = collision.GetComponent<BloomingBlows>();
+        if (bloomingBlows)
+        {
+            attach(true);
+            return;
+        }
     }
     public delegate void OnHitSomething();
     public event OnHitSomething onHitSomething;
