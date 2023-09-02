@@ -39,7 +39,7 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            onLevelLoaded?.Invoke();
+            onLevelLoaded?.Invoke(levels[0]);
         }
     }
 
@@ -47,10 +47,10 @@ public class LevelManager : MonoBehaviour
     {
         if (scene.name == levels[loadedLevelIndex].scene.name)
         {
-            onLevelLoaded?.Invoke();
+            onLevelLoaded?.Invoke(levels[loadedLevelIndex]);
         }
     }
-    public delegate void OnLevelLoaded();
+    public delegate void OnLevelLoaded(LevelInfo levelInfo);
     public event OnLevelLoaded onLevelLoaded;
 
 }

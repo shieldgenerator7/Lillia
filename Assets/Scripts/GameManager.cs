@@ -41,7 +41,6 @@ public class GameManager : MonoBehaviour
             imgPaused.gameObject.SetActive(!gameActive);
         };
         checkpointManager.OnEndCheckpointReached += onEndCheckpointReached;
-        checkpointManager.OnCheckpointRecalling += onCheckpointRecalling;
         resetTrigger.OnPlayerEntered += () =>
         {
             onReset();
@@ -69,7 +68,7 @@ public class GameManager : MonoBehaviour
 
     #region Delegate Handlers
 
-    void onLevelLoaded()
+    void onLevelLoaded(LevelInfo levelInfo)
     {
         checkpointManager.registerCheckpointDelegates();
         FindObjectsByType<Hazard>(FindObjectsSortMode.None).ToList()
@@ -81,15 +80,13 @@ public class GameManager : MonoBehaviour
             statisticsManager.startRun(levelManager.LevelId);
             timerUI.bestTime = statisticsManager.bestRun.duration;
         }
-        playerController.transform.position = checkpointManager.Start.transform.position;
+        playerController.transform.position = levelInfo.startPos;
         FindObjectsByType<Resettable>(FindObjectsSortMode.None).ToList()
             .ForEach(rst => rst.recordInitialState());
     }
 
     void onReset()
     {
-        //Teleport player
-        checkpointManager.teleportToStart();
         //Reset
         ResetRun();
         //
@@ -106,8 +103,6 @@ public class GameManager : MonoBehaviour
 
     void onHazardHit(Hazard hazard)
     {
-        //Teleport player
-        checkpointManager.teleportToCurrent();
         //Reset
         ResetRun();
         //
@@ -118,11 +113,6 @@ public class GameManager : MonoBehaviour
     void onEndCheckpointReached(Checkpoint cp)
     {
         FinishRun();
-    }
-
-    void onCheckpointRecalling(Checkpoint checkpoint)
-    {
-        playerController.transform.position = checkpoint.transform.position;
     }
 
     #endregion
