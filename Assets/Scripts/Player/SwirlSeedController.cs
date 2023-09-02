@@ -36,7 +36,7 @@ public class SwirlSeedController : Resettable
                 //Throw
                 attach(false);
                 rb2d.velocity = new Vector2(
-                    playerAttributes.swirlSeedLaunchVector.x * Mathf.Sign(playerState.lookDirection.x) + state.velX,
+                    state.velX,
                     playerAttributes.swirlSeedLaunchVector.y
                     );
             }
@@ -69,7 +69,9 @@ public class SwirlSeedController : Resettable
             if (state.phase == SwirlSeedState.Phase.ATTACHED)
             {
                 state.phase = SwirlSeedState.Phase.FLYING;
-                state.velX = parentRB2D.velocity.x;
+                state.velX = parentRB2D.velocity.x + (
+                    playerAttributes.swirlSeedLaunchVector.x * Mathf.Sign(playerState.lookDirection.x)
+                    );
             }
             transform.parent = null;
             rb2d.isKinematic = false;
@@ -97,7 +99,6 @@ public class SwirlSeedController : Resettable
                 {
                     //Make it roll
                     state.phase = SwirlSeedState.Phase.ROLLING;
-                    state.velX = rb2d.velocity.x;
                 }
                 break;
             case SwirlSeedState.Phase.ROLLING:
