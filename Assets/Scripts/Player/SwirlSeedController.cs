@@ -114,6 +114,7 @@ public class SwirlSeedController : Resettable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //dont process if attached
         if (state.phase == SwirlSeedState.Phase.ATTACHED) { return; }
         Hittable hittable = collision.GetComponent<Hittable>();
         if (hittable)
@@ -125,7 +126,11 @@ public class SwirlSeedController : Resettable
         PlayerController playerController = collision.GetComponent<PlayerController>();
         if (playerController)
         {
-            attach(true);
+            //auto-collect, but only if its hit the ground already
+            if (state.phase != SwirlSeedState.Phase.FLYING)
+            {
+                attach(true);
+            }
             return;
         }
         BloomingBlows bloomingBlows = collision.GetComponent<BloomingBlows>();
