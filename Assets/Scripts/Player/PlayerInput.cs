@@ -3,11 +3,16 @@ using static PlayerActionControls;
 
 public class PlayerInput : MonoBehaviour
 {
+    [Tooltip("Movement values that are nonzero and at or below this threshold are ignored")]
+    public float ignoreThreshold = 0.1f;
+
     private PlayerActionControls playerActionControls;
 
     private InputState inputState;
     public delegate void OnInputStateChanged(InputState inputState);
     public event OnInputStateChanged onInputStateChanged;
+
+    private float prevMag = 0;
 
     //-----------------
 
@@ -24,7 +29,14 @@ public class PlayerInput : MonoBehaviour
         input.Movement.performed += ctx =>
         {
             inputState.movementDirection = ctx.ReadValue<Vector2>();
-            onInputStateChanged?.Invoke(inputState);
+            //ignore slight thumbstick movements
+            float magnitude = inputState.movementDirection.magnitude;
+            if (magnitude > ignoreThreshold
+            || (magnitude == 0 && prevMag > ignoreThreshold))
+            {
+                onInputStateChanged?.Invoke(inputState);
+            }
+            prevMag = magnitude;
         };
         //Jump
         input.Jump.performed += _ =>
