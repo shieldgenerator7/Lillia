@@ -6,9 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    [SerializeField]
+    private int loadedLevelIndex = -1;
+    private bool anyLevelLoaded = false;
+    
     public List<LevelInfo> levels;
 
-    private int loadedLevelIndex = -1;
     public string LevelId
         => levels[loadedLevelIndex].id;
 
@@ -17,7 +20,7 @@ public class LevelManager : MonoBehaviour
 
     public void loadLevel(int index = 0)
     {
-        if (loadedLevelIndex >= 0)
+        if (anyLevelLoaded)
         {
             SceneManager.UnloadSceneAsync(levels[loadedLevelIndex].sceneName);
         }
@@ -33,13 +36,17 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         SceneManager.sceneLoaded += onSceneLoaded;
-        if (!SceneManager.GetSceneByName(levels[0].sceneName).isLoaded)
+        if (loadedLevelIndex < 0)
         {
-            loadLevel(0);
+            loadedLevelIndex = 0;
+        }
+        if (!SceneManager.GetSceneByName(levels[loadedLevelIndex].sceneName).isLoaded)
+        {
+            loadLevel(loadedLevelIndex);
         }
         else
         {
-            onLevelLoaded?.Invoke(levels[0]);
+            onLevelLoaded?.Invoke(levels[loadedLevelIndex]);
         }
     }
 
@@ -47,6 +54,7 @@ public class LevelManager : MonoBehaviour
     {
         if (scene.name == levels[loadedLevelIndex].sceneName)
         {
+            anyLevelLoaded = true;
             onLevelLoaded?.Invoke(levels[loadedLevelIndex]);
         }
     }
