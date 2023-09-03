@@ -37,7 +37,7 @@ public class WarwickController : Hittable
 
     private void fear()
     {
-        state.lastFearTime = Time.fixedDeltaTime;
+        state.lastFearTime = Time.fixedTime;
         animator.processState(state);
     }
 
