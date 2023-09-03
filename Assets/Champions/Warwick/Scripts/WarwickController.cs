@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class WarwickController : Hittable
 {
-    public float moveSpeedInitial = 2;
-    public float moveSpeedIncrease = 0.5f;
+    public WarwickAttributes attr;
 
     public Animator animator;
 
@@ -26,7 +25,7 @@ public class WarwickController : Hittable
     void FixedUpdate()
     {
         rb2d.velocity = Vector2.right * state.moveSpeed;
-        state.moveSpeed += moveSpeedIncrease * Time.fixedDeltaTime;
+        state.moveSpeed += attr.moveSpeedIncrease * Time.fixedDeltaTime;
     }
 
     public override void recordInitialState()
@@ -38,6 +37,6 @@ public class WarwickController : Hittable
     {
         transform.position = startPos;
         //
-        state.moveSpeed = moveSpeedInitial;
+        state.moveSpeed = attr.moveSpeedInitial;
     }
 }
