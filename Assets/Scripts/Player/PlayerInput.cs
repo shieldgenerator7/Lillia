@@ -12,7 +12,7 @@ public class PlayerInput : MonoBehaviour
     public delegate void OnInputStateChanged(InputState inputState);
     public event OnInputStateChanged onInputStateChanged;
 
-    private float prevMag = 0;
+    private bool magWasValid = false;
 
     //-----------------
 
@@ -32,11 +32,18 @@ public class PlayerInput : MonoBehaviour
             //ignore slight thumbstick movements
             float magnitude = inputState.movementDirection.magnitude;
             if (magnitude > ignoreThreshold
-            || (magnitude == 0 && prevMag > ignoreThreshold))
+            || (magnitude == 0 && magWasValid))
             {
+                if (magnitude > ignoreThreshold)
+                {
+                    magWasValid = true;
+                }
+                else if (magnitude == 0)
+                {
+                    magWasValid = false;
+                }
                 onInputStateChanged?.Invoke(inputState);
             }
-            prevMag = magnitude;
         };
         //Jump
         input.Jump.performed += _ =>
