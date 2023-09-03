@@ -47,8 +47,11 @@ public class WarwickController : Hittable
 
     private void fear()
     {
-        state.lastFearTime = Time.fixedTime;
-        animator.processState(state);
+        if (Time.time >= state.lastFearTime + attr.fearDelay + attr.fearDuration)
+        {
+            state.lastFearTime = Time.fixedTime;
+            animator.processState(state);
+        }
     }
 
     public override void recordInitialState()
