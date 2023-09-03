@@ -26,11 +26,11 @@ Transform:
   m_GameObject: {fileID: 4320198802915164186}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.005, y: -0.151, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 9088512890012361508}
+  m_Father: {fileID: 7762123521690334634}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7409330253717484812
 SpriteRenderer:
@@ -115,7 +115,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5673132283046955928}
   m_Father: {fileID: 9088512890012361508}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2366585799829319787
@@ -223,7 +224,6 @@ GameObject:
   - component: {fileID: -6022042745571560140}
   - component: {fileID: -9176505656366478375}
   - component: {fileID: 6522479376388696191}
-  - component: {fileID: 9135396124584228257}
   m_Layer: 0
   m_Name: Warwick
   m_TagString: Untagged
@@ -245,7 +245,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7762123521690334634}
-  - {fileID: 5673132283046955928}
+  - {fileID: 5001895528411738827}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-4179450905727239150
@@ -263,7 +263,7 @@ MonoBehaviour:
   attr: {fileID: 11400000, guid: 21bd7cd729e6fcb4a8437eab6776285d, type: 2}
   animator: {fileID: 7373566993328948372}
   hazard: {fileID: -4894844351989919385}
-  fearColl2D: {fileID: 9135396124584228257}
+  fearColl2D: {fileID: 7520437302386014806}
 --- !u!114 &-4894844351989919385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,13 +397,45 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.086191, y: 0.9618093}
   m_EdgeRadius: 0
---- !u!61 &9135396124584228257
-BoxCollider2D:
+--- !u!1 &8829746076409934647
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8170287284210426902}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5001895528411738827}
+  - component: {fileID: 7520437302386014806}
+  m_Layer: 0
+  m_Name: fear_hitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5001895528411738827
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8829746076409934647}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9088512890012361508}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &7520437302386014806
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8829746076409934647}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -431,15 +463,5 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.016829133, y: 0.0056098104}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.024, y: 1.024}
-    newSize: {x: 1.024, y: 1.024}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 2.3142254, y: 2.4825153}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 1.31
