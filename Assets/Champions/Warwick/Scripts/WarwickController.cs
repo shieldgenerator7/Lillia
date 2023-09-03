@@ -6,7 +6,7 @@ public class WarwickController : Hittable
 {
     public WarwickAttributes attr;
 
-    public Animator animator;
+    public WarwickAnimator animator;
     public StaticHazard hazard;
 
     private Rigidbody2D rb2d;
@@ -18,10 +18,10 @@ public class WarwickController : Hittable
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        animator.SetBool("running", true);
         onHit += fear;
         recordInitialState();
         reset();
+        animator.processState(state);
     }
 
     // Update is called once per frame
@@ -38,6 +38,7 @@ public class WarwickController : Hittable
     private void fear()
     {
         state.lastFearTime = Time.fixedDeltaTime;
+        animator.processState(state);
     }
 
     public override void recordInitialState()
@@ -51,5 +52,6 @@ public class WarwickController : Hittable
         //
         state.moveSpeed = attr.moveSpeedInitial;
         state.lastFearTime = (attr.fearDelay + attr.fearDuration) * -2;
+        animator.processState(state);
     }
 }
