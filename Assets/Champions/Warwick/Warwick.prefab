@@ -263,6 +263,7 @@ MonoBehaviour:
   attr: {fileID: 11400000, guid: 21bd7cd729e6fcb4a8437eab6776285d, type: 2}
   animator: {fileID: 7373566993328948372}
   hazard: {fileID: -4894844351989919385}
+  fearColl2D: {fileID: 9135396124584228257}
 --- !u!114 &-4894844351989919385
 MonoBehaviour:
   m_ObjectHideFlags: 0

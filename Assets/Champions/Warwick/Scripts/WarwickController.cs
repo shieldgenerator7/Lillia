@@ -8,6 +8,7 @@ public class WarwickController : Hittable
 
     public WarwickAnimator animator;
     public StaticHazard hazard;
+    public Collider2D fearColl2D;
 
     private Rigidbody2D rb2d;
 
@@ -31,8 +32,11 @@ public class WarwickController : Hittable
         state.moveSpeed += attr.moveSpeedIncrease * Time.fixedDeltaTime;
 
         float fixedTime = Time.fixedTime;
-        hazard.onTrigger = fixedTime >= state.lastFearTime + attr.fearDelay
+        bool fearing  = fixedTime >= state.lastFearTime + attr.fearDelay
              && fixedTime <= state.lastFearTime + attr.fearDelay + attr.fearDuration;
+        hazard.onTrigger = fearing;
+        fearColl2D.enabled = fearing;
+
     }
 
     private void fear()
