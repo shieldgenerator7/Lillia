@@ -138,6 +138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cbf3d4b8beb6624da1e91ef2b8e0e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onCollide: 1
+  onTrigger: 0
 --- !u!50 &-6022042745571560140
 Rigidbody2D:
   serializedVersion: 4
