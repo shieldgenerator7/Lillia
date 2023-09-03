@@ -9,6 +9,7 @@ public class StaticHazard : Hazard
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (!onCollide) { return; }
         if (collision.gameObject.GetComponent<PlayerController>())
         {
             killPlayer();
@@ -17,6 +18,7 @@ public class StaticHazard : Hazard
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!onTrigger) { return; }
         if (collision.gameObject.GetComponent<PlayerController>())
         {
             killPlayer();
