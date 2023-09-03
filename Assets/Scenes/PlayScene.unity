@@ -190,6 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextLevelDelay: 3
+  hitResetDelay: 1
   playerInput: {fileID: 1518226481}
   playerController: {fileID: 1518226480}
   checkpointManager: {fileID: 56600665}

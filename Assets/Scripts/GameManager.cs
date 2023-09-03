@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 {
     [Tooltip("How long to wait after a level is finished before going to next level")]
     public float nextLevelDelay = 3;
+    [Tooltip("How long to pause the game after getting hit by a hazard")]
+    public float hitResetDelay = 1;
 
     public PlayerInput playerInput;
     public PlayerController playerController;
@@ -21,9 +23,10 @@ public class GameManager : MonoBehaviour
     public TimerUI timerUI;
     public PlayerTrigger resetTrigger;
     public PlayerTrigger nextLevelTrigger;
-    public Image imgPaused; 
+    public Image imgPaused;
 
     private Timer gameTimer;
+    private float lastHitTime = -1;
 
     private bool gameActive = true;//true: not paused
 
@@ -103,6 +106,23 @@ public class GameManager : MonoBehaviour
 
     void onHazardHit(Hazard hazard)
     {
+        Time.timeScale = 0;
+        lastHitTime = Time.unscaledTime;
+    }
+    private void Update()
+    {
+        if (lastHitTime > 0)
+        {
+            if (Time.unscaledTime >= lastHitTime + hitResetDelay)
+            {
+                onHazardHitDelayEnd();
+            }
+        }
+    }
+    void onHazardHitDelayEnd()
+    {
+        Time.timeScale = 1;
+        lastHitTime = -1;
         //Reset
         ResetRun();
         //
