@@ -144,6 +144,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd13cf101bea325418b026efd7bda371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hideDuration: 4
   hideAlpha: 0.5
   coll2d: {fileID: 6042238644654759910}

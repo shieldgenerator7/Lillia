@@ -144,3 +144,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83fd8fe372db0fe42b8347e99908cec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onCollide: 0
+  onTrigger: 1
