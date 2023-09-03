@@ -31,6 +31,12 @@ public class WarwickController : Hittable
         rb2d.velocity = Vector2.right * state.moveSpeed;
         state.moveSpeed += attr.moveSpeedIncrease * Time.fixedDeltaTime;
 
+        if (state.moveSpeed > 1 && state.moveSpeed < 2)
+        {
+            state.phase = WarwickState.Phase.CHASING;
+            animator.processState(state);
+        }
+
         float fixedTime = Time.fixedTime;
         bool fearing  = fixedTime >= state.lastFearTime + attr.fearDelay
              && fixedTime <= state.lastFearTime + attr.fearDelay + attr.fearDuration;
@@ -54,8 +60,11 @@ public class WarwickController : Hittable
     {
         transform.position = startPos;
         //
-        state.moveSpeed = attr.moveSpeedInitial;
-        state.lastFearTime = (attr.fearDelay + attr.fearDuration) * -2;
+        state = new()
+        {
+            moveSpeed = attr.moveSpeedInitial,
+            lastFearTime = (attr.fearDelay + attr.fearDuration) * -2
+        };
         animator.processState(state);
     }
 }
