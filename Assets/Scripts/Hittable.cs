@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class Hittable : Resettable
 {
+    public int stacksGranted = 1;
+
     protected float lastHitTime;
 
     public void hit()

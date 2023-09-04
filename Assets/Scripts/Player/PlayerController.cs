@@ -188,11 +188,11 @@ public class PlayerController : Resettable
         return false;
     }
 
-    public void BloomingBlowsHitSomething(bool hittable, bool wall)
+    public void BloomingBlowsHitSomething(bool hittable, bool wall, int stacks)
     {
         if (hittable)
         {
-            setStacks(playerState.stacks + 1);
+            setStacks(playerState.stacks + stacks);
             playerState.lastStackAddTime = Time.fixedTime;
         }
         if (wall)

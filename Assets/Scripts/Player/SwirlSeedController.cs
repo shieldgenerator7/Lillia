@@ -122,7 +122,7 @@ public class SwirlSeedController : Resettable
         if (hittable)
         {
             hittable.hit();
-            onHitSomething?.Invoke();
+            onHitSomething?.Invoke(hittable);
             return;
         }
         PlayerController playerController = collision.GetComponent<PlayerController>();
@@ -142,7 +142,7 @@ public class SwirlSeedController : Resettable
             return;
         }
     }
-    public delegate void OnHitSomething();
+    public delegate void OnHitSomething(Hittable hittable);
     public event OnHitSomething onHitSomething;
 
     public override void recordInitialState()

@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dbc1ab2737d2ae47ac188f04ac84964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stacksGranted: 2
   trunk: {fileID: 4285046693719379346}
   hitColl2D: {fileID: 1527514130799103192}
   fallDuration: 2

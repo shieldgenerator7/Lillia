@@ -43,7 +43,7 @@ public class BloomingBlows : MonoBehaviour
         if (hittable)
         {
             hittable.hit();
-            playerController.BloomingBlowsHitSomething(true, false);
+            playerController.BloomingBlowsHitSomething(true, false, hittable.stacksGranted);
         }
         else
         {
@@ -58,7 +58,7 @@ public class BloomingBlows : MonoBehaviour
             float moveDirection = Mathf.Sign(playerController.moveDirection.x);
             if (wallOffDirection == moveDirection)
             {
-                playerController.BloomingBlowsHitSomething(false, true);
+                playerController.BloomingBlowsHitSomething(false, true, 0);
             }
         }
     }
