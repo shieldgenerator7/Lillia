@@ -102,6 +102,10 @@ public class GameManager : MonoBehaviour
         StartRun();
         //
         playerInput.onInputStateChanged -= onReset_Input;
+        //
+        FindObjectsByType<Resettable>(FindObjectsSortMode.None).ToList()
+            .FindAll(rst => rst.reactsToPlayerStart)
+            .ForEach(rst => rst.levelStart());
     }
 
     void onHazardHit(Hazard hazard)

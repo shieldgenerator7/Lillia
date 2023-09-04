@@ -11,4 +11,5 @@ public class WarwickAttributes : ScriptableObject
     public float fearDuration;
     public float onHitMoveIncrease;
     public float postFearMoveIncrease;
+    public float howlDuration;
 }

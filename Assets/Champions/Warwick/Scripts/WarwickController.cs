@@ -28,18 +28,24 @@ public class WarwickController : Hittable
     // Update is called once per frame
     void FixedUpdate()
     {
+        float fixedTime = Time.fixedTime;
+        if (state.phase == WarwickState.Phase.HOWLING)
+        {
+            if (fixedTime >= state.phaseStartTime + attr.howlDuration)
+            {
+                state.phaseStartTime = fixedTime;
+                state.phase = WarwickState.Phase.CHASING;
+                animator.processState(state);
+            }
+        }
+        if (state.phase == WarwickState.Phase.CHASING)
+        {
         Vector2 vel = Vector2.right * state.moveSpeed;
         vel.y = rb2d.velocity.y;
         rb2d.velocity = vel;
         state.moveSpeed += attr.moveSpeedIncrease * Time.fixedDeltaTime;
-
-        if (state.moveSpeed > 1 && state.moveSpeed < 2)
-        {
-            state.phase = WarwickState.Phase.CHASING;
-            animator.processState(state);
         }
 
-        float fixedTime = Time.fixedTime;
         float fearEndTime = state.lastFearTime + attr.fearDelay + attr.fearDuration;
         bool fearing = fixedTime >= state.lastFearTime + attr.fearDelay
              && fixedTime <= fearEndTime;
@@ -58,6 +64,7 @@ public class WarwickController : Hittable
         if (Time.time >= state.lastFearTime + attr.fearDelay + attr.fearDuration)
         {
             state.moveSpeed += attr.onHitMoveIncrease;
+            state.moveSpeed = Mathf.Max(state.moveSpeed, 0);
             state.lastFearTime = Time.fixedTime;
             animator.processState(state);
         }
@@ -71,12 +78,22 @@ public class WarwickController : Hittable
     public override void reset()
     {
         transform.position = startPos;
+        rb2d.velocity = Vector2.zero;
         //
         state = new()
         {
+            phase = WarwickState.Phase.IDLE,
             moveSpeed = attr.moveSpeedInitial,
-            lastFearTime = (attr.fearDelay + attr.fearDuration) * -2
+            lastFearTime = (attr.fearDelay + attr.fearDuration) * -2,
         };
+        animator.processState(state);
+    }
+
+    public override bool reactsToPlayerStart => true;
+    public override void levelStart()
+    {
+        state.phase = WarwickState.Phase.HOWLING;
+        state.phaseStartTime = Time.fixedTime;
         animator.processState(state);
     }
 }

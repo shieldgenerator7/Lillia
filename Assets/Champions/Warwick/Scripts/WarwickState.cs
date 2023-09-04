@@ -12,6 +12,8 @@ public struct WarwickState
     }
     public Phase phase;
 
+    public float phaseStartTime;
+
     public float moveSpeed;
 
     public float lastFearTime;
