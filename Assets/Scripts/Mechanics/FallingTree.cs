@@ -38,7 +38,7 @@ public class FallingTree : Hittable
         {
             float ratio = (Time.time - fallStartTime) / fallDuration;
             ratio = Mathf.Min(ratio, 1);
-            float angle = (endAngle - startAngle) * ratio + startAngle;
+            float angle = (endAngle - startAngle) * (ratio * ratio) + startAngle;
             setAngle(angle);
             if (ratio == 1)
             {

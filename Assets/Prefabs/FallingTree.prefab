@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trunk: {fileID: 4285046693719379346}
   hitColl2D: {fileID: 1527514130799103192}
-  fallDuration: 4
+  fallDuration: 3
   endAngle: -90
 --- !u!61 &1527514130799103192
 BoxCollider2D:
