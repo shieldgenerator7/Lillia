@@ -266,7 +266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4773603748059702128}
   - component: {fileID: 7807729538149257274}
-  - component: {fileID: 7802618477451611952}
+  - component: {fileID: 3128767849556375748}
   m_Layer: 0
   m_Name: tree_falling_stump
   m_TagString: Untagged
@@ -341,8 +341,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &7802618477451611952
-BoxCollider2D:
+--- !u!68 &3128767849556375748
+EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -375,15 +375,12 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.036967307, y: 0.05220993}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 1.024, y: 3}
-    newSize: {x: 1.024, y: 3}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 0.33170325, y: 0.10441986}
+  m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.29316902, y: -0.0143175125}
+  - {x: 0.13788661, y: 0.20903397}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0

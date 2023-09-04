@@ -79,6 +79,7 @@ public class FallingTree : Hittable
     }
     public override void reset()
     {
+        hitColl2D.enabled = true;
         state = State.STANDING;
         setAngle(startAngle);
     }
