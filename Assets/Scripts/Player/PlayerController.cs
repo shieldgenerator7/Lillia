@@ -242,5 +242,6 @@ public class PlayerController : Resettable
         stop();
         playerState = new PlayerState();
         transform.position = origPos;
+        onPlayerStateChanged?.Invoke(playerState);
     }
 }
