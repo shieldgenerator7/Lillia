@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: -4179450905727239150}
   - component: {fileID: -4894844351989919385}
   - component: {fileID: -6022042745571560140}
-  - component: {fileID: -9176505656366478375}
+  - component: {fileID: 2207861011844808451}
   - component: {fileID: 6522479376388696191}
   m_Layer: 0
   m_Name: Warwick
@@ -260,6 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9e6a6b9cd9a0ca4e9fa7c71be71c83a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stacksGranted: 1
   attr: {fileID: 11400000, guid: 21bd7cd729e6fcb4a8437eab6776285d, type: 2}
   animator: {fileID: 7373566993328948372}
   hazard: {fileID: -4894844351989919385}
@@ -301,12 +302,12 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &-9176505656366478375
-BoxCollider2D:
+--- !u!70 &2207861011844808451
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -339,18 +340,9 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.04087323, y: -0.2520517}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.024, y: 1.024}
-    newSize: {x: 1.024, y: 1.024}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 0.74061215, y: 0.5198965}
-  m_EdgeRadius: 0
+  m_Offset: {x: -0.044923123, y: -0.41751376}
+  m_Size: {x: 0.71323746, y: 0.18712713}
+  m_Direction: 1
 --- !u!61 &6522479376388696191
 BoxCollider2D:
   m_ObjectHideFlags: 0
