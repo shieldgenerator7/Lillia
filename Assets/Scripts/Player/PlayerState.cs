@@ -65,6 +65,7 @@ public struct PlayerState
     /// How many blooming blows used since the last grounded time
     /// </summary>
     public int airBloomingBlowsUsed;
+    public float lastBloomingBlowTime;
 
     public override string ToString()
     {

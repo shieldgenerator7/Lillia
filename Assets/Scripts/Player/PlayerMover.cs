@@ -66,9 +66,9 @@ public class PlayerMover : MonoBehaviour
         {
             if (!playerState.grounded && playerState.airBloomingBlowsUsed <= attributes.maxAirBloomingBlows)
             {
-                if (vel.y < 0)
+                if (Time.time <= playerState.lastBloomingBlowTime + attributes.airBloomingBlowsAntiGravDuration)
                 {
-                    vel.y = attributes.airBloomingBlowsJumpForce;
+                    vel.y = 0;
                 }
             }
         }

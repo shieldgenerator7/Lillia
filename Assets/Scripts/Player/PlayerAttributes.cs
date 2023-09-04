@@ -13,7 +13,7 @@ public class PlayerAttributes : ScriptableObject
     public float stackDecayDelay;
     public float stackDecayDelayPerStack;
     public int maxAirBloomingBlows;
-    public float airBloomingBlowsJumpForce;
+    public float airBloomingBlowsAntiGravDuration;
     public Vector2 swirlSeedLaunchVector;
     public float swirlSeedPickupRange = 2;
     public int maxAirJumps;

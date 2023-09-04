@@ -30,7 +30,6 @@ public class BloomingBlows : MonoBehaviour
 
     void checkForActivation(PlayerState playerState)
     {
-        Debug.Log($"checkForActivation playerState: {playerState.usingBloomingBlows}");
         if (playerState.usingBloomingBlows != active)
         {
             Active = playerState.usingBloomingBlows;

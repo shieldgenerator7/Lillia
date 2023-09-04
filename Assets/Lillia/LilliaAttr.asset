@@ -20,7 +20,7 @@ MonoBehaviour:
   stackDecayDelay: 4
   stackDecayDelayPerStack: 2
   maxAirBloomingBlows: 1
-  airBloomingBlowsJumpForce: 2
+  airBloomingBlowsAntiGravDuration: 1
   swirlSeedLaunchVector: {x: 2, y: 4}
   swirlSeedPickupRange: 2
   maxAirJumps: 1

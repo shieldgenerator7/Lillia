@@ -71,10 +71,18 @@ public class PlayerController : Resettable
         playerState.usingBloomingBlows = inputState.bloomingblows;
         if (playerState.usingBloomingBlows)
         {
+            if (playerState.lastBloomingBlowTime < 0)
+            {
+                playerState.lastBloomingBlowTime = Time.time;
+            }
             if (!playerState.grounded)
             {
                 playerState.airBloomingBlowsUsed++;
             }
+        }
+        else
+        {
+            playerState.lastBloomingBlowTime = -1;
         }
         //Look Direction
         if (inputState.movementDirection.x != 0)
