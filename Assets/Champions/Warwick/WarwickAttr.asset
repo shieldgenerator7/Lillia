@@ -18,3 +18,4 @@ MonoBehaviour:
   fearDuration: 1
   onHitMoveIncrease: -1
   postFearMoveIncrease: 1.2
+  howlDuration: 2
