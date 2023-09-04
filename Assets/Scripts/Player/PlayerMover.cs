@@ -64,9 +64,9 @@ public class PlayerMover : MonoBehaviour
         //Air Blooming Blows
         if (playerState.usingBloomingBlows)
         {
-            if (!playerState.grounded && playerState.airBloomingBlowsUsed <= attributes.maxAirBloomingBlows)
+            if (!playerState.grounded && Time.time <= playerState.lastBloomingBlowTime + attributes.airBloomingBlowsAntiGravDuration)
             {
-                if (Time.time <= playerState.lastBloomingBlowTime + attributes.airBloomingBlowsAntiGravDuration)
+                if (vel.y < 0)
                 {
                     vel.y = 0;
                 }
