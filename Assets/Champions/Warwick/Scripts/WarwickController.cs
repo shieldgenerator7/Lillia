@@ -40,10 +40,16 @@ public class WarwickController : Hittable
         }
 
         float fixedTime = Time.fixedTime;
-        bool fearing  = fixedTime >= state.lastFearTime + attr.fearDelay
-             && fixedTime <= state.lastFearTime + attr.fearDelay + attr.fearDuration;
+        float fearEndTime = state.lastFearTime + attr.fearDelay + attr.fearDuration;
+        bool fearing = fixedTime >= state.lastFearTime + attr.fearDelay
+             && fixedTime <= fearEndTime;
         hazard.onTrigger = fearing;
         fearColl2D.enabled = fearing;
+        if (fixedTime > fearEndTime && fixedTime - Time.fixedDeltaTime <= fearEndTime)
+        {
+            state.moveSpeed += attr.postFearMoveIncrease;
+            animator.processState(state);
+        }
 
     }
 
@@ -51,6 +57,7 @@ public class WarwickController : Hittable
     {
         if (Time.time >= state.lastFearTime + attr.fearDelay + attr.fearDuration)
         {
+            state.moveSpeed += attr.onHitMoveIncrease;
             state.lastFearTime = Time.fixedTime;
             animator.processState(state);
         }
