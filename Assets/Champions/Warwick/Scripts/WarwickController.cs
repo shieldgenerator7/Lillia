@@ -28,7 +28,9 @@ public class WarwickController : Hittable
     // Update is called once per frame
     void FixedUpdate()
     {
-        rb2d.velocity = Vector2.right * state.moveSpeed;
+        Vector2 vel = Vector2.right * state.moveSpeed;
+        vel.y = rb2d.velocity.y;
+        rb2d.velocity = vel;
         state.moveSpeed += attr.moveSpeedIncrease * Time.fixedDeltaTime;
 
         if (state.moveSpeed > 1 && state.moveSpeed < 2)
