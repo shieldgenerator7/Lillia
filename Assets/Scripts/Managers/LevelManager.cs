@@ -27,6 +27,12 @@ public class LevelManager : MonoBehaviour
         loadedLevelIndex = index;
         SceneManager.LoadSceneAsync(levels[loadedLevelIndex].sceneName, LoadSceneMode.Additive);
     }
+    public void prevLevel()
+    {
+        int prev = loadedLevelIndex - 1;
+        prev = Mathf.Max(prev, 0);
+        loadLevel(prev);
+    }
 
     public void nextLevel()
     {
@@ -35,6 +41,13 @@ public class LevelManager : MonoBehaviour
         {
             next = 0;
         }
+        loadLevel(next);
+    }
+
+    public void switchLevel(int dir)
+    {
+        int next = loadedLevelIndex + dir;
+        next = Mathf.Clamp(next, 0, levels.Count - 1);
         loadLevel(next);
     }
 

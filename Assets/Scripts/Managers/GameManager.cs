@@ -34,13 +34,15 @@ public class GameManager : MonoBehaviour
         timerUI.update(statisticsManager);
         //
         levelManager.onLevelLoaded += onLevelLoaded;
-        playerInput.onReset += onReset;
         playerInput.onPause += () =>
         {
             gameActive = !gameActive;
             Time.timeScale = (gameActive) ? 1 : 0;
             imgPaused.gameObject.SetActive(!gameActive);
         };
+        playerInput.onReset += onReset;
+        playerInput.onPrevLevel += () => switchLevel(-1);
+        playerInput.onNextLevel += () => switchLevel(1);
         playerController.onCollectableCollected += () =>
         {
             statisticsManager.recordCollectable();
@@ -87,11 +89,14 @@ public class GameManager : MonoBehaviour
             playerInput.onInputStateChanged -= onReset_Input;
             playerInput.onInputStateChanged += onReset_Input;
         }
-        FindAnyObjectByType<PlayerTrigger>().OnPlayerEntered += () =>
-        {
-            ResetRun();
-            levelManager.nextLevel();
-        };
+        FindAnyObjectByType<PlayerTrigger>()
+            .OnPlayerEntered += () => switchLevel(1);
+    }
+
+    void switchLevel(int dir)
+    {
+        ResetRun();
+        levelManager.switchLevel(dir);
     }
 
     void onReset()

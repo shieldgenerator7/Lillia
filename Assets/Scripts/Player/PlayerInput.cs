@@ -89,20 +89,32 @@ public class PlayerInput : MonoBehaviour
             inputState.interact = false;
             onInputStateChanged?.Invoke(inputState);
         };
-        //Reset
-        input.Reset.performed += _ =>
-        {
-            onReset?.Invoke();
-        };
         //Pause
         input.Pause.performed += _ =>
         {
             onPause?.Invoke();
         };
+        //Reset
+        input.Reset.performed += _ =>
+        {
+            onReset?.Invoke();
+        };
+        //Prev Level
+        input.PrevLevel.performed += _ =>
+        {
+            onPrevLevel?.Invoke();
+        };
+        //Next Level
+        input.NextLevel.performed += _ =>
+        {
+            onNextLevel?.Invoke();
+        };
     }
     public delegate void OnUIAction();
-    public event OnUIAction onReset;
     public event OnUIAction onPause;
+    public event OnUIAction onReset;
+    public event OnUIAction onPrevLevel;
+    public event OnUIAction onNextLevel;
 
     private void OnDisable()
     {

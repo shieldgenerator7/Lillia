@@ -89,6 +89,24 @@ public partial class @PlayerActionControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PrevLevel"",
+                    ""type"": ""Button"",
+                    ""id"": ""d7ee02ce-a857-4780-bcfc-51bb533b61e2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextLevel"",
+                    ""type"": ""Button"",
+                    ""id"": ""650ac3c0-a3b8-4419-b3e6-8196a636c648"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -443,6 +461,50 @@ public partial class @PlayerActionControls: IInputActionCollection2, IDisposable
                     ""action"": ""SwirlSeed"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b779e41e-f521-4244-8a8b-5da9e2875d45"",
+                    ""path"": ""<Keyboard>/pageUp"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PrevLevel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a69987fc-cc60-4e45-a6ee-9ea60527fc3a"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PrevLevel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""510bca14-b871-4f10-aa3c-9f1604cd3b22"",
+                    ""path"": ""<Keyboard>/pageDown"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextLevel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""092c1baf-4908-4ba4-9e85-cea5b01fe38a"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextLevel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -458,6 +520,8 @@ public partial class @PlayerActionControls: IInputActionCollection2, IDisposable
         m_Player_SwirlSeed = m_Player.FindAction("SwirlSeed", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_Reset = m_Player.FindAction("Reset", throwIfNotFound: true);
+        m_Player_PrevLevel = m_Player.FindAction("PrevLevel", throwIfNotFound: true);
+        m_Player_NextLevel = m_Player.FindAction("NextLevel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -526,6 +590,8 @@ public partial class @PlayerActionControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_SwirlSeed;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_Reset;
+    private readonly InputAction m_Player_PrevLevel;
+    private readonly InputAction m_Player_NextLevel;
     public struct PlayerActions
     {
         private @PlayerActionControls m_Wrapper;
@@ -537,6 +603,8 @@ public partial class @PlayerActionControls: IInputActionCollection2, IDisposable
         public InputAction @SwirlSeed => m_Wrapper.m_Player_SwirlSeed;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @Reset => m_Wrapper.m_Player_Reset;
+        public InputAction @PrevLevel => m_Wrapper.m_Player_PrevLevel;
+        public InputAction @NextLevel => m_Wrapper.m_Player_NextLevel;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -567,6 +635,12 @@ public partial class @PlayerActionControls: IInputActionCollection2, IDisposable
             @Reset.started += instance.OnReset;
             @Reset.performed += instance.OnReset;
             @Reset.canceled += instance.OnReset;
+            @PrevLevel.started += instance.OnPrevLevel;
+            @PrevLevel.performed += instance.OnPrevLevel;
+            @PrevLevel.canceled += instance.OnPrevLevel;
+            @NextLevel.started += instance.OnNextLevel;
+            @NextLevel.performed += instance.OnNextLevel;
+            @NextLevel.canceled += instance.OnNextLevel;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -592,6 +666,12 @@ public partial class @PlayerActionControls: IInputActionCollection2, IDisposable
             @Reset.started -= instance.OnReset;
             @Reset.performed -= instance.OnReset;
             @Reset.canceled -= instance.OnReset;
+            @PrevLevel.started -= instance.OnPrevLevel;
+            @PrevLevel.performed -= instance.OnPrevLevel;
+            @PrevLevel.canceled -= instance.OnPrevLevel;
+            @NextLevel.started -= instance.OnNextLevel;
+            @NextLevel.performed -= instance.OnNextLevel;
+            @NextLevel.canceled -= instance.OnNextLevel;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -618,5 +698,7 @@ public partial class @PlayerActionControls: IInputActionCollection2, IDisposable
         void OnSwirlSeed(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnReset(InputAction.CallbackContext context);
+        void OnPrevLevel(InputAction.CallbackContext context);
+        void OnNextLevel(InputAction.CallbackContext context);
     }
 }
