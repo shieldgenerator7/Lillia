@@ -33,7 +33,9 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         statisticsManager.init(fileManager.load() ?? new Statistics());
-        timerUI.bestTime = statisticsManager.bestRun.duration;
+        timerUI.bestRun = statisticsManager.bestRun;
+        timerUI.fastestRun = statisticsManager.fastRun;
+        timerUI.update();
         //
         levelManager.onLevelLoaded += onLevelLoaded;
         playerInput.onReset += onReset;
@@ -46,7 +48,7 @@ public class GameManager : MonoBehaviour
         playerController.onCollectableCollected += () =>
         {
             statisticsManager.recordCollectable();
-            timerUI.collectables = statisticsManager.CurrentRun.fruitCount;
+            timerUI.currentRun = statisticsManager.CurrentRun;
             timerUI.update();
         };
         checkpointManager.OnEndCheckpointReached += onEndCheckpointReached;
@@ -64,10 +66,16 @@ public class GameManager : MonoBehaviour
         gameTimer.onTimerTicked += (duration) =>
         {
             statisticsManager.updateRun(duration);
-            timerUI.updateTime(duration);
+            timerUI.currentRun = statisticsManager.CurrentRun;
+            timerUI.update();
         };
         gameTimer.stop();
-        statisticsManager.onBestTimeChanged += timerUI.updateBestTime;
+        statisticsManager.onBestRunChanged += (time) =>
+        {
+            timerUI.bestRun = statisticsManager.bestRun;
+            timerUI.fastestRun = statisticsManager.fastRun;
+            timerUI.update();
+        };
         //
         Application.quitting += () =>
         {
@@ -87,7 +95,9 @@ public class GameManager : MonoBehaviour
             playerInput.onInputStateChanged -= onReset_Input;
             playerInput.onInputStateChanged += onReset_Input;
             statisticsManager.startRun(levelManager.LevelId);
-            timerUI.bestTime = statisticsManager.bestRun.duration;
+            timerUI.bestRun = statisticsManager.bestRun;
+            timerUI.fastestRun = statisticsManager.fastRun;
+            timerUI.update();
         }
         playerController.transform.position = levelInfo.startPos;
         FindObjectsByType<Resettable>(FindObjectsSortMode.None).ToList()
@@ -95,8 +105,11 @@ public class GameManager : MonoBehaviour
         int collectableCount = FindObjectsByType<Hittable>(FindObjectsSortMode.None).ToList()
             .FindAll(hit => hit.collectable)
             .Count();
-        timerUI.collectables = 0;
+        statisticsManager.collectableCount = collectableCount;
         timerUI.collectableCount = collectableCount;
+        statisticsManager._updateBestRun();
+        timerUI.bestRun = statisticsManager.bestRun;
+        timerUI.fastestRun = statisticsManager.fastRun;
         timerUI.update();
     }
 
@@ -160,6 +173,8 @@ public class GameManager : MonoBehaviour
         gameTimer.reset(Time.time);
         gameTimer.start();
         statisticsManager.startRun(levelManager.LevelId);
+        timerUI.currentRun = statisticsManager.CurrentRun;
+        timerUI.update();
     }
 
     public void ResetRun()
@@ -171,7 +186,7 @@ public class GameManager : MonoBehaviour
         gameTimer.reset(Time.time);
         gameTimer.stop();
         //
-        timerUI.collectables = 0;
+        timerUI.currentRun = new RunStats();
         timerUI.update();
     }
 
@@ -179,7 +194,9 @@ public class GameManager : MonoBehaviour
     {
         gameTimer.stop();
         statisticsManager.finishRun();
-        timerUI.bestTime = statisticsManager.bestRun.duration;
+        timerUI.bestRun = statisticsManager.bestRun;
+        timerUI.fastestRun = statisticsManager.fastRun;
+        timerUI.update();
         fileManager.save(statisticsManager.stats);
     }
 

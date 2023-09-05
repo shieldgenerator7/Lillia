@@ -8,7 +8,10 @@ public class StatisticsManager : MonoBehaviour
 
     private RunStats currentRun;
     public RunStats CurrentRun => currentRun;
+    public RunStats fastRun { get; private set; }
     public RunStats bestRun { get; private set; }
+
+    public int collectableCount;
 
     public void init(Statistics stats)
     {
@@ -47,22 +50,31 @@ public class StatisticsManager : MonoBehaviour
         currentRun.duration = duration;
     }
 
-    private void _updateBestRun()
+    public void _updateBestRun()
     {
         List<RunStats> runs = stats.runStats.FindAll(run => run.levelId == currentRun.levelId).ToList();
         if (runs.Count > 0)
         {
-            bestRun = runs.OrderBy(run => run.duration).First();
+            fastRun = runs.OrderBy(run => run.duration).First();
+            bestRun = runs.FindAll(run => run.fruitCount == collectableCount)
+                .OrderBy(run => run.duration).First();
         }
         else
         {
+            //
             RunStats run = new RunStats();
             run.duration = 999.99f;
-            bestRun = run;
+            run.fruitCount = 0;
+            fastRun = run;
+            //
+            RunStats run2 = new RunStats();
+            run2.duration = 999.99f;
+            run2.fruitCount = collectableCount;
+            bestRun = run2;
         }
-        onBestTimeChanged?.Invoke(bestRun.duration);
+        onBestRunChanged?.Invoke(bestRun.duration);
     }
-    public event OnDurationStatChanged onBestTimeChanged;
+    public event OnDurationStatChanged onBestRunChanged;
 
     public void recordCollectable()
     {

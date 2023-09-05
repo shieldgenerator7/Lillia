@@ -10,4 +10,7 @@ public struct RunStats
     public int jumpCount;
     public int doubleJumpCount;
     public int blowCount;
+
+    public override string ToString() => 
+        $"{duration:N2}   {((fruitCount < 10) ? "0" : "")}{fruitCount}";
 }
