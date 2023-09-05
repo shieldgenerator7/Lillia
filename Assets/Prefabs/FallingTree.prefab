@@ -112,6 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stacksGranted: 1
   collectable: 0
+  passiveable: 0
   hideCollider: {fileID: 1527514130799103192}
 --- !u!1 &8287134935501842635
 GameObject:
