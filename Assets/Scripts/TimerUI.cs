@@ -9,6 +9,8 @@ public class TimerUI : MonoBehaviour
 
     public float duration = 0.00f;
     public float bestTime = 999.99f;
+    public int collectables = 0;
+    public int collectableCount = 0;
 
     public void updateTime(float duration)
     {
@@ -20,8 +22,8 @@ public class TimerUI : MonoBehaviour
         this.bestTime = bestTime;
         update();
     }
-    private void update()
+    public void update()
     {
-        text.text = $"{duration:N2}\n{bestTime:N2}";
+        text.text = $"{duration:N2}\n{bestTime:N2}\n\n{collectables} / {collectableCount}";
     }
 }

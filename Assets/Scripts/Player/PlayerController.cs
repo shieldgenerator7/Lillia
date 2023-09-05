@@ -236,7 +236,13 @@ public class PlayerController : Resettable
             playerState.lastStackAddTime = Time.fixedTime;
             ResetCooldowns();
             onPlayerStateChanged?.Invoke(playerState);
+        if (hittable.collectable)
+        {
+            onCollectableCollected?.Invoke();
+        }
     }
+    public delegate void OnCollectableCollected();
+    public event OnCollectableCollected onCollectableCollected;
 
     public void WallBounce()
     {

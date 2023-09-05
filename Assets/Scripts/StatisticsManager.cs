@@ -6,7 +6,8 @@ public class StatisticsManager : MonoBehaviour
 {
     public Statistics stats = new Statistics();
 
-    RunStats currentRun;
+    private RunStats currentRun;
+    public RunStats CurrentRun => currentRun;
     public RunStats bestRun { get; private set; }
 
     public void init(Statistics stats)
@@ -62,4 +63,9 @@ public class StatisticsManager : MonoBehaviour
         onBestTimeChanged?.Invoke(bestRun.duration);
     }
     public event OnDurationStatChanged onBestTimeChanged;
+
+    public void recordCollectable()
+    {
+        currentRun.fruitCount++;
+    }
 }

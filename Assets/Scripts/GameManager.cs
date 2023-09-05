@@ -43,6 +43,12 @@ public class GameManager : MonoBehaviour
             Time.timeScale = (gameActive) ? 1 : 0;
             imgPaused.gameObject.SetActive(!gameActive);
         };
+        playerController.onCollectableCollected += () =>
+        {
+            statisticsManager.recordCollectable();
+            timerUI.collectables = statisticsManager.CurrentRun.fruitCount;
+            timerUI.update();
+        };
         checkpointManager.OnEndCheckpointReached += onEndCheckpointReached;
         resetTrigger.OnPlayerEntered += () =>
         {
@@ -86,6 +92,12 @@ public class GameManager : MonoBehaviour
         playerController.transform.position = levelInfo.startPos;
         FindObjectsByType<Resettable>(FindObjectsSortMode.None).ToList()
             .ForEach(rst => rst.recordInitialState());
+        int collectableCount = FindObjectsByType<Hittable>(FindObjectsSortMode.None).ToList()
+            .FindAll(hit => hit.collectable)
+            .Count();
+        timerUI.collectables = 0;
+        timerUI.collectableCount = collectableCount;
+        timerUI.update();
     }
 
     void onReset()
@@ -158,6 +170,9 @@ public class GameManager : MonoBehaviour
         //Reset time
         gameTimer.reset(Time.time);
         gameTimer.stop();
+        //
+        timerUI.collectables = 0;
+        timerUI.update();
     }
 
     public void FinishRun()
