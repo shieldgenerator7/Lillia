@@ -20,6 +20,7 @@ MonoBehaviour:
   jumpForce: 2
   coyoteTime: 0.2
   bloomingBlowsDuration: 0.25
+  bloomingBlowsCooldown: 0.5
   maxAirBloomingBlows: 1
   airBloomingBlowsAntiGravDuration: 0.2
   maxAirJumps: 1

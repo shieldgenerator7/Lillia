@@ -80,12 +80,15 @@ public class PlayerController : Resettable
         {
             if (!playerState.usedBloomingBlows)
             {
+                if (Time.time >= playerState.lastBloomingBlowTime + playerAttributes.bloomingBlowsCooldown)
+                {
                 playerState.usedBloomingBlows = true;
                 playerState.usingBloomingBlows = true;
                 playerState.lastBloomingBlowTime = Time.time;
                 if (!playerState.grounded)
                 {
                     playerState.airBloomingBlowsUsed++;
+                }
                 }
             }
         }
