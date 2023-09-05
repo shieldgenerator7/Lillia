@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4f56340a14f2254d82e18225f4d6a99, type: 3}
   m_Name: WarwickAttr
   m_EditorClassIdentifier: 
-  moveSpeedInitial: 2
-  moveSpeedIncrease: 0.4
+  moveSpeedInitial: 4
+  moveSpeedIncrease: 0.3
   fearDelay: 0.5
   fearDuration: 1
-  onHitMoveIncrease: -1
-  postFearMoveIncrease: 1.2
+  onHitMoveIncrease: -2
+  postFearMoveIncrease: 2.2
   howlDuration: 1
