@@ -33,9 +33,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         statisticsManager.init(fileManager.load() ?? new Statistics());
-        timerUI.bestRun = statisticsManager.bestRun;
-        timerUI.fastestRun = statisticsManager.fastRun;
-        timerUI.update();
+        timerUI.update(statisticsManager);
         //
         levelManager.onLevelLoaded += onLevelLoaded;
         playerInput.onReset += onReset;
@@ -48,8 +46,7 @@ public class GameManager : MonoBehaviour
         playerController.onCollectableCollected += () =>
         {
             statisticsManager.recordCollectable();
-            timerUI.currentRun = statisticsManager.CurrentRun;
-            timerUI.update();
+            timerUI.update(statisticsManager);
         };
         checkpointManager.OnEndCheckpointReached += onEndCheckpointReached;
         resetTrigger.OnPlayerEntered += () =>
@@ -66,15 +63,12 @@ public class GameManager : MonoBehaviour
         gameTimer.onTimerTicked += (duration) =>
         {
             statisticsManager.updateRun(duration);
-            timerUI.currentRun = statisticsManager.CurrentRun;
-            timerUI.update();
+            timerUI.update(statisticsManager);
         };
         gameTimer.stop();
         statisticsManager.onBestRunChanged += (time) =>
         {
-            timerUI.bestRun = statisticsManager.bestRun;
-            timerUI.fastestRun = statisticsManager.fastRun;
-            timerUI.update();
+            timerUI.update(statisticsManager);
         };
         //
         Application.quitting += () =>
@@ -90,27 +84,20 @@ public class GameManager : MonoBehaviour
         checkpointManager.registerCheckpointDelegates();
         FindObjectsByType<Hazard>(FindObjectsSortMode.None).ToList()
             .ForEach(hazard => hazard.onPlayerHit += onHazardHit);
+        int collectableCount = FindObjectsByType<Hittable>(FindObjectsSortMode.None).ToList()
+            .FindAll(hit => hit.collectable)
+            .Count();
+        statisticsManager.collectableCount = collectableCount;
         if (checkpointManager.End)
         {
             playerInput.onInputStateChanged -= onReset_Input;
             playerInput.onInputStateChanged += onReset_Input;
             statisticsManager.startRun(levelManager.LevelId);
-            timerUI.bestRun = statisticsManager.bestRun;
-            timerUI.fastestRun = statisticsManager.fastRun;
-            timerUI.update();
         }
         playerController.transform.position = levelInfo.startPos;
         FindObjectsByType<Resettable>(FindObjectsSortMode.None).ToList()
             .ForEach(rst => rst.recordInitialState());
-        int collectableCount = FindObjectsByType<Hittable>(FindObjectsSortMode.None).ToList()
-            .FindAll(hit => hit.collectable)
-            .Count();
-        statisticsManager.collectableCount = collectableCount;
-        timerUI.collectableCount = collectableCount;
-        statisticsManager._updateBestRun();
-        timerUI.bestRun = statisticsManager.bestRun;
-        timerUI.fastestRun = statisticsManager.fastRun;
-        timerUI.update();
+        timerUI.update(statisticsManager);
     }
 
     void onReset()
@@ -173,8 +160,7 @@ public class GameManager : MonoBehaviour
         gameTimer.reset(Time.time);
         gameTimer.start();
         statisticsManager.startRun(levelManager.LevelId);
-        timerUI.currentRun = statisticsManager.CurrentRun;
-        timerUI.update();
+        timerUI.update(statisticsManager);
     }
 
     public void ResetRun()
@@ -186,17 +172,14 @@ public class GameManager : MonoBehaviour
         gameTimer.reset(Time.time);
         gameTimer.stop();
         //
-        timerUI.currentRun = new RunStats();
-        timerUI.update();
+        timerUI.update(statisticsManager);
     }
 
     public void FinishRun()
     {
         gameTimer.stop();
         statisticsManager.finishRun();
-        timerUI.bestRun = statisticsManager.bestRun;
-        timerUI.fastestRun = statisticsManager.fastRun;
-        timerUI.update();
+        timerUI.update(statisticsManager);
         fileManager.save(statisticsManager.stats);
     }
 

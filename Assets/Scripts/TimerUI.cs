@@ -7,23 +7,22 @@ public class TimerUI : MonoBehaviour
 {
     public TMP_Text text;
 
-    public RunStats currentRun;
-    public RunStats fastestRun;
-    public RunStats bestRun;
-    public int collectableCount = 0;
+    private RunStats currentRun;
+    private RunStats fastestRun;
+    private RunStats bestRun;
+    private int collectableCount = 0;
 
-    public void update()
+    public void update(StatisticsManager stats)
     {
-        if (fastestRun.duration == 0)
-        {
-            fastestRun.fruitCount = 0;
-            fastestRun.duration = 999.99f;
-        }
-        if (bestRun.duration == 0)
-        {
-            bestRun.fruitCount = collectableCount; 
-            bestRun.duration = 999.99f;
-        }
+        this.currentRun = stats.CurrentRun;
+        this.fastestRun = stats.fastRun;
+        this.bestRun = stats.bestRun;
+        this.collectableCount = stats.collectableCount;
+        _update();
+    }
+
+    private void _update()
+    {
         text.text =
             $"{currentRun} / {collectableCount}\n\n" +
             $"{fastestRun} / {collectableCount}\n" +

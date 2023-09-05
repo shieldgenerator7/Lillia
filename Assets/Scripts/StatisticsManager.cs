@@ -50,7 +50,7 @@ public class StatisticsManager : MonoBehaviour
         currentRun.duration = duration;
     }
 
-    public void _updateBestRun()
+    private void _updateBestRun()
     {
         List<RunStats> runs = stats.runStats.FindAll(run => run.levelId == currentRun.levelId).ToList();
         if (runs.Count > 0)
