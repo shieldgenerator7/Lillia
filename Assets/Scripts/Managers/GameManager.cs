@@ -21,8 +21,6 @@ public class GameManager : MonoBehaviour
     public FileManager fileManager;
 
     public TimerUI timerUI;
-    public PlayerTrigger resetTrigger;
-    public PlayerTrigger nextLevelTrigger;
     public Image imgPaused;
 
     private Timer gameTimer;
@@ -49,15 +47,6 @@ public class GameManager : MonoBehaviour
             timerUI.update(statisticsManager);
         };
         checkpointManager.OnEndCheckpointReached += onEndCheckpointReached;
-        resetTrigger.OnPlayerEntered += () =>
-        {
-            onReset();
-        };
-        nextLevelTrigger.OnPlayerEntered += () =>
-        {
-            ResetRun();
-            levelManager.nextLevel();
-        };
         //
         gameTimer = timerManager.startTimer();
         gameTimer.onTimerTicked += (duration) =>
@@ -98,6 +87,11 @@ public class GameManager : MonoBehaviour
             playerInput.onInputStateChanged -= onReset_Input;
             playerInput.onInputStateChanged += onReset_Input;
         }
+        FindAnyObjectByType<PlayerTrigger>().OnPlayerEntered += () =>
+        {
+            ResetRun();
+            levelManager.nextLevel();
+        };
     }
 
     void onReset()
