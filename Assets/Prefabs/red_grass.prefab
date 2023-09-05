@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8973269946870123898}
   - component: {fileID: 4745685068584688403}
-  - component: {fileID: 3951977604139466226}
   - component: {fileID: 4363324834031011214}
+  - component: {fileID: 5612248787337656115}
   m_Layer: 0
   m_Name: red_grass
   m_TagString: Untagged
@@ -86,20 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3951977604139466226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8920042964080446593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83fd8fe372db0fe42b8347e99908cec1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onCollide: 0
-  onTrigger: 1
 --- !u!61 &4363324834031011214
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -146,3 +132,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.0353317, y: 0.02872324}
   m_EdgeRadius: 0
+--- !u!114 &5612248787337656115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8920042964080446593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59fa79548f857da46b5a92cb8f5c1b7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

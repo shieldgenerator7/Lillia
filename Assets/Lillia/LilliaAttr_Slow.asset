@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcfbcf85a7aee9e40b1bf1a03b1c87b6, type: 3}
+  m_Name: LilliaAttr_Slow
+  m_EditorClassIdentifier: 
+  walkSpeed: 3
+  runSpeedPerStack: 0
+  maxStacks: 4
+  jumpForce: 2
+  coyoteTime: 0.2
+  stackDecayDelay: 4
+  stackDecayDelayPerStack: 2
+  maxAirBloomingBlows: 1
+  airBloomingBlowsAntiGravDuration: 0.2
+  swirlSeedLaunchVector: {x: 2, y: 4}
+  swirlSeedPickupRange: 2
+  maxAirJumps: 1
+  momentumChangeFactor: 2
+  momentumInstantSnapThreshold: 2
+  jumpForcePerStack: 0.4
+  wallBounceSpeedUpFactor: 0.5
+  wallBounceJumpFactor: 0.4
+  wallBounceDuration: 0.2
