@@ -61,16 +61,16 @@ public class StatisticsManager : MonoBehaviour
         }
         else
         {
-            //
-            RunStats run = new RunStats();
-            run.duration = 999.99f;
-            run.fruitCount = 0;
-            fastRun = run;
-            //
-            RunStats run2 = new RunStats();
-            run2.duration = 999.99f;
-            run2.fruitCount = collectableCount;
-            bestRun = run2;
+            fastRun = new RunStats
+            {
+                duration = 999.99f,
+                fruitCount = 0
+            };
+            bestRun = new RunStats
+            {
+                duration = 999.99f,
+                fruitCount = collectableCount
+            };
         }
         onBestRunChanged?.Invoke(bestRun.duration);
     }
