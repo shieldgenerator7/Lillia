@@ -68,6 +68,8 @@ public struct PlayerState
     public float lastBloomingBlowTime;
     public float nextBloomingBlowTime;
     public bool usedBloomingBlows;
+    //
+    public float nextBufferCheckTime;
 
     public override string ToString()
     {

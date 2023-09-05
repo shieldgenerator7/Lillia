@@ -18,6 +18,8 @@ public class PlayerController : Resettable
     private HashSet<GameObject> grounds = new HashSet<GameObject>();
     private Vector2 origPos;
 
+    private InputState prevInputState;
+
     public void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -27,6 +29,11 @@ public class PlayerController : Resettable
     {
         bool playerStateChanged = false;
         float fixedTime = Time.fixedTime;
+        //Buffered Input
+        if (playerState.nextBufferCheckTime > 0 && fixedTime >= playerState.nextBufferCheckTime)
+        {
+            processInputState(prevInputState);
+        }
         //Blooming Blows
         if (playerState.usingBloomingBlows &&
             fixedTime > playerState.lastBloomingBlowTime + playerAttributes.bloomingBlowsDuration)
@@ -73,6 +80,8 @@ public class PlayerController : Resettable
 
     public void processInputState(InputState inputState)
     {
+        playerState.nextBufferCheckTime = -1;
+        this.prevInputState = inputState;
         //Movement
         playerState.moveDirection = inputState.movementDirection.x;
         //Blooming Blows
@@ -90,6 +99,11 @@ public class PlayerController : Resettable
                 {
                     playerState.airBloomingBlowsUsed++;
                 }
+                }
+                else
+                {
+                    //buffer the input until it comes off cooldown
+                    playerState.nextBufferCheckTime = playerState.nextBloomingBlowTime;
                 }
             }
         }
