@@ -19,6 +19,7 @@ MonoBehaviour:
   stackDecayDelayPerStack: 2
   jumpForce: 2
   coyoteTime: 0.2
+  bloomingBlowsDuration: 0.25
   maxAirBloomingBlows: 1
   airBloomingBlowsAntiGravDuration: 0.2
   maxAirJumps: 1

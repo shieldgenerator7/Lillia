@@ -15,6 +15,7 @@ public class PlayerAttributes : ScriptableObject
     public float jumpForce;
     public float coyoteTime = 0.1f;
     [Header("Blooming Blows")]
+    public float bloomingBlowsDuration = 0.25f;
     public int maxAirBloomingBlows;
     public float airBloomingBlowsAntiGravDuration;
     [Header("Watch out! Eep!")]

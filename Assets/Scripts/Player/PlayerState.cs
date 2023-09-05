@@ -66,6 +66,7 @@ public struct PlayerState
     /// </summary>
     public int airBloomingBlowsUsed;
     public float lastBloomingBlowTime;
+    public bool usedBloomingBlows;
 
     public override string ToString()
     {

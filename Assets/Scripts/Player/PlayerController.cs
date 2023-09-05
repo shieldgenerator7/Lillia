@@ -27,6 +27,13 @@ public class PlayerController : Resettable
     {
         bool playerStateChanged = false;
         float fixedTime = Time.fixedTime;
+        //Blooming Blows
+        if (playerState.usingBloomingBlows &&
+            fixedTime > playerState.lastBloomingBlowTime + playerAttributes.bloomingBlowsDuration)
+        {
+            playerState.usingBloomingBlows = false;
+            playerStateChanged = true;
+        }
         //Falling
         if (rb2d.velocity.y <= 0 && playerState.jumping)
         {
@@ -69,21 +76,23 @@ public class PlayerController : Resettable
         //Movement
         playerState.moveDirection = inputState.movementDirection.x;
         //Blooming Blows
-        playerState.usingBloomingBlows = inputState.bloomingblows;
-        if (playerState.usingBloomingBlows)
+        if (inputState.bloomingblows)
         {
-            if (playerState.lastBloomingBlowTime < 0)
+            if (!playerState.usedBloomingBlows)
             {
+                playerState.usedBloomingBlows = true;
+                playerState.usingBloomingBlows = true;
                 playerState.lastBloomingBlowTime = Time.time;
-            }
-            if (!playerState.grounded)
-            {
-                playerState.airBloomingBlowsUsed++;
+                if (!playerState.grounded)
+                {
+                    playerState.airBloomingBlowsUsed++;
+                }
             }
         }
         else
         {
-            playerState.lastBloomingBlowTime = -1;
+            playerState.usedBloomingBlows = false;
+            playerState.usingBloomingBlows = false;
         }
         //Look Direction
         if (inputState.movementDirection.x != 0)
