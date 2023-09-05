@@ -33,6 +33,7 @@ public class PlayerManager : Resettable
     public PlayerInput playerInput;
     public PlayerController playerController;
     public PlayerMover playerMover;
+    public BloomingBlows bloomingBlows;
     public SwirlSeedController swirlSeedController;
 
     // Start is called before the first frame update
@@ -43,8 +44,8 @@ public class PlayerManager : Resettable
         playerController.onPlayerStateChanged += playerMover.updatePlayerState;
         playerInput.onInputStateChanged += swirlSeedController.processInputState;
         playerController.onPlayerStateChanged += swirlSeedController.updatePlayerState;
-        swirlSeedController.onHitSomething +=
-            (hittable) => playerController.BloomingBlowsHitSomething(true, false, hittable.stacksGranted);
+        bloomingBlows.onHitSomething += playerController.ProcessHittable;
+        swirlSeedController.onHitSomething += playerController.ProcessHittable;
         swirlSeedController.onAttachedChanged += (attach) =>
         {
             if (attach)

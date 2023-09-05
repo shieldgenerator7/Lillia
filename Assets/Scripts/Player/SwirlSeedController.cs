@@ -124,7 +124,6 @@ public class SwirlSeedController : Resettable
         Hittable hittable = collision.GetComponent<Hittable>();
         if (hittable)
         {
-            hittable.hit();
             onHitSomething?.Invoke(hittable);
             return;
         }

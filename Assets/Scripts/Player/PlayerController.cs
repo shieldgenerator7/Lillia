@@ -57,7 +57,6 @@ public class PlayerController : Resettable
                 {
                     playerState.lastStackDecayTime = fixedTime;
                     setStacks(playerState.stacks - 1);
-                    playerState.running = playerState.stacks > 0;
                     playerStateChanged = true;
                 }
             }
@@ -230,25 +229,23 @@ public class PlayerController : Resettable
         playerState.nextBloomingBlowTime = -1;
     }
 
-    public void BloomingBlowsHitSomething(bool hittable, bool wall, int stacks)
+    public void ProcessHittable(Hittable hittable)
     {
-        if (hittable)
-        {
-            setStacks(playerState.stacks + stacks);
+            hittable.hit();
+            setStacks(playerState.stacks + hittable.stacksGranted);
             playerState.lastStackAddTime = Time.fixedTime;
             ResetCooldowns();
-        }
-        if (wall)
-        {
+            onPlayerStateChanged?.Invoke(playerState);
+    }
+
+    public void WallBounce()
+    {
             //Refresh blooming blows duration
             playerState.lastStackAddTime = Time.fixedTime;
             //Wall bounce
             playerState.wallBouncing = true;
             playerState.lastWallBounceTime = Time.time;
             playerState.moveDirection *= 1;
-        }
-        playerState.running = playerState.stacks > 0;
-        onPlayerStateChanged?.Invoke(playerState);
     }
 
     private void setStacks(int stacks)
@@ -258,6 +255,7 @@ public class PlayerController : Resettable
             0,
             playerAttributes.maxStacks
             );
+        playerState.running = playerState.stacks > 0;
     }
 
     public Vector2 moveDirection => rb2d.velocity;

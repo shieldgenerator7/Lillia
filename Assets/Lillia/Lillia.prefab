@@ -297,6 +297,7 @@ MonoBehaviour:
   playerInput: {fileID: 6636442099060658131}
   playerController: {fileID: 804428360538672667}
   playerMover: {fileID: 7107039046693426699}
+  bloomingBlows: {fileID: 3753830213848511188}
   swirlSeedController: {fileID: 4811940642408707481}
 --- !u!114 &6636442099060658131
 MonoBehaviour:

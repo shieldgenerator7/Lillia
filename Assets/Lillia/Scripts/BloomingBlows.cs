@@ -41,11 +41,9 @@ public class BloomingBlows : MonoBehaviour
         Hittable hittable = collision.GetComponent<Hittable>();
         if (hittable)
         {
-            hittable.hit();
-            playerController.BloomingBlowsHitSomething(true, false, hittable.stacksGranted);
+            onHitSomething?.Invoke(hittable);
+            return;
         }
-        else
-        {
             if (collision.isTrigger)
             {
                 return;
@@ -57,8 +55,9 @@ public class BloomingBlows : MonoBehaviour
             float moveDirection = Mathf.Sign(playerController.moveDirection.x);
             if (wallOffDirection == moveDirection)
             {
-                playerController.BloomingBlowsHitSomething(false, true, 0);
+                playerController.WallBounce();
             }
-        }
     }
+    public delegate void OnHitSomething(Hittable hittable);
+    public event OnHitSomething onHitSomething;
 }
