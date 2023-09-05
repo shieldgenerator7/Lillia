@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcfbcf85a7aee9e40b1bf1a03b1c87b6, type: 3}
   m_Name: LilliaAttr_Slow
   m_EditorClassIdentifier: 
-  walkSpeed: 3
-  runSpeedPerStack: 0
+  walkSpeed: 1
+  runSpeedPerStack: 0.25
   maxStacks: 4
   stackDecayDelay: 4
   stackDecayDelayPerStack: 2
-  jumpForce: 2
+  jumpForce: 4
   coyoteTime: 0.2
   bloomingBlowsDuration: 0.25
   bloomingBlowsCooldown: 1
@@ -26,9 +26,9 @@ MonoBehaviour:
   maxAirJumps: 1
   momentumChangeFactor: 2
   momentumInstantSnapThreshold: 2
-  jumpForcePerStack: 0.4
+  jumpForcePerStack: 0.25
   swirlSeedLaunchVector: {x: 2, y: 4}
   swirlSeedPickupRange: 2
-  wallBounceSpeedUpFactor: 0.5
-  wallBounceJumpFactor: 0.4
+  wallBounceSpeedUpFactor: 1.05
+  wallBounceJumpFactor: 0.75
   wallBounceDuration: 0.2
