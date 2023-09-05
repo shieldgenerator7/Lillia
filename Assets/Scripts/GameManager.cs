@@ -88,16 +88,16 @@ public class GameManager : MonoBehaviour
             .FindAll(hit => hit.collectable)
             .Count();
         statisticsManager.collectableCount = collectableCount;
+            statisticsManager.startRun(levelManager.LevelId);
+        timerUI.update(statisticsManager);
+        playerController.transform.position = levelInfo.startPos;
+        FindObjectsByType<Resettable>(FindObjectsSortMode.None).ToList()
+            .ForEach(rst => rst.recordInitialState());
         if (checkpointManager.End)
         {
             playerInput.onInputStateChanged -= onReset_Input;
             playerInput.onInputStateChanged += onReset_Input;
-            statisticsManager.startRun(levelManager.LevelId);
         }
-        playerController.transform.position = levelInfo.startPos;
-        FindObjectsByType<Resettable>(FindObjectsSortMode.None).ToList()
-            .ForEach(rst => rst.recordInitialState());
-        timerUI.update(statisticsManager);
     }
 
     void onReset()

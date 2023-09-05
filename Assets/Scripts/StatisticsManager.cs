@@ -57,7 +57,15 @@ public class StatisticsManager : MonoBehaviour
         {
             fastRun = runs.OrderBy(run => run.duration).First();
             bestRun = runs.FindAll(run => run.fruitCount == collectableCount)
-                .OrderBy(run => run.duration).First();
+                .OrderBy(run => run.duration).FirstOrDefault();
+            if (bestRun.duration == 0)
+            {
+                bestRun = new()
+                {
+                    duration = 999.99f,
+                    fruitCount = collectableCount
+                };
+            }
         }
         else
         {

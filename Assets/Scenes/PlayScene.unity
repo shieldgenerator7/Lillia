@@ -609,28 +609,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 632372415}
-  currentRun:
-    levelId: 
-    duration: 0
-    fruitCount: 0
-    jumpCount: 0
-    doubleJumpCount: 0
-    blowCount: 0
-  fastestRun:
-    levelId: 
-    duration: 0
-    fruitCount: 0
-    jumpCount: 0
-    doubleJumpCount: 0
-    blowCount: 0
-  bestRun:
-    levelId: 
-    duration: 0
-    fruitCount: 0
-    jumpCount: 0
-    doubleJumpCount: 0
-    blowCount: 0
-  collectableCount: 0
 --- !u!222 &632372417
 CanvasRenderer:
   m_ObjectHideFlags: 0
