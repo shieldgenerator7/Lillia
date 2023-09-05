@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2867872004556163434}
   - component: {fileID: 5549151741580795512}
   - component: {fileID: 1527514130799103192}
+  - component: {fileID: 4280376923766108668}
   m_Layer: 0
   m_Name: FallingTree
   m_TagString: Untagged
@@ -47,9 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dbc1ab2737d2ae47ac188f04ac84964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stacksGranted: 2
   trunk: {fileID: 4285046693719379346}
-  hitColl2D: {fileID: 1527514130799103192}
+  hittable: {fileID: 4280376923766108668}
   fallDuration: 1
   endAngle: -90
 --- !u!61 &1527514130799103192
@@ -98,6 +98,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.332, y: 2.9971917}
   m_EdgeRadius: 0
+--- !u!114 &4280376923766108668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2340247074290609239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ebf99ca964c69441acc71edfb49d33f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stacksGranted: 1
+  hideCollider: {fileID: 1527514130799103192}
 --- !u!1 &8287134935501842635
 GameObject:
   m_ObjectHideFlags: 0

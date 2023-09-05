@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WarwickController : Hittable
+public class WarwickController : Resettable
 {
     public WarwickAttributes attr;
 
     public WarwickAnimator animator;
     public StaticHazard hazard;
     public Collider2D fearColl2D;
+    public Hittable hittable;
 
     private Rigidbody2D rb2d;
 
@@ -19,7 +20,7 @@ public class WarwickController : Hittable
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        onHit += fear;
+        hittable.onHit += fear;
         recordInitialState();
         reset();
         animator.processState(state);

@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 9088512890012361508}
   - component: {fileID: -4179450905727239150}
   - component: {fileID: -4894844351989919385}
+  - component: {fileID: 6756219786919530321}
   - component: {fileID: -6022042745571560140}
   - component: {fileID: 2207861011844808451}
   - component: {fileID: 6522479376388696191}
@@ -260,11 +261,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9e6a6b9cd9a0ca4e9fa7c71be71c83a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stacksGranted: 1
   attr: {fileID: 11400000, guid: 21bd7cd729e6fcb4a8437eab6776285d, type: 2}
   animator: {fileID: 7373566993328948372}
   hazard: {fileID: -4894844351989919385}
   fearColl2D: {fileID: 7520437302386014806}
+  hittable: {fileID: 6756219786919530321}
 --- !u!114 &-4894844351989919385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,6 +280,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onCollide: 1
   onTrigger: 0
+--- !u!114 &6756219786919530321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8170287284210426902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ebf99ca964c69441acc71edfb49d33f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stacksGranted: 1
+  hideCollider: {fileID: 0}
 --- !u!50 &-6022042745571560140
 Rigidbody2D:
   serializedVersion: 4

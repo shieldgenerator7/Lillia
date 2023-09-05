@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8602869095579561042}
   - component: {fileID: 6042238644654759910}
   - component: {fileID: 1105264197180049074}
+  - component: {fileID: 3009375181700173184}
   m_Layer: 0
   m_Name: fruit
   m_TagString: Untagged
@@ -145,4 +146,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hideAlpha: 0.5
-  coll2d: {fileID: 6042238644654759910}
+  hittable: {fileID: 3009375181700173184}
+--- !u!114 &3009375181700173184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597078533708181763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ebf99ca964c69441acc71edfb49d33f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stacksGranted: 1
+  hideCollider: {fileID: 6042238644654759910}

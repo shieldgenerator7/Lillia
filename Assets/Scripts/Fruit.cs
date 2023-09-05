@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fruit : Hittable
+public class Fruit : Resettable
 {
     public float hideAlpha = 0.5f;
+    public Hittable hittable;
 
     private bool available = true;
     public bool Available
@@ -14,11 +15,8 @@ public class Fruit : Hittable
         {
             available = value;
             sr.color = sr.color.setAlpha((available) ? 1 : hideAlpha);
-            coll2d.enabled = available;
         }
     }
-
-    public Collider2D coll2d;
 
     private SpriteRenderer sr;
 
@@ -26,7 +24,7 @@ public class Fruit : Hittable
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
-        onHit += () =>
+        hittable.onHit += () =>
         {
             Available = false;
         };

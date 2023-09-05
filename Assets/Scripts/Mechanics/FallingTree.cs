@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FallingTree : Hittable
+public class FallingTree : Resettable
 {
     public Transform trunk;
-    public Collider2D hitColl2D;
+    public Hittable hittable;
 
     public float fallDuration = 3;
     public float endAngle = -90;
@@ -24,9 +24,8 @@ public class FallingTree : Hittable
     // Start is called before the first frame update
     void Start()
     {
-        onHit += () =>
+        hittable.onHit += () =>
         {
-            hitColl2D.enabled = false;
             setFalling(true);
         };
     }
@@ -92,7 +91,6 @@ public class FallingTree : Hittable
     }
     public override void reset()
     {
-        hitColl2D.enabled = true;
         state = State.STANDING;
         setAngle(startAngle);
     }
