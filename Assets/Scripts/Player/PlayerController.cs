@@ -90,14 +90,14 @@ public class PlayerController : Resettable
             {
                 if (Time.time >= playerState.nextBloomingBlowTime)
                 {
-                playerState.usedBloomingBlows = true;
-                playerState.usingBloomingBlows = true;
-                playerState.lastBloomingBlowTime = Time.time;
-                playerState.nextBloomingBlowTime = Time.time + playerAttributes.bloomingBlowsCooldown;
-                if (!playerState.grounded)
-                {
-                    playerState.airBloomingBlowsUsed++;
-                }
+                    playerState.usedBloomingBlows = true;
+                    playerState.usingBloomingBlows = true;
+                    playerState.lastBloomingBlowTime = Time.time;
+                    playerState.nextBloomingBlowTime = Time.time + playerAttributes.bloomingBlowsCooldown;
+                    if (!playerState.grounded)
+                    {
+                        playerState.airBloomingBlowsUsed++;
+                    }
                 }
                 else
                 {
@@ -231,11 +231,11 @@ public class PlayerController : Resettable
 
     public void ProcessHittable(Hittable hittable)
     {
-            hittable.hit();
-            setStacks(playerState.stacks + hittable.stacksGranted);
-            playerState.lastStackAddTime = Time.fixedTime;
-            ResetCooldowns();
-            onPlayerStateChanged?.Invoke(playerState);
+        hittable.hit();
+        setStacks(playerState.stacks + hittable.stacksGranted);
+        playerState.lastStackAddTime = Time.fixedTime;
+        ResetCooldowns();
+        onPlayerStateChanged?.Invoke(playerState);
         if (hittable.collectable)
         {
             onCollectableCollected?.Invoke();
@@ -246,12 +246,12 @@ public class PlayerController : Resettable
 
     public void WallBounce()
     {
-            //Refresh blooming blows duration
-            playerState.lastStackAddTime = Time.fixedTime;
-            //Wall bounce
-            playerState.wallBouncing = true;
-            playerState.lastWallBounceTime = Time.time;
-            playerState.moveDirection *= 1;
+        //Refresh blooming blows duration
+        playerState.lastStackAddTime = Time.fixedTime;
+        //Wall bounce
+        playerState.wallBouncing = true;
+        playerState.lastWallBounceTime = Time.time;
+        playerState.moveDirection *= 1;
     }
 
     private void setStacks(int stacks)

@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
             .FindAll(hit => hit.collectable)
             .Count();
         statisticsManager.collectableCount = collectableCount;
-            statisticsManager.startRun(levelManager.LevelId);
+        statisticsManager.startRun(levelManager.LevelId);
         timerUI.update(statisticsManager);
         playerController.transform.position = levelInfo.startPos;
         FindObjectsByType<Resettable>(FindObjectsSortMode.None).ToList()

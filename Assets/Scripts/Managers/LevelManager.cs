@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private int loadedLevelIndex = -1;
     private bool anyLevelLoaded = false;
-    
+
     public List<LevelInfo> levels;
 
     public string LevelId

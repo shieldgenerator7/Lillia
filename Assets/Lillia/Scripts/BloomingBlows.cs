@@ -44,19 +44,19 @@ public class BloomingBlows : MonoBehaviour
             onHitSomething?.Invoke(hittable);
             return;
         }
-            if (collision.isTrigger)
-            {
-                return;
-            }
-            float wallOffDirection = Mathf.Sign(
-                playerController.PlayerState.lookDirection.x
-                - collision.gameObject.transform.position.x
-                );
-            float moveDirection = Mathf.Sign(playerController.moveDirection.x);
-            if (wallOffDirection == moveDirection)
-            {
-                playerController.WallBounce();
-            }
+        if (collision.isTrigger)
+        {
+            return;
+        }
+        float wallOffDirection = Mathf.Sign(
+            playerController.PlayerState.lookDirection.x
+            - collision.gameObject.transform.position.x
+            );
+        float moveDirection = Mathf.Sign(playerController.moveDirection.x);
+        if (wallOffDirection == moveDirection)
+        {
+            playerController.WallBounce();
+        }
     }
     public delegate void OnHitSomething(Hittable hittable);
     public event OnHitSomething onHitSomething;
