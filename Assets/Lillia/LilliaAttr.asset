@@ -15,18 +15,18 @@ MonoBehaviour:
   walkSpeed: 2
   runSpeedPerStack: 2
   maxStacks: 4
-  jumpForce: 4
-  coyoteTime: 0.2
   stackDecayDelay: 4
   stackDecayDelayPerStack: 2
+  jumpForce: 4
+  coyoteTime: 0.2
   maxAirBloomingBlows: 1
   airBloomingBlowsAntiGravDuration: 0.2
-  swirlSeedLaunchVector: {x: 2, y: 4}
-  swirlSeedPickupRange: 2
   maxAirJumps: 1
   momentumChangeFactor: 2
   momentumInstantSnapThreshold: 2
   jumpForcePerStack: 0.75
+  swirlSeedLaunchVector: {x: 2, y: 4}
+  swirlSeedPickupRange: 2
   wallBounceSpeedUpFactor: 1.05
   wallBounceJumpFactor: 0.75
   wallBounceDuration: 0.2
