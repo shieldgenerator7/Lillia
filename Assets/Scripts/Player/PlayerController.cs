@@ -26,6 +26,7 @@ public class PlayerController : Resettable
     public void FixedUpdate()
     {
         bool playerStateChanged = false;
+        float fixedTime = Time.fixedTime;
         //Falling
         if (rb2d.velocity.y <= 0 && playerState.jumping)
         {
@@ -36,11 +37,11 @@ public class PlayerController : Resettable
         //Stack Decay
         if (playerState.stacks > 0)
         {
-            if (Time.fixedTime >= playerState.lastStackAddTime + playerAttributes.stackDecayDelay)
+            if (fixedTime >= playerState.lastStackAddTime + playerAttributes.stackDecayDelay)
             {
-                if (Time.fixedTime >= playerState.lastStackDecayTime + playerAttributes.stackDecayDelayPerStack)
+                if (fixedTime >= playerState.lastStackDecayTime + playerAttributes.stackDecayDelayPerStack)
                 {
-                    playerState.lastStackDecayTime = Time.fixedTime;
+                    playerState.lastStackDecayTime = fixedTime;
                     setStacks(playerState.stacks - 1);
                     playerState.running = playerState.stacks > 0;
                     playerStateChanged = true;
@@ -50,7 +51,7 @@ public class PlayerController : Resettable
         //Wall Bounce expiring
         if (playerState.wallBouncing)
         {
-            if (Time.fixedTime > playerState.lastWallBounceTime + playerAttributes.wallBounceDuration)
+            if (fixedTime > playerState.lastWallBounceTime + playerAttributes.wallBounceDuration)
             {
                 playerState.wallBouncing = false;
                 playerStateChanged = true;
