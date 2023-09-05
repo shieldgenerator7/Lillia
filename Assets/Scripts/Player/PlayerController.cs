@@ -80,11 +80,12 @@ public class PlayerController : Resettable
         {
             if (!playerState.usedBloomingBlows)
             {
-                if (Time.time >= playerState.lastBloomingBlowTime + playerAttributes.bloomingBlowsCooldown)
+                if (Time.time >= playerState.nextBloomingBlowTime)
                 {
                 playerState.usedBloomingBlows = true;
                 playerState.usingBloomingBlows = true;
                 playerState.lastBloomingBlowTime = Time.time;
+                playerState.nextBloomingBlowTime = Time.time + playerAttributes.bloomingBlowsCooldown;
                 if (!playerState.grounded)
                 {
                     playerState.airBloomingBlowsUsed++;
@@ -215,6 +216,8 @@ public class PlayerController : Resettable
         {
             setStacks(playerState.stacks + stacks);
             playerState.lastStackAddTime = Time.fixedTime;
+            //Reset blooming blow cooldown
+            playerState.nextBloomingBlowTime = -1;
         }
         if (wall)
         {
