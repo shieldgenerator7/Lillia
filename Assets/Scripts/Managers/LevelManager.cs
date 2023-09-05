@@ -30,7 +30,12 @@ public class LevelManager : MonoBehaviour
 
     public void nextLevel()
     {
-        loadLevel(loadedLevelIndex + 1);
+        int next = loadedLevelIndex + 1;
+        if (next >= levels.Count)
+        {
+            next = 0;
+        }
+        loadLevel(next);
     }
 
     private void Start()
