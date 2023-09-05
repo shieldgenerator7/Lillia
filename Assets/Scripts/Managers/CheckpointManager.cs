@@ -5,70 +5,21 @@ using UnityEngine;
 
 public class CheckpointManager : MonoBehaviour
 {
-
-    private Checkpoint current;
-
-    [SerializeField]
-    private CheckpointCollection checkpoints;
-
-    public Checkpoint Start => checkpoints.start;
-    public Checkpoint End => checkpoints.end;
-
+    public Checkpoint End { get; private set; }
 
     public delegate void CheckpointEvent(Checkpoint cp);
 
     public void registerCheckpointDelegates()
     {
-        checkpoints = FindAnyObjectByType<CheckpointCollection>();
-        checkpoints.checkPoints.ForEach(cp =>
+        End = FindAnyObjectByType<Checkpoint>();
+        if (End)
         {
-            cp.markCurrent(false);
-            if (cp.canTeleportHere)
+            End.onCheckPointReached += (cp) =>
             {
-                cp.onCheckPointReached += switchCheckPoint;
-            }
-        });
-
-        teleportToStart();
-        if (checkpoints.end)
-        {
-            checkpoints.end.onCheckPointReached += (cp) =>
-            {
-                OnEndCheckpointReached?.Invoke(checkpoints.end);
+                OnEndCheckpointReached?.Invoke(End);
             };
         }
     }
     public event CheckpointEvent OnEndCheckpointReached;
 
-    private void switchCheckPoint(Checkpoint newCurrent)
-    {
-        if (current)
-        {
-            current.markCurrent(false);
-        }
-        current = newCurrent;
-        if (current)
-        {
-            current.markCurrent(true);
-            OnCheckpointReached?.Invoke(current);
-        }
-    }
-    public event CheckpointEvent OnCheckpointReached;
-
-    public void teleportToStart()
-    {
-        switchCheckPoint(checkpoints.start);
-        recallPlayer(checkpoints.start);
-    }
-
-    public void teleportToCurrent()
-    {
-        recallPlayer(current);
-    }
-
-    private void recallPlayer(Checkpoint cp)
-    {
-        OnCheckpointRecalling?.Invoke(cp);
-    }
-    public event CheckpointEvent OnCheckpointRecalling;
 }
