@@ -160,4 +160,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stacksGranted: 1
+  collectable: 1
   hideCollider: {fileID: 6042238644654759910}

@@ -293,6 +293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stacksGranted: 1
+  collectable: 0
   hideCollider: {fileID: 0}
 --- !u!50 &-6022042745571560140
 Rigidbody2D:
