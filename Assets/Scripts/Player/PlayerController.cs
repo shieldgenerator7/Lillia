@@ -210,14 +210,19 @@ public class PlayerController : Resettable
         return false;
     }
 
+    public void ResetCooldowns()
+    {
+        //Reset blooming blow cooldown
+        playerState.nextBloomingBlowTime = -1;
+    }
+
     public void BloomingBlowsHitSomething(bool hittable, bool wall, int stacks)
     {
         if (hittable)
         {
             setStacks(playerState.stacks + stacks);
             playerState.lastStackAddTime = Time.fixedTime;
-            //Reset blooming blow cooldown
-            playerState.nextBloomingBlowTime = -1;
+            ResetCooldowns();
         }
         if (wall)
         {
@@ -258,6 +263,7 @@ public class PlayerController : Resettable
         stop();
         playerState = new PlayerState();
         transform.position = origPos;
+        ResetCooldowns();
         onPlayerStateChanged?.Invoke(playerState);
     }
 }

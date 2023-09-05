@@ -76,7 +76,10 @@ public class SwirlSeedController : Resettable
             transform.parent = null;
             rb2d.isKinematic = false;
         }
+        onAttachedChanged?.Invoke(attach);
     }
+    public delegate void OnAttachedChanged(bool attach);
+    public event OnAttachedChanged onAttachedChanged;
 
     private void Update()
     {

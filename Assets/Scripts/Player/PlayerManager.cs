@@ -45,6 +45,13 @@ public class PlayerManager : Resettable
         playerController.onPlayerStateChanged += swirlSeedController.updatePlayerState;
         swirlSeedController.onHitSomething +=
             (hittable) => playerController.BloomingBlowsHitSomething(true, false, hittable.stacksGranted);
+        swirlSeedController.onAttachedChanged += (attach) =>
+        {
+            if (attach)
+            {
+                playerController.ResetCooldowns();
+            }
+        };
     }
 
     public override void recordInitialState()
