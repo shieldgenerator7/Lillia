@@ -244,14 +244,17 @@ public class PlayerController : Resettable
     public delegate void OnCollectableCollected();
     public event OnCollectableCollected onCollectableCollected;
 
-    public void WallBounce()
+    public void WallBounce(bool changeMoveDir = true)
     {
         //Refresh blooming blows duration
         playerState.lastStackAddTime = Time.fixedTime;
         //Wall bounce
         playerState.wallBouncing = true;
         playerState.lastWallBounceTime = Time.time;
-        playerState.moveDirection *= 1;
+        if (changeMoveDir)
+        {
+            playerState.moveDirection *= 1;
+        }
     }
 
     private void setStacks(int stacks)
