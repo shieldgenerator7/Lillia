@@ -14,6 +14,12 @@ public class CustomMenu
 {
     //2023-01-31: CustomMenu copied from MageDuel.CustomMenu
 
+    [MenuItem("SG7/Editor/Create Level")]
+    static void CreateLevel()
+    {
+        Debug.Log("Not implemented yet");
+    }
+
     const int FIRST_LEVEL_INDEX = 4;
 
     //Find Missing Scripts
