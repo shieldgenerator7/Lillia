@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Level_Warwick.unity
     guid: d0c1d019817fc2348aeca4158f989c90
   - enabled: 1
+    path: Assets/Scenes/Level_Test_4.unity
+    guid: d914a38c9ce818141866d2a43f8ce65f
+  - enabled: 1
     path: Assets/Scenes/Level_Win.unity
     guid: 63882b4f2b10e5b45be613d230c7f2bf
   m_configObjects: {}
