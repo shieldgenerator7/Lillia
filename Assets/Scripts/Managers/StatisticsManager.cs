@@ -56,14 +56,14 @@ public class StatisticsManager : MonoBehaviour
         if (runs.Count > 0)
         {
             fastRun = runs.OrderBy(run => run.duration).First();
-            bestRun = runs.FindAll(run => run.fruitCount == collectableCount)
+            bestRun = runs.FindAll(run => run.dreamCount == collectableCount)
                 .OrderBy(run => run.duration).FirstOrDefault();
             if (bestRun.duration == 0)
             {
                 bestRun = new()
                 {
                     duration = 999.99f,
-                    fruitCount = collectableCount
+                    dreamCount = collectableCount
                 };
             }
         }
@@ -72,12 +72,12 @@ public class StatisticsManager : MonoBehaviour
             fastRun = new RunStats
             {
                 duration = 999.99f,
-                fruitCount = 0
+                dreamCount = 0
             };
             bestRun = new RunStats
             {
                 duration = 999.99f,
-                fruitCount = collectableCount
+                dreamCount = collectableCount
             };
         }
         onBestRunChanged?.Invoke(bestRun.duration);
@@ -86,6 +86,6 @@ public class StatisticsManager : MonoBehaviour
 
     public void recordCollectable()
     {
-        currentRun.fruitCount++;
+        currentRun.dreamCount++;
     }
 }
