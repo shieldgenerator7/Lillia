@@ -1951,7 +1951,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 80.84843, y: 0.512}
+  m_Size: {x: 80.85, y: 0.51}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2592,22 +2592,22 @@ MonoBehaviour:
   - {fileID: 7548164570823746191}
   - {fileID: 1729782583}
   resettables:
-  - {fileID: 140224801}
+  - {fileID: 737135603}
   - {fileID: 232593518470977056}
-  - {fileID: 140224802}
-  - {fileID: 2091576706}
-  - {fileID: 943045173}
-  - {fileID: 142241020}
   - {fileID: 1314294174}
   - {fileID: 142241021}
+  - {fileID: 140224802}
+  - {fileID: 2091576707}
+  - {fileID: 105556450}
+  - {fileID: 142241020}
   - {fileID: 943045174}
+  - {fileID: 140224801}
   - {fileID: 232593518470977057}
   - {fileID: 105556449}
-  - {fileID: 105556450}
-  - {fileID: 1314294173}
-  - {fileID: 2091576707}
-  - {fileID: 737135603}
+  - {fileID: 943045173}
   - {fileID: 737135604}
+  - {fileID: 1314294173}
+  - {fileID: 2091576706}
 --- !u!4 &1935065273
 Transform:
   m_ObjectHideFlags: 0
