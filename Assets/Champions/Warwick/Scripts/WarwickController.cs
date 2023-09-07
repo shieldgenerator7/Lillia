@@ -22,14 +22,16 @@ public class WarwickController : Resettable
     {
         rb2d = GetComponent<Rigidbody2D>();
         hittable.onHit += checkFear;
+        sleepable.onPhaseChanged += checkSleep;
         recordInitialState();
         reset();
-        animator.processState(state, sleepable.Asleep) ;
+        animator.processState(state, sleepable.Asleep);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (sleepable.Asleep) { return; }
         float fixedTime = Time.fixedTime;
         if (state.phase == WarwickState.Phase.HOWLING)
         {
@@ -63,6 +65,7 @@ public class WarwickController : Resettable
 
     private void checkFear()
     {
+        if (sleepable.Asleep) { return; }
         if (Time.time >= state.lastFearTime + attr.fearDelay + attr.fearDuration)
         {
             fear();
@@ -73,7 +76,15 @@ public class WarwickController : Resettable
             state.moveSpeed += attr.onHitMoveIncrease;
             state.moveSpeed = Mathf.Max(state.moveSpeed, 0);
             state.lastFearTime = Time.fixedTime;
+    }
+
+    private void checkSleep(SleepState.Phase phase)
+    {
+        if (sleepable.Asleep)
+        {
+            rb2d.velocity = Vector2.zero;
             animator.processState(state, sleepable.Asleep);
+        }
     }
 
     public override void recordInitialState()
@@ -92,6 +103,7 @@ public class WarwickController : Resettable
             moveSpeed = attr.moveSpeedInitial,
             lastFearTime = (attr.fearDelay + attr.fearDuration) * -2,
         };
+        sleepable.reset();
         animator.processState(state, sleepable.Asleep);
     }
 
