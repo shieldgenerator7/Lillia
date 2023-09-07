@@ -222,6 +222,7 @@ GameObject:
   - component: {fileID: -4179450905727239150}
   - component: {fileID: -4894844351989919385}
   - component: {fileID: 6756219786919530321}
+  - component: {fileID: 2836012822075256883}
   - component: {fileID: -6022042745571560140}
   - component: {fileID: 2207861011844808451}
   - component: {fileID: 4677966860363545221}
@@ -267,6 +268,7 @@ MonoBehaviour:
   hazard: {fileID: -4894844351989919385}
   fearColl2D: {fileID: 7520437302386014806}
   hittable: {fileID: 6756219786919530321}
+  sleepable: {fileID: 2836012822075256883}
 --- !u!114 &-4894844351989919385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,6 +299,20 @@ MonoBehaviour:
   collectable: 0
   passiveable: 0
   hideCollider: {fileID: 0}
+--- !u!114 &2836012822075256883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8170287284210426902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362f87837736b2c48982f7f20eeb4604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attr: {fileID: 11400000, guid: 5c214c54f9ecff24a8820788881ce648, type: 2}
+  hittable: {fileID: 6756219786919530321}
 --- !u!50 &-6022042745571560140
 Rigidbody2D:
   serializedVersion: 4

@@ -10,6 +10,7 @@ public class WarwickController : Resettable
     public StaticHazard hazard;
     public Collider2D fearColl2D;
     public Hittable hittable;
+    public Sleepable sleepable;
 
     private Rigidbody2D rb2d;
 
@@ -23,7 +24,7 @@ public class WarwickController : Resettable
         hittable.onHit += fear;
         recordInitialState();
         reset();
-        animator.processState(state);
+        animator.processState(state, sleepable.Asleep) ;
     }
 
     // Update is called once per frame
@@ -36,7 +37,7 @@ public class WarwickController : Resettable
             {
                 state.phaseStartTime = fixedTime;
                 state.phase = WarwickState.Phase.CHASING;
-                animator.processState(state);
+                animator.processState(state, sleepable.Asleep);
             }
         }
         if (state.phase == WarwickState.Phase.CHASING)
@@ -55,7 +56,7 @@ public class WarwickController : Resettable
         if (fixedTime > fearEndTime && fixedTime - Time.fixedDeltaTime <= fearEndTime)
         {
             state.moveSpeed += attr.postFearMoveIncrease;
-            animator.processState(state);
+            animator.processState(state, sleepable.Asleep);
         }
 
     }
@@ -67,8 +68,8 @@ public class WarwickController : Resettable
             state.moveSpeed += attr.onHitMoveIncrease;
             state.moveSpeed = Mathf.Max(state.moveSpeed, 0);
             state.lastFearTime = Time.fixedTime;
-            animator.processState(state);
         }
+            animator.processState(state, sleepable.Asleep);
     }
 
     public override void recordInitialState()
@@ -87,7 +88,7 @@ public class WarwickController : Resettable
             moveSpeed = attr.moveSpeedInitial,
             lastFearTime = (attr.fearDelay + attr.fearDuration) * -2,
         };
-        animator.processState(state);
+        animator.processState(state, sleepable.Asleep);
     }
 
     public override bool reactsToPlayerStart => true;
@@ -95,6 +96,6 @@ public class WarwickController : Resettable
     {
         state.phase = WarwickState.Phase.HOWLING;
         state.phaseStartTime = Time.fixedTime;
-        animator.processState(state);
+        animator.processState(state, sleepable.Asleep);
     }
 }

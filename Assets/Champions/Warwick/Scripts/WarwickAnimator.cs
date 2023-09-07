@@ -38,11 +38,12 @@ public class WarwickAnimator : MonoBehaviour
         }
     }
 
-    public void processState(WarwickState state)
+    public void processState(WarwickState state, bool asleep)
     {
         this.state = state;
         //Warwick
-        animator.SetBool("howling", state.phase == WarwickState.Phase.HOWLING);
-        animator.SetBool("running", state.phase == WarwickState.Phase.CHASING);
+        animator.SetBool("howling", !asleep && state.phase == WarwickState.Phase.HOWLING);
+        animator.SetBool("running", !asleep && state.phase == WarwickState.Phase.CHASING);
+        animator.SetBool("sleeping", asleep);
     }
 }
