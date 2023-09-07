@@ -135,7 +135,7 @@ PlayerSettings:
   vulkanEnableLateAcquireNextImage: 0
   vulkanEnableCommandBufferRecycling: 1
   loadStoreDebugModeEnabled: 0
-  bundleVersion: 0.010
+  bundleVersion: 0.011
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
