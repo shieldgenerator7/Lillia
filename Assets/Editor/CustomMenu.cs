@@ -274,8 +274,9 @@ public class CustomMenu
         //Checklist
         bool keepScenesOpen = false;
         //(new List<Func<bool>>()).ForEach(func => keepScenesOpen = keepScenesOpen || func);
-
+        
         keepScenesOpen = checkTiledHitBoxes() || keepScenesOpen;
+        keepScenesOpen = RecordLevelContents() || keepScenesOpen;
 
         //Cleanup
         EditorSceneManager.SaveOpenScenes();
@@ -365,6 +366,30 @@ public class CustomMenu
         {
             Debug.LogWarning(
                 $"Tiled sprites changes: Made {changedCount} changes."
+                );
+        }
+        return changedCount > 0;
+    }
+
+    [MenuItem("SG7/Build/Pre-Build/Record Level Contents")]
+    public static bool RecordLevelContents()
+    {
+        int changedCount = 0;
+        List<LevelContents> levelContents = GameObject.FindObjectsByType<LevelContents>(FindObjectsSortMode.None).ToList();
+        List<Hazard> hazards = GameObject.FindObjectsByType<Hazard>(FindObjectsSortMode.None).ToList();
+        List<Resettable> resettables = GameObject.FindObjectsByType<Resettable>(FindObjectsSortMode.None).ToList();
+        levelContents.ForEach(lc =>
+        {
+            bool changed = lc.recordContents(hazards, resettables);
+            if (changed)
+            {
+                changedCount++;
+            }
+        });
+        if (changedCount > 0)
+        {
+            Debug.LogWarning(
+                $"Level content recording: Made {changedCount} changes."
                 );
         }
         return changedCount > 0;
