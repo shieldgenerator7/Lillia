@@ -76,15 +76,22 @@ public class WarwickController : Resettable
             state.moveSpeed += attr.onHitMoveIncrease;
             state.moveSpeed = Mathf.Max(state.moveSpeed, 0);
             state.lastFearTime = Time.fixedTime;
+        animator.processState(state, sleepable.Asleep);
     }
 
     private void checkSleep(SleepState.Phase phase)
     {
-        if (sleepable.Asleep)
+        sleep(phase == SleepState.Phase.SLEEPING);
+    }
+
+    private void sleep(bool asleep)
+    {
+        hazard.enabled = !asleep;
+        if (asleep)
         {
             rb2d.velocity = Vector2.zero;
-            animator.processState(state, sleepable.Asleep);
         }
+        animator.processState(state, asleep);
     }
 
     public override void recordInitialState()
@@ -104,6 +111,7 @@ public class WarwickController : Resettable
             lastFearTime = (attr.fearDelay + attr.fearDuration) * -2,
         };
         sleepable.reset();
+        sleep(false);
         animator.processState(state, sleepable.Asleep);
     }
 
