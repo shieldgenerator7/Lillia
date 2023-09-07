@@ -18,7 +18,7 @@ public class LevelContents : MonoBehaviour
         this.hazards = hazards.FindAll(canRecord);
         int prevRcount = this.resettables.Count;
         this.resettables = resettables.FindAll(canRecord);
-        return prevHcount != this.hazards.Count || prevRcount != this.hazards.Count;
+        return prevHcount != this.hazards.Count || prevRcount != this.resettables.Count;
     }
     private bool canRecord(MonoBehaviour mb)
         => mb.gameObject.scene == this.gameObject.scene;

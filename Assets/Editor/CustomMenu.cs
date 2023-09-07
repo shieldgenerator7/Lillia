@@ -375,9 +375,9 @@ public class CustomMenu
     public static bool RecordLevelContents()
     {
         int changedCount = 0;
-        List<LevelContents> levelContents = GameObject.FindObjectsByType<LevelContents>(FindObjectsSortMode.None).ToList();
-        List<Hazard> hazards = GameObject.FindObjectsByType<Hazard>(FindObjectsSortMode.None).ToList();
-        List<Resettable> resettables = GameObject.FindObjectsByType<Resettable>(FindObjectsSortMode.None).ToList();
+        List<LevelContents> levelContents = GameObject.FindObjectsByType<LevelContents>(FindObjectsSortMode.InstanceID).ToList();
+        List<Hazard> hazards = GameObject.FindObjectsByType<Hazard>(FindObjectsSortMode.InstanceID).ToList();
+        List<Resettable> resettables = GameObject.FindObjectsByType<Resettable>(FindObjectsSortMode.InstanceID).ToList();
         levelContents.ForEach(lc =>
         {
             bool changed = lc.recordContents(hazards, resettables);
