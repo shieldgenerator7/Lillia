@@ -20,7 +20,7 @@ public class CustomMenu
         Debug.Log("Not implemented yet");
     }
 
-    const int FIRST_LEVEL_INDEX = 4;
+    const int FIRST_LEVEL_INDEX = 1;
 
     //Find Missing Scripts
     //2018-04-13: copied from http://wiki.unity3d.com/index.php?title=FindMissingScripts
