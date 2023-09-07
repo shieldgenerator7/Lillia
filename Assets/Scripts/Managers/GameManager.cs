@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     public TimerUI timerUI;
     public Image imgPaused;
 
+    private LevelContents levelContents;
+
     private Timer gameTimer;
     private float lastHitTime = -1;
 
@@ -73,7 +75,8 @@ public class GameManager : MonoBehaviour
     void onLevelLoaded(LevelInfo levelInfo)
     {
         checkpointManager.registerCheckpointDelegates();
-        FindObjectsByType<Hazard>(FindObjectsSortMode.None).ToList()
+        levelContents = FindAnyObjectByType<LevelContents>();
+        levelContents.hazards
             .ForEach(hazard => hazard.onPlayerHit += onHazardHit);
         int collectableCount = FindObjectsByType<Hittable>(FindObjectsSortMode.None).ToList()
             .FindAll(hit => hit.collectable)
@@ -82,7 +85,7 @@ public class GameManager : MonoBehaviour
         statisticsManager.startRun(levelManager.LevelId);
         timerUI.update(statisticsManager);
         playerController.transform.position = levelInfo.startPos;
-        FindObjectsByType<Resettable>(FindObjectsSortMode.None).ToList()
+        levelContents.resettables
             .ForEach(rst => rst.recordInitialState());
         if (checkpointManager.End)
         {
@@ -114,7 +117,7 @@ public class GameManager : MonoBehaviour
         //
         playerInput.onInputStateChanged -= onReset_Input;
         //
-        FindObjectsByType<Resettable>(FindObjectsSortMode.None).ToList()
+        levelContents.resettables
             .FindAll(rst => rst.reactsToPlayerStart)
             .ForEach(rst => rst.levelStart());
     }
@@ -165,7 +168,7 @@ public class GameManager : MonoBehaviour
     public void ResetRun()
     {
         //Reset fruits & other mechanics
-        FindObjectsByType<Resettable>(FindObjectsSortMode.None).ToList()
+        levelContents.resettables
             .ForEach(rst => rst.reset());
         //Reset time
         gameTimer.reset(Time.time);
