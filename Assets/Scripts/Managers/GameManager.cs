@@ -23,7 +23,8 @@ public class GameManager : MonoBehaviour
     public TimerUI timerUI;
     public Image imgPaused;
 
-    private LevelContents levelContents;
+    private List<LevelContents> levelContents;
+    private LevelInfo levelInfo;
 
     private Timer gameTimer;
     private float lastHitTime = -1;
@@ -74,10 +75,12 @@ public class GameManager : MonoBehaviour
 
     void onLevelLoaded(LevelInfo levelInfo)
     {
+        this.levelInfo = levelInfo;
         checkpointManager.registerCheckpointDelegates();
-        levelContents = FindAnyObjectByType<LevelContents>();
-        levelContents.hazards
-            .ForEach(hazard => hazard.onPlayerHit += onHazardHit);
+        levelContents = FindObjectsByType<LevelContents>(FindObjectsSortMode.None).ToList();
+        levelContents.ForEach(lc => lc.hazards
+            .ForEach(hazard => hazard.onPlayerHit += onHazardHit)
+            );
         int collectableCount = FindObjectsByType<Hittable>(FindObjectsSortMode.None).ToList()
             .FindAll(hit => hit.collectable)
             .Count();
@@ -85,8 +88,9 @@ public class GameManager : MonoBehaviour
         statisticsManager.startRun(levelManager.LevelId);
         timerUI.update(statisticsManager);
         playerController.transform.position = levelInfo.startPos;
-        levelContents.resettables
-            .ForEach(rst => rst.recordInitialState());
+        levelContents.ForEach(lc => lc.resettables
+            .ForEach(rst => rst.recordInitialState())
+            );
         if (checkpointManager.End)
         {
             playerInput.onInputStateChanged -= onReset_Input;
@@ -117,9 +121,10 @@ public class GameManager : MonoBehaviour
         //
         playerInput.onInputStateChanged -= onReset_Input;
         //
-        levelContents.resettables
+        levelContents.ForEach(lc => lc.resettables
             .FindAll(rst => rst.reactsToPlayerStart)
-            .ForEach(rst => rst.levelStart());
+            .ForEach(rst => rst.levelStart())
+            );
     }
 
     void onHazardHit(Hazard hazard)
@@ -168,8 +173,9 @@ public class GameManager : MonoBehaviour
     public void ResetRun()
     {
         //Reset fruits & other mechanics
-        levelContents.resettables
-            .ForEach(rst => rst.reset());
+        levelContents.ForEach(lc => lc.resettables
+            .ForEach(rst => rst.reset())
+            );
         //Reset time
         gameTimer.reset(Time.time);
         gameTimer.stop();
