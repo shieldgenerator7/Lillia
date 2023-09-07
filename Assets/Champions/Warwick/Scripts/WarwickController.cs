@@ -44,10 +44,10 @@ public class WarwickController : Resettable
         }
         if (state.phase == WarwickState.Phase.CHASING)
         {
-        Vector2 vel = Vector2.right * state.moveSpeed;
-        vel.y = rb2d.velocity.y;
-        rb2d.velocity = vel;
-        state.moveSpeed += attr.moveSpeedIncrease * Time.fixedDeltaTime;
+            Vector2 vel = Vector2.right * state.moveSpeed;
+            vel.y = rb2d.velocity.y;
+            rb2d.velocity = vel;
+            state.moveSpeed += attr.moveSpeedIncrease * Time.fixedDeltaTime;
         }
 
         float fearEndTime = state.lastFearTime + attr.fearDelay + attr.fearDuration;
@@ -60,7 +60,6 @@ public class WarwickController : Resettable
             state.moveSpeed += attr.postFearMoveIncrease;
             animator.processState(state, sleepable.Asleep);
         }
-
     }
 
     private void checkFear()
@@ -72,10 +71,10 @@ public class WarwickController : Resettable
         }
     }
     private void fear()
-    {        
-            state.moveSpeed += attr.onHitMoveIncrease;
-            state.moveSpeed = Mathf.Max(state.moveSpeed, 0);
-            state.lastFearTime = Time.fixedTime;
+    {
+        state.moveSpeed += attr.onHitMoveIncrease;
+        state.moveSpeed = Mathf.Max(state.moveSpeed, 0);
+        state.lastFearTime = Time.fixedTime;
         animator.processState(state, sleepable.Asleep);
     }
 
