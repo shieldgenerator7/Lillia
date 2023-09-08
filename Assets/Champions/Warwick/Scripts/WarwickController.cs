@@ -28,9 +28,6 @@ public class WarwickController : Resettable
         sleepable.onPhaseChanged += checkSleep;
         recordInitialState();
         reset();
-        animator.processState(state, sleepable.Asleep);
-        updateSleepStacks(0);
-        checkSleep(SleepState.Phase.AWAKE);
     }
 
     // Update is called once per frame
@@ -126,10 +123,8 @@ public class WarwickController : Resettable
             moveSpeed = attr.moveSpeedInitial,
             lastFearTime = (attr.fearDelay + attr.fearDuration) * -2,
         };
-        sleepable.reset();
-        sleep(false);
         updateSleepStacks(0);
-        animator.processState(state, sleepable.Asleep);
+        checkSleep(SleepState.Phase.AWAKE);
     }
 
     public override bool reactsToPlayerStart => true;
