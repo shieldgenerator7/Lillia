@@ -101,10 +101,11 @@ public class WarwickController : Resettable
         {
             rb2d.velocity = Vector2.zero;
         }
-        animator.processState(state, asleep);
         dreamHittable.enabled = asleep;
         dreamHittable.hideCollider.enabled = asleep;
         hittable.enabled = !asleep;
+        animator.processState(state, asleep);
+        updateSleepStacks(sleepable.Stacks);
     }
 
     public override void recordInitialState()

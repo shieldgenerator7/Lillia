@@ -37,6 +37,7 @@ public sealed class Sleepable : Resettable
     // Use this for initialization
     void Start()
     {
+        hittable.onHit -= addStack;
         hittable.onHit += addStack;
         checkEnable();
     }
@@ -103,6 +104,8 @@ public sealed class Sleepable : Resettable
     public override void reset()
     {
         state = new();
+        onStacksChanged?.Invoke(state.stacks);
+        onPhaseChanged?.Invoke(state.phase);
         checkEnable();
     }
 }
