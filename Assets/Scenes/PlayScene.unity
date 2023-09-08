@@ -716,10 +716,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hazards: []
   resettables:
-  - {fileID: 5218961431621589657}
-  - {fileID: 5218961431621589656}
-  - {fileID: 5218961431621589655}
   - {fileID: 1518226480}
+  - {fileID: 5218961431621589655}
+  - {fileID: 5218961431621589656}
+  - {fileID: 5218961431621589657}
 --- !u!4 &2008366115
 Transform:
   m_ObjectHideFlags: 0

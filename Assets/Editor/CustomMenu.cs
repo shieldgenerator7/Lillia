@@ -274,7 +274,7 @@ public class CustomMenu
         //Checklist
         bool keepScenesOpen = false;
         //(new List<Func<bool>>()).ForEach(func => keepScenesOpen = keepScenesOpen || func);
-        
+
         keepScenesOpen = checkTiledHitBoxes() || keepScenesOpen;
         keepScenesOpen = RecordLevelContents() || keepScenesOpen;
 
