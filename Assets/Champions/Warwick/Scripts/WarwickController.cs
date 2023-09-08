@@ -11,6 +11,8 @@ public class WarwickController : Resettable
     public Collider2D fearColl2D;
     public Hittable hittable;
     public Sleepable sleepable;
+    public FlowerAnimator flowerAnimator;
+    public Hittable dreamHittable;
 
     private Rigidbody2D rb2d;
 
@@ -22,10 +24,13 @@ public class WarwickController : Resettable
     {
         rb2d = GetComponent<Rigidbody2D>();
         hittable.onHit += checkFear;
+        sleepable.onStacksChanged += updateSleepStacks;
         sleepable.onPhaseChanged += checkSleep;
         recordInitialState();
         reset();
         animator.processState(state, sleepable.Asleep);
+        updateSleepStacks(0);
+        checkSleep(SleepState.Phase.AWAKE);
     }
 
     // Update is called once per frame
@@ -83,6 +88,15 @@ public class WarwickController : Resettable
         sleep(phase == SleepState.Phase.SLEEPING);
     }
 
+    private void updateSleepStacks(int stacks)
+    {
+        if (sleepable.Asleep)
+        {
+            stacks++;
+        }
+        flowerAnimator.updateFlowers(stacks);
+    }
+
     private void sleep(bool asleep)
     {
         hazard.enabled = !asleep;
@@ -91,6 +105,9 @@ public class WarwickController : Resettable
             rb2d.velocity = Vector2.zero;
         }
         animator.processState(state, asleep);
+        dreamHittable.enabled = asleep;
+        dreamHittable.hideCollider.enabled = asleep;
+        hittable.enabled = !asleep;
     }
 
     public override void recordInitialState()
@@ -111,6 +128,7 @@ public class WarwickController : Resettable
         };
         sleepable.reset();
         sleep(false);
+        updateSleepStacks(0);
         animator.processState(state, sleepable.Asleep);
     }
 

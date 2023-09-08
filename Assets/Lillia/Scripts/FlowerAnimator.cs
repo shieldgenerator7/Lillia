@@ -17,6 +17,10 @@ public class FlowerAnimator : MonoBehaviour
 
     public void updateFlowers(PlayerState playerState)
     {
-        sr.sprite = sprites[playerState.stacks];
+        updateFlowers(playerState.stacks);
+    }
+    public void updateFlowers(int stacks)
+    {
+        sr.sprite = sprites[stacks];
     }
 }

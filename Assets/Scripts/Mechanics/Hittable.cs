@@ -4,7 +4,9 @@ using UnityEngine;
 
 public sealed class Hittable : Resettable
 {
+    [Tooltip("How many prance stacks hitting this grants")]
     public int stacksGranted = 1;
+    [Tooltip("True if this hittable counts towards this level's collectable count")]
     public bool collectable = true;
     [Tooltip("True if it can be 'hit' just by walking into it")]
     public bool passiveable = true;
@@ -16,6 +18,7 @@ public sealed class Hittable : Resettable
 
     public void hit()
     {
+        if (!enabled) { return; }
         lastHitTime = Time.time;
         if (hideCollider)
         {
