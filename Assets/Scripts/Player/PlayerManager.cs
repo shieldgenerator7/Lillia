@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerManager : Resettable
 {
+    [Header("Attributes")]
     [SerializeField]
     private PlayerAttributes playerAttributes_normal;
     [SerializeField]
@@ -30,11 +31,14 @@ public class PlayerManager : Resettable
         }
     }
 
+    [Header("Components")]
     public PlayerInput playerInput;
     public PlayerController playerController;
     public PlayerMover playerMover;
     public BloomingBlows bloomingBlows;
     public SwirlSeedController swirlSeedController;
+    public PlayerAnimator playerAnimator;
+    public FlowerAnimator flowerAnimator;
 
     // Start is called before the first frame update
     void Awake()
@@ -42,6 +46,8 @@ public class PlayerManager : Resettable
         Slow = false;
         playerInput.onInputStateChanged += playerController.processInputState;
         playerController.onPlayerStateChanged += playerMover.updatePlayerState;
+        playerController.onPlayerStateChanged += playerAnimator.UpdateAnimator;
+        playerController.onPlayerStateChanged += flowerAnimator.updateFlowers;
         playerInput.onInputStateChanged += swirlSeedController.processInputState;
         playerController.onPlayerStateChanged += swirlSeedController.updatePlayerState;
         bloomingBlows.onHitSomething += playerController.ProcessHittable;

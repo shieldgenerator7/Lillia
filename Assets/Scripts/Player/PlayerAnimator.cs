@@ -5,16 +5,10 @@ using UnityEngine;
 public class PlayerAnimator : Resettable
 {
     public Animator animator;
-    public PlayerController playerController;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        playerController.onPlayerStateChanged += UpdateAnimator;
-    }
+    public Transform playerTransform;
 
     // Update is called once per frame
-    void UpdateAnimator(PlayerState playerState)
+    public void UpdateAnimator(PlayerState playerState)
     {
         bool moving = playerState.moveDirection != 0;
         //Speed
@@ -30,8 +24,8 @@ public class PlayerAnimator : Resettable
 
     void flip(bool right)
     {
-        Vector3 scale = playerController.transform.localScale;
-        playerController.transform.localScale = scale.setX(
+        Vector3 scale = playerTransform.localScale;
+        playerTransform.localScale = scale.setX(
             Mathf.Abs(scale.x) * ((right) ? 1 : -1)
             );
     }

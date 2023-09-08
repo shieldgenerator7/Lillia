@@ -103,7 +103,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ba05df08469fe3841a50b7d6168802c7, type: 3}
   - {fileID: 21300000, guid: 12bb4c338c7db2b4fae1cc50fa16ec69, type: 3}
   - {fileID: 21300000, guid: 3d44bdb4bc825bb40be4729f3dbc3058, type: 3}
-  playerController: {fileID: 804428360538672667}
 --- !u!1 &293425821713317785
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,6 +298,8 @@ MonoBehaviour:
   playerMover: {fileID: 7107039046693426699}
   bloomingBlows: {fileID: 3753830213848511188}
   swirlSeedController: {fileID: 4811940642408707481}
+  playerAnimator: {fileID: 8226199411362272271}
+  flowerAnimator: {fileID: 8149305351623604595}
 --- !u!114 &6636442099060658131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -725,7 +726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 3259904035858519184}
-  playerController: {fileID: 804428360538672667}
+  playerTransform: {fileID: 8546214906423153129}
 --- !u!95 &3259904035858519184
 Animator:
   serializedVersion: 7
