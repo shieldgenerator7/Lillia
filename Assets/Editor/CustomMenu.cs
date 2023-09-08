@@ -383,6 +383,9 @@ public class CustomMenu
             bool changed = lc.recordContents(hazards, resettables);
             if (changed)
             {
+                Debug.LogWarning(
+                    $"Level content recording: Made changes in scene {lc.gameObject.scene.name}"
+                    );
                 changedCount++;
             }
         });
