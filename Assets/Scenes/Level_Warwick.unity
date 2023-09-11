@@ -1676,7 +1676,6 @@ MonoBehaviour:
   - {fileID: 673851005352763335}
   - {fileID: 673851005352763337}
   - {fileID: 673851005352763338}
-  - {fileID: 673851005352763339}
   - {fileID: 8555043010202749917}
   - {fileID: 8555043010202749918}
   hittables:
@@ -1885,17 +1884,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ebf99ca964c69441acc71edfb49d33f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &673851005352763339 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2329841449852658224, guid: e435628ca44c558458dfdb638ac7065f, type: 3}
-  m_PrefabInstance: {fileID: 673851005352763333}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd13cf101bea325418b026efd7bda371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &4003311708525851990
