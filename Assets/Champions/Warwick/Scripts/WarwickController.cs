@@ -63,6 +63,11 @@ public class WarwickController : Resettable
             hittable.Available = true;
             animator.processState(state, sleepable.Asleep);
         }
+
+        if (hittable.Available == fearing)
+        {
+            hittable.Available = !fearing;
+        }
     }
 
     private void checkFear()
@@ -102,9 +107,9 @@ public class WarwickController : Resettable
         {
             rb2d.velocity = Vector2.zero;
         }
-        dreamHittable.enabled = asleep;
+        dreamHittable.Available = asleep;
         dreamHittable.hideCollider.enabled = asleep;
-        hittable.enabled = !asleep;
+        hittable.Available = !asleep;
         animator.processState(state, asleep);
         updateSleepStacks(sleepable.Stacks);
     }

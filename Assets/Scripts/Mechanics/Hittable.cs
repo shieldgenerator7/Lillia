@@ -35,7 +35,7 @@ public sealed class Hittable : Resettable
 
     public void hit()
     {
-        if (!enabled) { return; }
+        if (!available) { return; }
         lastHitTime = Time.time;
         Available = false;
         onHit?.Invoke();
@@ -56,6 +56,7 @@ public sealed class Hittable : Resettable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!available) { return; }
         if (passiveable)
         {
             PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
