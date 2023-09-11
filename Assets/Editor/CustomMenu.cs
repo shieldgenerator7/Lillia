@@ -285,6 +285,7 @@ public class CustomMenu
         {
             checkTiledHitBoxes,
             RecordLevelContents,
+            UpdateLevelInfo,
         };
         checkList.ForEach(func => keepScenesOpen = func() || keepScenesOpen);
 
@@ -405,6 +406,32 @@ public class CustomMenu
         {
             Debug.LogWarning(
                 $"Level content recording: Made {changedCount} changes."
+                );
+        }
+        return changedCount > 0;
+    }
+
+    [MenuItem("SG7/Build/Pre-Build/Update LevelInfo")]
+    public static bool UpdateLevelInfo()
+    {
+        int changedCount = 0;
+        //
+        LevelManager levelManager = GameObject.FindAnyObjectByType<LevelManager>();
+        levelManager.levels.ForEach(level =>
+        {
+            Scene scene = SceneManager.GetSceneByName(level.scene.name);
+            if (level.sceneName != scene.name)
+            {
+                level.sceneName = scene.name;
+                EditorUtility.SetDirty(level);
+                changedCount++;
+            }
+        });
+        //
+        if (changedCount > 0)
+        {
+            Debug.LogWarning(
+                $"Updating LevelInfo: Made {changedCount} changes."
                 );
         }
         return changedCount > 0;
