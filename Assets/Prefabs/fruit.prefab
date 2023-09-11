@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd13cf101bea325418b026efd7bda371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hideAlpha: 0.5
+  hideAlpha: 0.2
   hittable: {fileID: 3009375181700173184}
 --- !u!114 &3009375181700173184
 MonoBehaviour:
