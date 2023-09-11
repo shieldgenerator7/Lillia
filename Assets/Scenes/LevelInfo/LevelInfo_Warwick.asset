@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: LevelInfo_Warwick
   m_EditorClassIdentifier: 
   levelName: Level_Warwick
+  scene: {fileID: 102900000, guid: d0c1d019817fc2348aeca4158f989c90, type: 3}
   sceneName: Level_Warwick
   id: Warwick
   startPos: {x: -0.18, y: -1.8908, z: 0}
