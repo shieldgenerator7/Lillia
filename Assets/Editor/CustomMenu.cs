@@ -14,28 +14,18 @@ public class CustomMenu
 {
     //2023-01-31: CustomMenu copied from MageDuel.CustomMenu
 
-    [MenuItem("SG7/Create/Level")]
+    [MenuItem("SG7/Create/Level %l")]
     static void CreateLevel()
     {
-        string levelName = "LevelInfo";
-
-        //Create Scene
-        //2023-09-10: copied from https://docs.unity3d.com/ScriptReference/SceneManagement.EditorSceneManager.NewScene.html
-        Scene newScene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
-        newScene.name = levelName;
-        EditorSceneManager.SaveScene(newScene, $"Assets/Scenes/{levelName}.unity");
-
-        //Create LevelInfo
-        //2023-09-10: copied from https://stackoverflow.com/a/50564793/2336212
-        LevelInfo levelInfo = ScriptableObject.CreateInstance<LevelInfo>();
-        levelInfo.levelName = levelName;
-        levelInfo.sceneName = levelName;
-
-        AssetDatabase.CreateAsset(levelInfo, $"Assets/Scenes/LevelInfo/LI_{levelName}.asset");
-        AssetDatabase.SaveAssets();
-
-        EditorUtility.FocusProjectWindow();
-        Selection.activeObject = levelInfo;
+        LevelCreater levelCreater = GameObject.FindAnyObjectByType<LevelCreater>();
+        if (levelCreater)
+        {
+            Selection.activeGameObject = levelCreater.gameObject;
+        }
+        else
+        {
+            Debug.LogError("No LevelCreater object found! Do you have the _TOOLS scene open?");
+        }
     }
 
     const int FIRST_LEVEL_INDEX = 1;

@@ -213,6 +213,55 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bd4b511e8a8ea240a73af19699f64df, type: 3}
+--- !u!1 &792799768
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 792799770}
+  - component: {fileID: 792799769}
+  m_Layer: 0
+  m_Name: LevelCreater
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &792799769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792799768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52f90f6fcd7b9ba42aaf39aab7b00933, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefix: Level
+  levelName: Swamp
+  number: 1
+  delimiter: _
+  templateScene: {fileID: 102900000, guid: f99051ee5dc228f4c8dc6d1d4807cb57, type: 3}
+--- !u!4 &792799770
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792799768}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1173542090 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3256813353392357490, guid: 4b57e99f061a1254485d3e9bb0c7f0de, type: 3}
@@ -327,3 +376,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 523722901}
   - {fileID: 1572840391}
+  - {fileID: 792799770}
