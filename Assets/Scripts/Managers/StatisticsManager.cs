@@ -16,7 +16,6 @@ public class StatisticsManager : MonoBehaviour
     public void init(Statistics stats)
     {
         this.stats = stats;
-        _updateBestRun();
     }
 
     public void startRun(LevelInfo levelInfo)

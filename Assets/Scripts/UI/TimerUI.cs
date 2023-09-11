@@ -24,9 +24,9 @@ public class TimerUI : MonoBehaviour
     private void _update()
     {
         text.text =
-            $"{currentRun} / {levelInfo.collectibleCount}\n\n" +
-            $"{fastestRun} / {levelInfo.collectibleCount}\n" +
-            $"{bestRun} / {levelInfo.collectibleCount}\n" +
+            $"{currentRun} / {levelInfo?.collectibleCount}\n\n" +
+            $"{fastestRun} / {levelInfo?.collectibleCount}\n" +
+            $"{bestRun} / {levelInfo?.collectibleCount}\n" +
             "";
     }
 }
