@@ -17,6 +17,7 @@ MonoBehaviour:
   sceneName: Level_Win
   id: Win
   startPos: {x: -0.18, y: -1.8908, z: 0}
+  collectibleCount: 4
   bloomingBlows: 1
   watchOutEepJump: 1
   watchOutEepSlam: 1

@@ -421,9 +421,30 @@ public class CustomMenu
         levelManager.levels.ForEach(level =>
         {
             Scene scene = SceneManager.GetSceneByName(level.scene.name);
+            bool changed = false;
             if (level.sceneName != scene.name)
             {
                 level.sceneName = scene.name;
+                changed = true;
+            }
+            LevelContents levelContents = Utility.GetComponentInScene<LevelContents>(scene);
+            if (levelContents)
+            {
+                int collectibleCount = levelContents.hittables
+                    .FindAll(hit => hit.collectable)
+                    .Count;
+                if (collectibleCount != level.collectibleCount)
+                {
+                    level.collectibleCount = collectibleCount;
+                    changed = true;
+                }
+            }
+            else
+            {
+                Debug.LogError($"Can't find LevelContents in scene {scene.name}");
+            }
+            if (changed)
+            {
                 EditorUtility.SetDirty(level);
                 changedCount++;
             }

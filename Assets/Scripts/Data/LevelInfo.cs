@@ -12,12 +12,15 @@ public class LevelInfo : ScriptableObject
     [Tooltip("The scene object to link (editor only)")]
     public SceneAsset scene;
 #endif
-    [Tooltip("The name of the scene asset to load")]
+    [Tooltip("The name of the scene asset to load (generated)")]
     public string sceneName;
     [Tooltip("The level id to use in the save file")]
     public string id;
     [Tooltip("Where the player spawns in the level")]
     public Vector3 startPos;
+    [Tooltip("How many collectibles in this area (generated)")]
+    public int collectibleCount;
+
     [Header("Abilities")]
     public bool bloomingBlows = true;
     public bool watchOutEepJump = true;

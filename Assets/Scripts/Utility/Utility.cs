@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public static class Utility 
+public static class Utility
 {
     #region Float Extension Methods
 
-    public static float Round(float value , int decimals)
+    public static float Round(float value, int decimals)
     {
         float powerOf10 = Mathf.Pow(10, decimals);
         return Mathf.Round(value * powerOf10) / powerOf10;
@@ -41,5 +43,12 @@ public static class Utility
         float distance;
         raycastPlane.Raycast(ray, out distance);
         return ray.GetPoint(distance);
+    }
+
+    public static T GetComponentInScene<T>(Scene scene) where T : MonoBehaviour
+    {
+        return GameObject.FindObjectsByType<T>(FindObjectsSortMode.InstanceID).ToList()
+            .Find(comp => comp.gameObject.scene == scene)
+            ?? default(T);
     }
 }
