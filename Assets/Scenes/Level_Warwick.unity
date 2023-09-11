@@ -1662,23 +1662,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hazards:
-  - {fileID: 673851005352763336}
-  - {fileID: 1866885720}
   - {fileID: 1729782583}
+  - {fileID: 1866885720}
+  - {fileID: 673851005352763336}
   resettables:
-  - {fileID: 673851005352763338}
-  - {fileID: 673851005352763339}
+  - {fileID: 235889738}
+  - {fileID: 235889739}
+  - {fileID: 1511651849}
+  - {fileID: 1511651850}
+  - {fileID: 1582047030}
+  - {fileID: 1582047031}
   - {fileID: 673851005352763334}
   - {fileID: 673851005352763335}
   - {fileID: 673851005352763337}
-  - {fileID: 1511651849}
-  - {fileID: 1511651850}
+  - {fileID: 673851005352763338}
+  - {fileID: 673851005352763339}
   - {fileID: 8555043010202749917}
   - {fileID: 8555043010202749918}
-  - {fileID: 1582047030}
-  - {fileID: 1582047031}
+  hittables:
   - {fileID: 235889738}
-  - {fileID: 235889739}
+  - {fileID: 1511651849}
+  - {fileID: 1582047030}
+  - {fileID: 673851005352763335}
+  - {fileID: 673851005352763338}
+  - {fileID: 8555043010202749917}
 --- !u!4 &1935065273
 Transform:
   m_ObjectHideFlags: 0

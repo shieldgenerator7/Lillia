@@ -389,9 +389,10 @@ public class CustomMenu
         List<LevelContents> levelContents = GameObject.FindObjectsByType<LevelContents>(FindObjectsSortMode.InstanceID).ToList();
         List<Hazard> hazards = GameObject.FindObjectsByType<Hazard>(FindObjectsSortMode.InstanceID).ToList();
         List<Resettable> resettables = GameObject.FindObjectsByType<Resettable>(FindObjectsSortMode.InstanceID).ToList();
+        List<Hittable> hittables = GameObject.FindObjectsByType<Hittable>(FindObjectsSortMode.InstanceID).ToList();
         levelContents.ForEach(lc =>
         {
-            bool changed = lc.recordContents(hazards, resettables);
+            bool changed = lc.recordContents(hazards, resettables, hittables);
             if (changed)
             {
                 EditorUtility.SetDirty(lc);

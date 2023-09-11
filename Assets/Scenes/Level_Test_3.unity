@@ -3137,36 +3137,52 @@ MonoBehaviour:
   - {fileID: 904037188}
   - {fileID: 1729782583}
   resettables:
-  - {fileID: 858016693}
-  - {fileID: 820546705}
+  - {fileID: 140224801}
+  - {fileID: 140224802}
+  - {fileID: 142241020}
+  - {fileID: 142241021}
+  - {fileID: 400361085}
+  - {fileID: 400361086}
+  - {fileID: 737135603}
+  - {fileID: 737135604}
   - {fileID: 768471053}
-  - {fileID: 1555033237}
-  - {fileID: 1511106064}
-  - {fileID: 2091576707}
-  - {fileID: 1555033236}
+  - {fileID: 768471054}
+  - {fileID: 820546705}
+  - {fileID: 820546706}
+  - {fileID: 858016693}
+  - {fileID: 858016694}
+  - {fileID: 943045173}
+  - {fileID: 943045174}
+  - {fileID: 1040731486}
+  - {fileID: 1040731487}
+  - {fileID: 1065449021}
   - {fileID: 1065449022}
   - {fileID: 1511106063}
-  - {fileID: 1040731487}
-  - {fileID: 943045174}
-  - {fileID: 232593518470977057}
-  - {fileID: 1065449021}
-  - {fileID: 142241021}
-  - {fileID: 1040731486}
-  - {fileID: 140224802}
-  - {fileID: 943045173}
-  - {fileID: 2091576706}
-  - {fileID: 1661379314}
-  - {fileID: 737135604}
-  - {fileID: 142241020}
-  - {fileID: 140224801}
-  - {fileID: 737135603}
-  - {fileID: 400361086}
-  - {fileID: 232593518470977056}
+  - {fileID: 1511106064}
+  - {fileID: 1555033236}
+  - {fileID: 1555033237}
   - {fileID: 1661379313}
-  - {fileID: 858016694}
-  - {fileID: 820546706}
-  - {fileID: 768471054}
+  - {fileID: 1661379314}
+  - {fileID: 2091576706}
+  - {fileID: 2091576707}
+  - {fileID: 232593518470977056}
+  - {fileID: 232593518470977057}
+  hittables:
+  - {fileID: 140224801}
+  - {fileID: 142241020}
   - {fileID: 400361085}
+  - {fileID: 737135603}
+  - {fileID: 768471053}
+  - {fileID: 820546705}
+  - {fileID: 858016693}
+  - {fileID: 943045173}
+  - {fileID: 1040731486}
+  - {fileID: 1065449021}
+  - {fileID: 1511106063}
+  - {fileID: 1555033236}
+  - {fileID: 1661379313}
+  - {fileID: 2091576706}
+  - {fileID: 232593518470977056}
 --- !u!4 &1935065273
 Transform:
   m_ObjectHideFlags: 0

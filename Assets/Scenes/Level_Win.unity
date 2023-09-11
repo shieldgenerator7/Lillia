@@ -1084,14 +1084,20 @@ MonoBehaviour:
   hazards:
   - {fileID: 1729782583}
   resettables:
+  - {fileID: 659448754}
+  - {fileID: 659448755}
   - {fileID: 989360952}
   - {fileID: 989360953}
   - {fileID: 1713985299}
   - {fileID: 1713985300}
   - {fileID: 1770411082}
   - {fileID: 1770411083}
+  - {fileID: 8221452056422993381}
+  hittables:
   - {fileID: 659448754}
-  - {fileID: 659448755}
+  - {fileID: 989360952}
+  - {fileID: 1713985299}
+  - {fileID: 1770411082}
   - {fileID: 8221452056422993381}
 --- !u!4 &1874115029
 Transform:

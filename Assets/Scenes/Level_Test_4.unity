@@ -4520,45 +4520,57 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hazards:
-  - {fileID: 1729782583}
-  - {fileID: 1163521637}
-  - {fileID: 761007463}
-  - {fileID: 597206425}
+  - {fileID: 100134482}
   - {fileID: 240439062}
   - {fileID: 259682773}
-  - {fileID: 904037188}
-  - {fileID: 100134482}
   - {fileID: 446515559}
-  - {fileID: 1525400594}
+  - {fileID: 597206425}
+  - {fileID: 761007463}
+  - {fileID: 904037188}
   - {fileID: 1144408906}
+  - {fileID: 1163521637}
   - {fileID: 1369547700}
   - {fileID: 1428337042}
+  - {fileID: 1525400594}
+  - {fileID: 1729782583}
   - {fileID: 1808255746}
   - {fileID: 2037607872}
   - {fileID: 2078961069}
   resettables:
-  - {fileID: 1657575179}
-  - {fileID: 444932939}
-  - {fileID: 720306282}
-  - {fileID: 2071596368}
-  - {fileID: 1084324349}
-  - {fileID: 444932938}
-  - {fileID: 1281728079}
-  - {fileID: 1084324348}
-  - {fileID: 232593518470977057}
   - {fileID: 205851295}
-  - {fileID: 520577662}
-  - {fileID: 1281728078}
-  - {fileID: 232593518470977056}
+  - {fileID: 205851296}
+  - {fileID: 444932938}
+  - {fileID: 444932939}
   - {fileID: 520577661}
-  - {fileID: 1570821270}
-  - {fileID: 2071596369}
+  - {fileID: 520577662}
+  - {fileID: 720306282}
+  - {fileID: 720306283}
+  - {fileID: 1084324348}
+  - {fileID: 1084324349}
+  - {fileID: 1281728078}
+  - {fileID: 1281728079}
+  - {fileID: 1445309175}
   - {fileID: 1445309176}
   - {fileID: 1570821269}
-  - {fileID: 205851296}
-  - {fileID: 1445309175}
+  - {fileID: 1570821270}
+  - {fileID: 1657575179}
   - {fileID: 1657575180}
-  - {fileID: 720306283}
+  - {fileID: 2071596368}
+  - {fileID: 2071596369}
+  - {fileID: 232593518470977056}
+  - {fileID: 232593518470977057}
+  hittables:
+  - {fileID: 205851295}
+  - {fileID: 444932938}
+  - {fileID: 520577661}
+  - {fileID: 720306282}
+  - {fileID: 1084324348}
+  - {fileID: 1281728078}
+  - {fileID: 1445309175}
+  - {fileID: 1570821269}
+  - {fileID: 1657575179}
+  - {fileID: 2071596368}
+  - {fileID: 232593518470977056}
 --- !u!4 &1935065273
 Transform:
   m_ObjectHideFlags: 0
