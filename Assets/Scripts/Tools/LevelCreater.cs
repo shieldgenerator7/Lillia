@@ -19,26 +19,35 @@ public class LevelCreater : MonoBehaviour
     {
         string levelInfoName = $"LI{delimiter}{levelName}{delimiter}{number}";
         string levelSceneName = $"{prefix}{delimiter}{levelName}{delimiter}{number}";
+        string sceneAssetPath = $"Assets/Scenes/{levelSceneName}.unity";
 
         //Create Scene
         //2023-09-10: copied from https://docs.unity3d.com/ScriptReference/SceneManagement.EditorSceneManager.NewScene.html
         EditorSceneManager.SaveScene(
             SceneManager.GetSceneByName(templateScene.name),
-            $"Assets/Scenes/{levelSceneName}.unity",
+            sceneAssetPath,
             true
             );
-        EditorSceneManager.OpenScene(
-            $"Assets/Scenes/{levelSceneName}.unity",
+        Scene newScene = EditorSceneManager.OpenScene(
+            sceneAssetPath,
             OpenSceneMode.Additive
             );
+        EditorSceneManager.MoveSceneBefore(newScene, gameObject.scene);
 
         //Create LevelInfo
         //2023-09-10: copied from https://stackoverflow.com/a/50564793/2336212
+        //2023-09-10: copied from https://docs.unity3d.com/ScriptReference/SceneAsset.html
         LevelInfo levelInfo = ScriptableObject.CreateInstance<LevelInfo>();
         levelInfo.levelName = levelSceneName;
-        levelInfo.sceneName = levelSceneName;
+        levelInfo.scene = AssetDatabase.LoadAssetAtPath<SceneAsset>(sceneAssetPath);
         levelInfo.id = levelName;
 
+        //Add to LevelManager
+        LevelManager levelManager = FindAnyObjectByType<LevelManager>();
+        levelManager.levels.Add(levelInfo);
+        EditorUtility.SetDirty(levelManager);
+
+        //
         AssetDatabase.CreateAsset(levelInfo, $"Assets/Scenes/LevelInfo/{levelInfoName}.asset");
         AssetDatabase.SaveAssets();
 

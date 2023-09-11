@@ -237,7 +237,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats:
     runStats: []
-  collectableCount: 0
 --- !u!114 &56600668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -720,6 +719,7 @@ MonoBehaviour:
   - {fileID: 5218961431621589655}
   - {fileID: 5218961431621589656}
   - {fileID: 5218961431621589657}
+  hittables: []
 --- !u!4 &2008366115
 Transform:
   m_ObjectHideFlags: 0
