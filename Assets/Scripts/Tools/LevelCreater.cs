@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.SceneManagement;
+#if UNITY_EDITOR
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,7 +13,6 @@ public class LevelCreater : MonoBehaviour
 
     public SceneAsset templateScene;
 
-#if UNITY_EDITOR
     public void CreateLevel()
     {
         string levelInfoName = $"LI{delimiter}{levelName}{delimiter}{number}";
