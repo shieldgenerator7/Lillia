@@ -11,7 +11,7 @@ public class StatisticsManager : MonoBehaviour
     public RunStats fastRun { get; private set; }
     public RunStats bestRun { get; private set; }
 
-    public int collectableCount;
+    private LevelInfo levelInfo;
 
     public void init(Statistics stats)
     {
@@ -19,10 +19,11 @@ public class StatisticsManager : MonoBehaviour
         _updateBestRun();
     }
 
-    public void startRun(string levelId)
+    public void startRun(LevelInfo levelInfo)
     {
+        this.levelInfo = levelInfo;
         currentRun = new RunStats();
-        currentRun.levelId = levelId;
+        currentRun.levelId = levelInfo.id;
         _updateBestRun();
     }
 
@@ -56,14 +57,14 @@ public class StatisticsManager : MonoBehaviour
         if (runs.Count > 0)
         {
             fastRun = runs.OrderBy(run => run.duration).First();
-            bestRun = runs.FindAll(run => run.dreamCount == collectableCount)
+            bestRun = runs.FindAll(run => run.dreamCount == levelInfo.collectibleCount)
                 .OrderBy(run => run.duration).FirstOrDefault();
             if (bestRun.duration == 0)
             {
                 bestRun = new()
                 {
                     duration = 999.99f,
-                    dreamCount = collectableCount
+                    dreamCount = levelInfo.collectibleCount
                 };
             }
         }
@@ -77,7 +78,7 @@ public class StatisticsManager : MonoBehaviour
             bestRun = new RunStats
             {
                 duration = 999.99f,
-                dreamCount = collectableCount
+                dreamCount = levelInfo.collectibleCount
             };
         }
         onBestRunChanged?.Invoke(bestRun.duration);

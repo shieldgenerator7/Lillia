@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         statisticsManager.init(fileManager.load() ?? new Statistics());
-        timerUI.update(statisticsManager);
+        timerUI.update(statisticsManager, levelInfo);
         //
         levelManager.onLevelLoaded += onLevelLoaded;
         playerInput.onPause += () =>
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
         playerController.onCollectableCollected += () =>
         {
             statisticsManager.recordCollectable();
-            timerUI.update(statisticsManager);
+            timerUI.update(statisticsManager, levelInfo);
         };
         checkpointManager.OnEndCheckpointReached += onEndCheckpointReached;
         //
@@ -57,12 +57,12 @@ public class GameManager : MonoBehaviour
         gameTimer.onTimerTicked += (duration) =>
         {
             statisticsManager.updateRun(duration);
-            timerUI.update(statisticsManager);
+            timerUI.update(statisticsManager, levelInfo);
         };
         gameTimer.stop();
         statisticsManager.onBestRunChanged += (time) =>
         {
-            timerUI.update(statisticsManager);
+            timerUI.update(statisticsManager, levelInfo);
         };
         //
         Application.quitting += () =>
@@ -81,12 +81,8 @@ public class GameManager : MonoBehaviour
         levelContents.ForEach(lc => lc.hazards
             .ForEach(hazard => hazard.onPlayerHit += onHazardHit)
             );
-        int collectableCount = FindObjectsByType<Hittable>(FindObjectsSortMode.None).ToList()
-            .FindAll(hit => hit.collectable)
-            .Count();
-        statisticsManager.collectableCount = collectableCount;
-        statisticsManager.startRun(levelManager.LevelId);
-        timerUI.update(statisticsManager);
+        statisticsManager.startRun(levelInfo);
+        timerUI.update(statisticsManager, levelInfo);
         playerController.transform.position = levelInfo.startPos;
         levelContents.ForEach(lc => lc.resettables
             .ForEach(rst => rst.recordInitialState())
@@ -166,8 +162,8 @@ public class GameManager : MonoBehaviour
     {
         gameTimer.reset(Time.time);
         gameTimer.start();
-        statisticsManager.startRun(levelManager.LevelId);
-        timerUI.update(statisticsManager);
+        statisticsManager.startRun(levelInfo);
+        timerUI.update(statisticsManager, levelInfo);
     }
 
     public void ResetRun()
@@ -180,14 +176,14 @@ public class GameManager : MonoBehaviour
         gameTimer.reset(Time.time);
         gameTimer.stop();
         //
-        timerUI.update(statisticsManager);
+        timerUI.update(statisticsManager, levelInfo);
     }
 
     public void FinishRun()
     {
         gameTimer.stop();
         statisticsManager.finishRun();
-        timerUI.update(statisticsManager);
+        timerUI.update(statisticsManager, levelInfo);
         fileManager.save(statisticsManager.stats);
     }
 

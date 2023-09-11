@@ -10,23 +10,23 @@ public class TimerUI : MonoBehaviour
     private RunStats currentRun;
     private RunStats fastestRun;
     private RunStats bestRun;
-    private int collectableCount = 0;
+    private LevelInfo levelInfo;
 
-    public void update(StatisticsManager stats)
+    public void update(StatisticsManager stats, LevelInfo levelInfo)
     {
         this.currentRun = stats.CurrentRun;
         this.fastestRun = stats.fastRun;
         this.bestRun = stats.bestRun;
-        this.collectableCount = stats.collectableCount;
+        this.levelInfo = levelInfo;
         _update();
     }
 
     private void _update()
     {
         text.text =
-            $"{currentRun} / {collectableCount}\n\n" +
-            $"{fastestRun} / {collectableCount}\n" +
-            $"{bestRun} / {collectableCount}\n" +
+            $"{currentRun} / {levelInfo.collectibleCount}\n\n" +
+            $"{fastestRun} / {levelInfo.collectibleCount}\n" +
+            $"{bestRun} / {levelInfo.collectibleCount}\n" +
             "";
     }
 }
