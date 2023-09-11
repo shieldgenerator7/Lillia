@@ -53,6 +53,7 @@ public class LevelCreater : MonoBehaviour
         LevelInfo levelInfo = ScriptableObject.CreateInstance<LevelInfo>();
         levelInfo.levelName = levelSceneName;
         levelInfo.scene = AssetDatabase.LoadAssetAtPath<SceneAsset>(sceneAssetPath);
+        levelInfo.sceneName = levelInfo.scene.name;
         levelInfo.id = $"{levelName}{number}";
 
         //Add to LevelManager

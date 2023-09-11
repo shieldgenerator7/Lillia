@@ -383,7 +383,7 @@ public class CustomMenu
         return changedCount > 0;
     }
 
-    [MenuItem("SG7/Build/Pre-Build/Ensure Levels are in Build Settings")]
+    [MenuItem("SG7/Build/Pre-Build/Build Settings Level List Update")]
     public static bool AddAllLevelsToBuildSettings()
     {
         LevelManager levelManager = GameObject.FindAnyObjectByType<LevelManager>();
