@@ -68,6 +68,7 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
+            anyLevelLoaded = true;
             onLevelLoaded?.Invoke(levels[loadedLevelIndex]);
         }
     }
