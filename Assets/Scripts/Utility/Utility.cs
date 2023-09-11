@@ -49,12 +49,6 @@ public static class Utility
     {
         return GameObject.FindObjectsByType<T>(FindObjectsSortMode.InstanceID).ToList()
             .Find(comp => comp.gameObject.scene == scene)
-            ?? default;
-    }
-    public static T GetComponentInScene<T>(string sceneName) where T : MonoBehaviour
-    {
-        return GameObject.FindObjectsByType<T>(FindObjectsSortMode.InstanceID).ToList()
-            .Find(comp => comp.gameObject.scene.name == sceneName)
-            ?? default;
+            ?? default(T);
     }
 }

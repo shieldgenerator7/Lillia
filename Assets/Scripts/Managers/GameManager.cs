@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     public TimerUI timerUI;
     public Image imgPaused;
 
-    private LevelContents levelContent;
+    private List<LevelContents> levelContents;
     private LevelInfo levelInfo;
 
     private Timer gameTimer;
@@ -77,12 +77,16 @@ public class GameManager : MonoBehaviour
     {
         this.levelInfo = levelInfo;
         checkpointManager.registerCheckpointDelegates();
-        levelContent = Utility.GetComponentInScene<LevelContents>(levelInfo.sceneName);
-        levelContent.hazards.ForEach(hazard => hazard.onPlayerHit += onHazardHit);
+        levelContents = FindObjectsByType<LevelContents>(FindObjectsSortMode.None).ToList();
+        levelContents.ForEach(lc => lc.hazards
+            .ForEach(hazard => hazard.onPlayerHit += onHazardHit)
+            );
         statisticsManager.startRun(levelInfo);
         timerUI.update(statisticsManager, levelInfo);
         playerController.transform.position = levelInfo.startPos;
-        levelContent.resettables.ForEach(rst => rst.recordInitialState());
+        levelContents.ForEach(lc => lc.resettables
+            .ForEach(rst => rst.recordInitialState())
+            );
         if (checkpointManager.End)
         {
             playerInput.onInputStateChanged -= onReset_Input;
@@ -113,9 +117,10 @@ public class GameManager : MonoBehaviour
         //
         playerInput.onInputStateChanged -= onReset_Input;
         //
-        levelContent.resettables
+        levelContents.ForEach(lc => lc.resettables
             .FindAll(rst => rst.reactsToPlayerStart)
-            .ForEach(rst => rst.levelStart());
+            .ForEach(rst => rst.levelStart())
+            );
     }
 
     void onHazardHit(Hazard hazard)
@@ -164,7 +169,9 @@ public class GameManager : MonoBehaviour
     public void ResetRun()
     {
         //Reset fruits & other mechanics
-        levelContent.resettables.ForEach(rst => rst.reset());
+        levelContents.ForEach(lc => lc.resettables
+            .ForEach(rst => rst.reset())
+            );
         //Reset time
         gameTimer.reset(Time.time);
         gameTimer.stop();
