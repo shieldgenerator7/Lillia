@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Level_Test_4.unity
     guid: d914a38c9ce818141866d2a43f8ce65f
   - enabled: 1
+    path: Assets/Scenes/Tut_Swirlseed_1.unity
+    guid: 065774db18f6b4f4682a204c58ff259c
+  - enabled: 1
     path: Assets/Scenes/Level_Warwick.unity
     guid: d0c1d019817fc2348aeca4158f989c90
   - enabled: 1
