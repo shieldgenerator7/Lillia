@@ -231,7 +231,7 @@ public class PlayerController : Resettable
 
     public void ProcessHittable(Hittable hittable)
     {
-        if (!hittable.active) { return; }
+        if (!hittable.Available) { return; }
         hittable.hit();
         setStacks(playerState.stacks + hittable.stacksGranted);
         playerState.lastStackAddTime = Time.fixedTime;

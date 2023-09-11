@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,19 +15,29 @@ public sealed class Hittable : Resettable
     [Tooltip("When it gets hit, it hides this collider")]
     public Collider2D hideCollider;
 
-    public float lastHitTime { get; private set; }
+    private float lastHitTime;
 
-    public bool active { get; set; } = true;
+    private bool available = true;
+    public bool Available
+    {
+        get => available;
+        set
+        {
+            available = value;
+            if (hideCollider)
+            {
+                hideCollider.enabled = available;
+            }
+            OnAvailableChanged?.Invoke(available);
+        }
+    }
+    public Action<bool> OnAvailableChanged;
 
     public void hit()
     {
         if (!enabled) { return; }
         lastHitTime = Time.time;
-        active = false;
-        if (hideCollider)
-        {
-            hideCollider.enabled = false;
-        }
+        Available = false;
         onHit?.Invoke();
     }
     public delegate void OnHit();
@@ -40,11 +51,7 @@ public sealed class Hittable : Resettable
     public override void reset()
     {
         lastHitTime = -1;
-        active = true;
-        if (hideCollider)
-        {
-            hideCollider.enabled = true;
-        }
+        Available = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -60,7 +60,7 @@ public class WarwickController : Resettable
         if (fixedTime > fearEndTime && fixedTime - Time.fixedDeltaTime <= fearEndTime)
         {
             state.moveSpeed += attr.postFearMoveIncrease;
-            hittable.active = true;
+            hittable.Available = true;
             animator.processState(state, sleepable.Asleep);
         }
     }
