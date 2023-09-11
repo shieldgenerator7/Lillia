@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcfbcf85a7aee9e40b1bf1a03b1c87b6, type: 3}
   m_Name: LilliaAttr_Slow
   m_EditorClassIdentifier: 
-  walkSpeed: 1
-  runSpeedPerStack: 0.25
+  walkSpeed: 1.5
+  runSpeedPerStack: 0.5
   maxStacks: 4
   stackDecayDelay: 4
   stackDecayDelayPerStack: 2
