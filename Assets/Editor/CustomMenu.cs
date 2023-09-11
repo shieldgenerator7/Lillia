@@ -284,6 +284,7 @@ public class CustomMenu
         List<Func<bool>> checkList = new()
         {
             checkTiledHitBoxes,
+            AddAllLevelsToBuildSettings,
             RecordLevelContents,
             UpdateLevelInfo,
         };
@@ -380,6 +381,40 @@ public class CustomMenu
                 );
         }
         return changedCount > 0;
+    }
+
+    [MenuItem("SG7/Build/Pre-Build/Ensure Levels are in Build Settings")]
+    public static bool AddAllLevelsToBuildSettings()
+    {
+        LevelManager levelManager = GameObject.FindAnyObjectByType<LevelManager>();
+        List<SceneAsset> sceneAssets = new();
+        sceneAssets.AddRange(levelManager.coreScenes);
+        sceneAssets.AddRange(levelManager.levels.ConvertAll(level => level.scene));
+
+        int prevCount = EditorBuildSettings.scenes.Length;
+        SetEditorBuildSettingsScenes(sceneAssets);
+
+        bool changed = prevCount != EditorBuildSettings.scenes.Length;
+        if (changed)
+        {
+            Debug.Log("Editor Build Settings updated");
+        }
+        return changed;
+    }
+    public static void SetEditorBuildSettingsScenes(List<SceneAsset> sceneAssets)
+    {
+        //2023-09-10: copied from https://docs.unity3d.com/ScriptReference/EditorBuildSettings-scenes.html
+        // Find valid Scene paths and make a list of EditorBuildSettingsScene
+        List<EditorBuildSettingsScene> editorBuildSettingsScenes = new List<EditorBuildSettingsScene>();
+        foreach (SceneAsset sceneAsset in sceneAssets)
+        {
+            string scenePath = AssetDatabase.GetAssetPath(sceneAsset);
+            if (!string.IsNullOrEmpty(scenePath))
+                editorBuildSettingsScenes.Add(new EditorBuildSettingsScene(scenePath, true));
+        }
+
+        // Set the Build Settings window Scene list
+        EditorBuildSettings.scenes = editorBuildSettingsScenes.ToArray();
     }
 
     [MenuItem("SG7/Build/Pre-Build/Record Level Contents")]

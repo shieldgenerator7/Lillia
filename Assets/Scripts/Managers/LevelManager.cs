@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +11,9 @@ public class LevelManager : MonoBehaviour
     private int loadedLevelIndex = -1;
     private bool anyLevelLoaded = false;
 
+#if UNITY_EDITOR
+    public List<SceneAsset> coreScenes;
+#endif
     public List<LevelInfo> levels;
 
     public string LevelId

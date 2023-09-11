@@ -170,6 +170,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadedLevelIndex: -1
+  coreScenes:
+  - {fileID: 102900000, guid: 2cda990e2423bbf4892e6590ba056729, type: 3}
   levels:
   - {fileID: 11400000, guid: 9a99dcd88f837aa4fa30042f8832606b, type: 2}
   - {fileID: 11400000, guid: 5c58c9974f7b52843a6546a31f5e45f6, type: 2}
