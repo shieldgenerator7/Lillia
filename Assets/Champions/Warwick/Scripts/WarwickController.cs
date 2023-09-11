@@ -30,6 +30,8 @@ public class WarwickController : Resettable
         reset();
     }
 
+    //TODO 2023-09-10: implement this properly
+    bool prevFearing = false;
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -52,22 +54,20 @@ public class WarwickController : Resettable
             state.moveSpeed += attr.moveSpeedIncrease * Time.fixedDeltaTime;
         }
 
+        //Fear
         float fearEndTime = state.lastFearTime + attr.fearDelay + attr.fearDuration;
         bool fearing = fixedTime >= state.lastFearTime + attr.fearDelay
              && fixedTime <= fearEndTime;
         hazard.onTrigger = fearing;
         fearColl2D.enabled = fearing;
-        if (fixedTime > fearEndTime && fixedTime - Time.fixedDeltaTime <= fearEndTime)
+        //when fear ends, do this
+        if (prevFearing && !fearing)
         {
             state.moveSpeed += attr.postFearMoveIncrease;
             hittable.Available = true;
             animator.processState(state, sleepable.Asleep);
         }
-
-        if (hittable.Available == fearing)
-        {
-            hittable.Available = !fearing;
-        }
+        prevFearing = fearing;
     }
 
     private void checkFear()
