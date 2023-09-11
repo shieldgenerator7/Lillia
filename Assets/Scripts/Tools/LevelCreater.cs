@@ -23,8 +23,17 @@ public class LevelCreater : MonoBehaviour
 
         //Create Scene
         //2023-09-10: copied from https://docs.unity3d.com/ScriptReference/SceneManagement.EditorSceneManager.NewScene.html
+        Scene template = SceneManager.GetSceneByName(templateScene.name);
+        bool prevLoaded = template.isLoaded;
+        if (!prevLoaded)
+        {
+            EditorSceneManager.OpenScene(
+                AssetDatabase.GetAssetPath(templateScene),
+                OpenSceneMode.Additive
+            );
+        }
         EditorSceneManager.SaveScene(
-            SceneManager.GetSceneByName(templateScene.name),
+            template,
             sceneAssetPath,
             true
             );
@@ -33,6 +42,10 @@ public class LevelCreater : MonoBehaviour
             OpenSceneMode.Additive
             );
         EditorSceneManager.MoveSceneBefore(newScene, gameObject.scene);
+        if (!prevLoaded)
+        {
+            EditorSceneManager.CloseScene(template, false);
+        }
 
         //Create LevelInfo
         //2023-09-10: copied from https://stackoverflow.com/a/50564793/2336212
