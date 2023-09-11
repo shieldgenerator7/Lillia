@@ -59,6 +59,7 @@ public class LevelCreater : MonoBehaviour
         //Add to LevelManager
         LevelManager levelManager = FindAnyObjectByType<LevelManager>();
         levelManager.levels.Add(levelInfo);
+        levelManager.goToLevel(levelInfo);
         EditorUtility.SetDirty(levelManager);
 
         //

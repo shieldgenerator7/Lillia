@@ -22,6 +22,13 @@ public class LevelManager : MonoBehaviour
     public string getLevelId(int index)
         => levels[index].id;
 
+#if UNITY_EDITOR
+    public void goToLevel(LevelInfo levelInfo)
+    {
+        loadedLevelIndex = levels.IndexOf(levelInfo);
+    }
+#endif
+
     public void loadLevel(int index = 0)
     {
         if (anyLevelLoaded)
@@ -58,6 +65,7 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         SceneManager.sceneLoaded += onSceneLoaded;
+#if UNITY_EDITOR
         if (loadedLevelIndex < 0)
         {
             loadedLevelIndex = 0;
@@ -71,6 +79,9 @@ public class LevelManager : MonoBehaviour
             anyLevelLoaded = true;
             onLevelLoaded?.Invoke(levels[loadedLevelIndex]);
         }
+#else
+        loadLevel(0);
+#endif
     }
 
     void onSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
