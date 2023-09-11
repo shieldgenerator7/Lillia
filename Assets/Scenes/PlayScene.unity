@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04bb8ba5bb85c5949ade06bba3a800f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadedLevelIndex: 3
+  loadedLevelIndex: 4
   coreScenes:
   - {fileID: 102900000, guid: 2cda990e2423bbf4892e6590ba056729, type: 3}
   levels:

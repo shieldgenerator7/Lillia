@@ -16,10 +16,13 @@ public sealed class Hittable : Resettable
 
     public float lastHitTime { get; private set; }
 
+    public bool active { get; set; } = true;
+
     public void hit()
     {
         if (!enabled) { return; }
         lastHitTime = Time.time;
+        active = false;
         if (hideCollider)
         {
             hideCollider.enabled = false;
@@ -37,6 +40,7 @@ public sealed class Hittable : Resettable
     public override void reset()
     {
         lastHitTime = -1;
+        active = true;
         if (hideCollider)
         {
             hideCollider.enabled = true;
