@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04bb8ba5bb85c5949ade06bba3a800f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadedLevelIndex: 4
+  loadedLevelIndex: 6
   coreScenes:
   - {fileID: 102900000, guid: 2cda990e2423bbf4892e6590ba056729, type: 3}
   levels:
@@ -179,6 +179,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 14859757f3323c24fb6aa7c02e7b3ace, type: 2}
   - {fileID: 11400000, guid: d42e136735d1fdc4db2354c0b981c6cc, type: 2}
   - {fileID: 11400000, guid: 1029976f27d8c664b8dcdaa18d385a4a, type: 2}
+  - {fileID: 11400000, guid: 7f494d18d12a1cf4cbeb6cad4f70383a, type: 2}
 --- !u!114 &56600664
 MonoBehaviour:
   m_ObjectHideFlags: 0
