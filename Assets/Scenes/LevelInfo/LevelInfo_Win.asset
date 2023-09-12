@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: LevelInfo_Win
   m_EditorClassIdentifier: 
   levelName: Level_Win
-  scene: {fileID: 102900000, guid: 63882b4f2b10e5b45be613d230c7f2bf, type: 3}
-  sceneName: Level_Win
   id: Win
+  scene: {fileID: 102900000, guid: 63882b4f2b10e5b45be613d230c7f2bf, type: 3}
   startPos: {x: -0.18, y: -1.8908, z: 0}
-  collectibleCount: 4
   bloomingBlows: 1
   watchOutEepJump: 1
   watchOutEepSlam: 1
   swirlseed: 1
   liltingLullaby: 1
+  sceneName: Level_Win
+  collectibleCount: 4

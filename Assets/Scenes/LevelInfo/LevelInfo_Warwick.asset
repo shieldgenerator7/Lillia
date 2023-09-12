@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: LevelInfo_Warwick
   m_EditorClassIdentifier: 
   levelName: Level_Warwick
-  scene: {fileID: 102900000, guid: d0c1d019817fc2348aeca4158f989c90, type: 3}
-  sceneName: Level_Warwick
   id: Warwick
+  scene: {fileID: 102900000, guid: d0c1d019817fc2348aeca4158f989c90, type: 3}
   startPos: {x: -0.18, y: -1.8908, z: 0}
-  collectibleCount: 1
   bloomingBlows: 1
   watchOutEepJump: 1
   watchOutEepSlam: 1
   swirlseed: 1
   liltingLullaby: 1
+  sceneName: Level_Warwick
+  collectibleCount: 1
