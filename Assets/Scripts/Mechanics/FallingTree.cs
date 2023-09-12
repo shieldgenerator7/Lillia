@@ -88,11 +88,9 @@ public class FallingTree : Resettable
     public override void recordInitialState()
     {
         startAngle = trunk.eulerAngles.z;
-        int i = 10;//loop protection
-        while (i >= 0 && Mathf.Abs(endAngle - startAngle) > 180)
+        if (Mathf.Abs(endAngle - startAngle) > 180)
         {
             startAngle += 360 * Mathf.Sign(endAngle - startAngle);
-            i--;
         }
     }
     public override void reset()
