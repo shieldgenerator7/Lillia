@@ -7,6 +7,7 @@ public class SwirlSeedController : Resettable
 
     public Transform attachPoint;
     public Rigidbody2D parentRB2D;
+    public Collider2D solidColl2D;
 
     public PlayerAttributes playerAttributes;
 
@@ -63,6 +64,7 @@ public class SwirlSeedController : Resettable
             rb2d.angularVelocity = 0;
             transform.rotation = Quaternion.identity;
             rb2d.isKinematic = true;
+            solidColl2D.enabled = false;
         }
         else
         {
@@ -75,6 +77,7 @@ public class SwirlSeedController : Resettable
             }
             transform.parent = null;
             rb2d.isKinematic = false;
+            solidColl2D.enabled = true;
         }
         onAttachedChanged?.Invoke(attach);
     }
@@ -108,8 +111,8 @@ public class SwirlSeedController : Resettable
                 //If hit something that would stop it,
                 if (Mathf.Sign(collision.contacts[0].point.x - transform.position.x) == Mathf.Sign(state.velX))
                 {
-                    //Make it stop
-                    state.phase = SwirlSeedState.Phase.STOPPED;
+                    //Make it stop, teleport back to player
+                    attach(true);
                 }
                 break;
             case SwirlSeedState.Phase.STOPPED: break;

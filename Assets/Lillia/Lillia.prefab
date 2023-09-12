@@ -506,6 +506,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attachPoint: {fileID: 309624395026603054}
   parentRB2D: {fileID: 1719893899150862393}
+  solidColl2D: {fileID: 763382351667375274}
   playerAttributes: {fileID: 11400000, guid: 61fecb23b0858ef4ba8ef93990c75fff, type: 2}
 --- !u!58 &1774306924153607761
 CircleCollider2D:
