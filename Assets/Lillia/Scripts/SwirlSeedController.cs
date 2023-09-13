@@ -93,6 +93,11 @@ public class SwirlSeedController : Resettable
         }
     }
 
+    bool hitWall(Collision2D collision)
+    {
+        return Mathf.Sign(collision.contacts[0].point.x - transform.position.x) == Mathf.Sign(state.velX);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (state.phase == SwirlSeedState.Phase.ATTACHED) { return; }
@@ -106,10 +111,16 @@ public class SwirlSeedController : Resettable
                     //Make it roll
                     state.phase = SwirlSeedState.Phase.ROLLING;
                 }
+                //If it hits wall,
+                if (hitWall(collision))
+                {
+                    //return
+                    attach(true);
+                }
                 break;
             case SwirlSeedState.Phase.ROLLING:
                 //If hit something that would stop it,
-                if (Mathf.Sign(collision.contacts[0].point.x - transform.position.x) == Mathf.Sign(state.velX))
+                if (hitWall(collision))
                 {
                     //Make it stop, teleport back to player
                     attach(true);
