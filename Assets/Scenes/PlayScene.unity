@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    runStats: []
+    runEntries: []
 --- !u!114 &56600668
 MonoBehaviour:
   m_ObjectHideFlags: 0
