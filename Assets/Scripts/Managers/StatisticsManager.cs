@@ -22,7 +22,6 @@ public class StatisticsManager : MonoBehaviour
     {
         this.levelInfo = levelInfo;
         currentRun = new RunStats();
-        currentRun.levelId = levelInfo.id;
         _updateBestRun();
     }
 
@@ -31,7 +30,8 @@ public class StatisticsManager : MonoBehaviour
     public void finishRun()
     {
         Debug.Log($"Adding run: time: {currentRun.duration}");
-        if (stats.runStats.Contains(currentRun))
+        List<RunStats> runList = stats.getLevelRuns(levelInfo.id);
+        if (runList.Contains(currentRun))
         {
             Debug.LogError($"Trying to add run a 2nd time!: duration: {currentRun.duration}");
             return;
@@ -41,7 +41,7 @@ public class StatisticsManager : MonoBehaviour
             Debug.LogError($"Trying to add invalid run!: duration: {currentRun.duration}");
             return;
         }
-        stats.runStats.Add(currentRun);
+        runList.Add(currentRun);
         _updateBestRun();
     }
 
@@ -52,7 +52,7 @@ public class StatisticsManager : MonoBehaviour
 
     private void _updateBestRun()
     {
-        List<RunStats> runs = stats.runStats.FindAll(run => run.levelId == currentRun.levelId).ToList();
+        List<RunStats> runs = stats.getLevelRuns(levelInfo.id);
         if (runs.Count > 0)
         {
             fastRun = runs.OrderBy(run => run.duration).First();

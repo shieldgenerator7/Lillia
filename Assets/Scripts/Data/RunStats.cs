@@ -3,8 +3,6 @@ using System;
 [Serializable]
 public struct RunStats
 {
-    public string levelId;
-    //
     public float duration;
     public int dreamCount;
     public int jumpCount;
