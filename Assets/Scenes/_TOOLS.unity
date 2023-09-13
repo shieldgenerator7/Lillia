@@ -244,9 +244,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefix: Lvl
   levelName: Swamp
-  number: 1
+  number: 2
   delimiter: _
-  templateScene: {fileID: 102900000, guid: d0c1d019817fc2348aeca4158f989c90, type: 3}
+  templateLevel: {fileID: 11400000, guid: 7f494d18d12a1cf4cbeb6cad4f70383a, type: 2}
 --- !u!4 &792799770
 Transform:
   m_ObjectHideFlags: 0
