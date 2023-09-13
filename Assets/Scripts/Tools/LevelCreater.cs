@@ -11,7 +11,7 @@ public class LevelCreater : MonoBehaviour
     public int number = 1;
     public string delimiter = "_";
 
-    public SceneAsset templateScene;
+    public LevelInfo templateLevel;
 
     public void CreateLevel()
     {
@@ -21,12 +21,12 @@ public class LevelCreater : MonoBehaviour
 
         //Create Scene
         //2023-09-10: copied from https://docs.unity3d.com/ScriptReference/SceneManagement.EditorSceneManager.NewScene.html
-        Scene template = SceneManager.GetSceneByName(templateScene.name);
+        Scene template = SceneManager.GetSceneByName(templateLevel.scene.name);
         bool prevLoaded = template.isLoaded;
         if (!prevLoaded)
         {
             EditorSceneManager.OpenScene(
-                AssetDatabase.GetAssetPath(templateScene),
+                AssetDatabase.GetAssetPath(templateLevel.scene),
                 OpenSceneMode.Additive
             );
         }
@@ -53,6 +53,7 @@ public class LevelCreater : MonoBehaviour
         levelInfo.scene = AssetDatabase.LoadAssetAtPath<SceneAsset>(sceneAssetPath);
         levelInfo.sceneName = levelInfo.scene.name;
         levelInfo.id = $"{levelName}{number}";
+        levelInfo.startPos = templateLevel.startPos;
 
         //Add to LevelManager
         LevelManager levelManager = FindAnyObjectByType<LevelManager>();
