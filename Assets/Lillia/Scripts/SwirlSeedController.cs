@@ -141,16 +141,6 @@ public class SwirlSeedController : Resettable
             onHitSomething?.Invoke(hittable);
             return;
         }
-        PlayerController playerController = collision.GetComponent<PlayerController>();
-        if (playerController)
-        {
-            //auto-collect, but only if its hit the ground already
-            if (state.phase != SwirlSeedState.Phase.FLYING)
-            {
-                attach(true);
-            }
-            return;
-        }
         BloomingBlows bloomingBlows = collision.GetComponent<BloomingBlows>();
         if (bloomingBlows)
         {
