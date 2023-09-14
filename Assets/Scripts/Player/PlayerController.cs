@@ -94,6 +94,7 @@ public class PlayerController : Resettable
                     playerState.usingBloomingBlows = true;
                     playerState.lastBloomingBlowTime = Time.time;
                     playerState.nextBloomingBlowTime = Time.time + playerAttributes.bloomingBlowsCooldown;
+                    playerState.usingWatchOutEep = false;
                     if (!playerState.grounded)
                     {
                         playerState.airBloomingBlowsUsed++;
@@ -144,6 +145,7 @@ public class PlayerController : Resettable
                 playerState.jumpConsumed = true;
                 playerState.falling = false;
                 playerState.lastJumpTime = Time.time;
+                playerState.usingWatchOutEep = false;
                 if (!grounded && !coyoteTime)
                 {
                     playerState.airJumpsUsed++;
@@ -164,7 +166,7 @@ public class PlayerController : Resettable
             playerState.jumpConsumed = false;
         }
         //Watch Out Eep!
-        if (!playerState.usingWatchOutEep)
+        if (!playerState.usingWatchOutEep && !playerState.grounded)
         {
             if (inputState.movementDirection.y < 0
                 && Mathf.Abs(inputState.movementDirection.y) >= Mathf.Abs(inputState.movementDirection.x))
@@ -175,6 +177,12 @@ public class PlayerController : Resettable
             if (Time.time < playerState.lastSlamTime + playerAttributes.slamDuration)
             {
                 setBufferTime(playerState.lastSlamTime + playerAttributes.slamDuration);
+            }
+        }
+        else{
+            if (playerState.grounded)
+            {
+                playerState.usingWatchOutEep = false;
             }
         }
         //Delegate
@@ -189,7 +197,7 @@ public class PlayerController : Resettable
     ///TODO: move to some other script, perhaps the environment state updater one
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.contacts.Length > 0 && collision.contacts[0].point.y < bottom.position.y
+        if (collision.contacts.Length > 0 && collision.contacts[0].point.y <= bottom.position.y
             && collision.collider.bounds.max.y <= bottom.position.y)
         {
             playerState.grounded = true;
@@ -200,7 +208,7 @@ public class PlayerController : Resettable
             if (playerState.usingWatchOutEep)
             {
                 playerState.usingWatchOutEep = false;
-                playerState.slamPos = transform.position;
+                playerState.slamPos = bottom.position;
                 playerState.lastSlamTime = Time.time;
                 setBufferTime(playerState.lastSlamTime + playerAttributes.slamDuration);
             }
