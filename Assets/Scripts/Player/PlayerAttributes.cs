@@ -26,6 +26,7 @@ public class PlayerAttributes : ScriptableObject
     public float jumpForcePerStack;
     [Header("Swirlseed")]
     public Vector2 swirlSeedLaunchVector;
+    public float swirlSeedRollSpeed = 5;
     public float swirlSeedPickupRange = 2;
     [Header("Wall Bounce")]
     public float wallBounceSpeedUpFactor;

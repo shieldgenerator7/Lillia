@@ -28,6 +28,7 @@ MonoBehaviour:
   momentumInstantSnapThreshold: 2
   jumpForcePerStack: 0.75
   swirlSeedLaunchVector: {x: 2, y: 4}
+  swirlSeedRollSpeed: 5
   swirlSeedPickupRange: 2
   wallBounceSpeedUpFactor: 1.05
   wallBounceJumpFactor: 0.75
