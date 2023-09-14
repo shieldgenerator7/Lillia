@@ -50,11 +50,11 @@ public class PlayerManager : Resettable
         playerController.onPlayerStateChanged += playerMover.updatePlayerState;
         playerController.onPlayerStateChanged += playerAnimator.UpdateAnimator;
         playerController.onPlayerStateChanged += flowerAnimator.updateFlowers;
+        bloomingBlows.onHitSomething += playerController.ProcessHittable;
         playerController.onPlayerStateChanged += watchOutEep.updatePlayerState;
         watchOutEep.OnHitSomething += playerController.ProcessHittable;
         playerInput.onInputStateChanged += swirlSeedController.processInputState;
         playerController.onPlayerStateChanged += swirlSeedController.updatePlayerState;
-        bloomingBlows.onHitSomething += playerController.ProcessHittable;
         swirlSeedController.onHitSomething += playerController.ProcessHittable;
         swirlSeedController.onAttachedChanged += (attach) =>
         {
