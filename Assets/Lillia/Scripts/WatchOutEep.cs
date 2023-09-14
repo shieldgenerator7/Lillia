@@ -6,8 +6,8 @@ using UnityEngine;
 public class WatchOutEep : Resettable
 {
     public PlayerAttributes playerAttributes;
-    public GameObject goDive;
-    public GameObject goSlam;
+    public Trigger goDive;
+    public Trigger goSlam;
 
     public enum Phase
     {
@@ -23,6 +23,13 @@ public class WatchOutEep : Resettable
     {
         this.phase = phase;
         updateSprite();
+    }
+
+    private void Start()
+    {
+        goDive.OnTriggered += OnTriggerEnter2D;
+        goSlam.OnTriggered += OnTriggerEnter2D;
+        setPhase(Phase.INACTIVE);
     }
 
     private void Update()
@@ -41,7 +48,7 @@ public class WatchOutEep : Resettable
     private void updateSprite()
     {
         goDive.gameObject.SetActive(phase == Phase.DIVE);
-        goSlam.SetActive(phase == Phase.SLAM);
+        goSlam.gameObject.SetActive(phase == Phase.SLAM);
     }
 
     public void updatePlayerState(PlayerState playerState)
@@ -86,7 +93,6 @@ public class WatchOutEep : Resettable
 
     public override void recordInitialState()
     {
-        setPhase(Phase.INACTIVE);
     }
 
     public override void reset()

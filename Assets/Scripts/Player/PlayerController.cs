@@ -169,7 +169,7 @@ public class PlayerController : Resettable
         if (!playerState.usingWatchOutEep && !playerState.grounded)
         {
             if (inputState.movementDirection.y < 0
-                && Mathf.Abs(inputState.movementDirection.y) >= Mathf.Abs(inputState.movementDirection.x))
+                && Mathf.Abs(inputState.movementDirection.x) <= 0.1f)
             {
                 playerState.usingWatchOutEep = true;
                 playerState.jumping = false;
