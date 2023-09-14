@@ -72,6 +72,11 @@ public class PlayerMover : MonoBehaviour
                 }
             }
         }
+        else if (playerState.usingWatchOutEep)
+        {
+            vel.x = 0;
+            vel.y = -attributes.slamFallSpeed;
+        }
         //(Elective) Falling
         else if (!playerState.jumping && !playerState.grounded && !playerState.wallBouncing)
         {

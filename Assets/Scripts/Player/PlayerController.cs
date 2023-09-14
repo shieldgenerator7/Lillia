@@ -102,7 +102,7 @@ public class PlayerController : Resettable
                 else
                 {
                     //buffer the input until it comes off cooldown
-                    playerState.nextBufferCheckTime = playerState.nextBloomingBlowTime;
+                    setBufferTime(playerState.nextBloomingBlowTime);
                 }
             }
         }
@@ -163,10 +163,28 @@ public class PlayerController : Resettable
         {
             playerState.jumpConsumed = false;
         }
+        //Watch Out Eep!
+        if (!playerState.usingWatchOutEep)
+        {
+            if (inputState.movementDirection.y < 0
+                && Mathf.Abs(inputState.movementDirection.y) >= Mathf.Abs(inputState.movementDirection.x))
+            {
+                playerState.usingWatchOutEep = true;
+                playerState.jumping = false;
+            }
+            if (Time.time < playerState.lastSlamTime + playerAttributes.slamDuration)
+            {
+                setBufferTime(playerState.lastSlamTime + playerAttributes.slamDuration);
+            }
+        }
         //Delegate
         onPlayerStateChanged?.Invoke(playerState);
     }
 
+    private void setBufferTime(float time)
+    {
+        playerState.nextBufferCheckTime = Mathf.Min(time, playerState.nextBufferCheckTime);
+    }
 
     ///TODO: move to some other script, perhaps the environment state updater one
     private void OnCollisionEnter2D(Collision2D collision)
@@ -178,6 +196,15 @@ public class PlayerController : Resettable
             playerState.airJumpsUsed = 0;
             playerState.lastGroundTime = Time.time;
             grounds.Add(collision.gameObject);
+            //
+            if (playerState.usingWatchOutEep)
+            {
+                playerState.usingWatchOutEep = false;
+                playerState.slamPos = transform.position;
+                playerState.lastSlamTime = Time.time;
+                setBufferTime(playerState.lastSlamTime + playerAttributes.slamDuration);
+            }
+            //
             onPlayerStateChanged?.Invoke(playerState);
         }
     }

@@ -69,6 +69,10 @@ public struct PlayerState
     public float nextBloomingBlowTime;
     public bool usedBloomingBlows;
     //
+    public bool usingWatchOutEep;
+    public Vector2 slamPos;
+    public float lastSlamTime;
+    //
     public float nextBufferCheckTime;
 
     public override string ToString()
