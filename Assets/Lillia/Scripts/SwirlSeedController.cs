@@ -110,12 +110,6 @@ public class SwirlSeedController : Resettable
                     //Make it roll
                     state.phase = SwirlSeedState.Phase.ROLLING;
                 }
-                //If it hits wall,
-                if (hitWall(collision))
-                {
-                    //return
-                    attach(true);
-                }
                 break;
             case SwirlSeedState.Phase.ROLLING:
                 //If hit something that would stop it,
