@@ -134,8 +134,16 @@ public class SwirlSeedController : Resettable
             onHitSomething?.Invoke(hittable);
             return;
         }
+        //Blooming Blows collects Swirlseed
         BloomingBlows bloomingBlows = collision.GetComponent<BloomingBlows>();
         if (bloomingBlows)
+        {
+            attach(true);
+            return;
+        }
+        //Watch Out Eep collects Swirlseed
+        WatchOutEep watchOutEep = collision.transform.parent.GetComponent<WatchOutEep>();
+        if (watchOutEep)
         {
             attach(true);
             return;
