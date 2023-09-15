@@ -27,6 +27,7 @@ MonoBehaviour:
   momentumChangeFactor: 2
   momentumInstantSnapThreshold: 2
   jumpForcePerStack: 0.75
+  maxAirJumpSpeedX: 1.5
   slamFallSpeed: 10
   slamDuration: 0.15
   swirlSeedLaunchVector: {x: 1, y: 6}

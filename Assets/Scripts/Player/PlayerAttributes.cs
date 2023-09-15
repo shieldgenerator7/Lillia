@@ -24,6 +24,7 @@ public class PlayerAttributes : ScriptableObject
     public float momentumChangeFactor;
     public float momentumInstantSnapThreshold;
     public float jumpForcePerStack;
+    public float maxAirJumpSpeedX;
     public float slamFallSpeed;
     public float slamDuration;
     [Header("Swirlseed")]

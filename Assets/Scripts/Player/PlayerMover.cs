@@ -52,13 +52,20 @@ public class PlayerMover : MonoBehaviour
             }
         }
         //Jumping
-        if (playerState.jumping && Time.time == playerState.lastJumpTime)
+        if (playerState.jumping)
         {
+            if (Time.time == playerState.lastJumpTime)
+            {
             vel.y = attributes.jumpForce;
             if (playerState.airJumpsUsed > 0 && !playerState.grounded)
             {
                 vel.y += playerState.stacks * attributes.jumpForcePerStack;
                 vel.x = 0;
+            }
+            }
+            else if (playerState.airJumpsUsed > 0 && playerState.jumpConsumed)
+            {
+                vel.x = Mathf.Clamp(vel.x, -attributes.maxAirJumpSpeedX, attributes.maxAirJumpSpeedX);
             }
         }
         //Air Blooming Blows
