@@ -232,34 +232,6 @@ public class PlayerController : Resettable
         }
     }
 
-    private bool checkGrounded()
-    {
-        RaycastHit2D[] rch2ds = Physics2D.BoxCastAll(
-            bottom.position,
-            new Vector2(0.5f, 0.1f),
-            0,
-            Vector2.zero
-            );
-        for (int i = 0; i < rch2ds.Length; i++)
-        {
-            RaycastHit2D rch2d = rch2ds[i];
-            Rigidbody2D rb2d = rch2d.rigidbody;
-            if (rb2d)
-            {
-                //cant land on other things that move 
-                //might change in future,
-                //right now, its an easy way to prevent
-                //player detecting themselves as a ground to stand on
-                continue;
-            }
-            if (rch2d.normal.y > 0 && Mathf.Abs(rch2d.normal.y) > Mathf.Abs(rch2d.normal.x))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public void ResetCooldowns()
     {
         //Reset blooming blow cooldown
