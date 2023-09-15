@@ -81,7 +81,7 @@ public class PlayerMover : MonoBehaviour
         }
         else if (playerState.usingWatchOutEep)
         {
-            vel.x = 0;
+            vel.x = Mathf.Clamp(vel.x, -attributes.maxAirJumpSpeedX, attributes.maxAirJumpSpeedX);
             vel.y = -attributes.slamFallSpeed;
         }
         //(Elective) Falling
