@@ -158,6 +158,13 @@ public class PlayerController : Resettable
                 }
             }
         }
+        if (!playerState.jumpConsumed && playerState.falling
+            && playerState.airJumpsUsed > 0 && !playerState.usingBloomingBlows
+            )
+        {
+            playerState.usingWatchOutEep = true;
+            playerState.jumping = false;
+        }
         if (!inputState.jump)
         {
             playerState.jumpConsumed = false;
