@@ -122,6 +122,7 @@ public class PlayerController : Resettable
             playerState.lookDirection.x = 1;
         }
         //Jumping
+        bool prevJumpConsumed = playerState.jumpConsumed;
         if (playerState.jumping != inputState.jump)
         {
             bool grounded = playerState.grounded;
@@ -158,16 +159,16 @@ public class PlayerController : Resettable
                 }
             }
         }
-        if (!playerState.jumpConsumed && playerState.falling
+        if (!inputState.jump)
+        {
+            playerState.jumpConsumed = false;
+        }
+        if (prevJumpConsumed && !playerState.jumpConsumed
             && playerState.airJumpsUsed > 0 && !playerState.usingBloomingBlows
             )
         {
             playerState.usingWatchOutEep = true;
             playerState.jumping = false;
-        }
-        if (!inputState.jump)
-        {
-            playerState.jumpConsumed = false;
         }
         //Watch Out Eep!
         if (!playerState.usingWatchOutEep && !playerState.grounded)
@@ -179,14 +180,14 @@ public class PlayerController : Resettable
                 playerState.jumping = false;
             }
         }
-        if (playerState.usingSlam && Time.time < playerState.lastSlamTime + playerAttributes.slamDuration)
+        if (playerState.usingSlam && Time.time <= playerState.lastSlamTime + playerAttributes.slamDuration)
         {
             setBufferTime(playerState.lastSlamTime + playerAttributes.slamDuration);
         }
         else
         {
             playerState.usingSlam = false;
-        }//
+        }
         //Delegate
         onPlayerStateChanged?.Invoke(playerState);
     }
