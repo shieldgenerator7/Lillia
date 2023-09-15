@@ -124,8 +124,6 @@ public class PlayerController : Resettable
         //Jumping
         if (playerState.jumping != inputState.jump)
         {
-            //Check grounded state just to be safe
-            playerState.grounded = checkGrounded();
             bool grounded = playerState.grounded;
             if (grounded)
             {
@@ -150,7 +148,6 @@ public class PlayerController : Resettable
                 {
                     playerState.airJumpsUsed++;
                 }
-                //playerState.grounded = true;
             }
             else if (playerState.jumping && !inputState.jump)
             {
@@ -177,12 +174,6 @@ public class PlayerController : Resettable
             if (Time.time < playerState.lastSlamTime + playerAttributes.slamDuration)
             {
                 setBufferTime(playerState.lastSlamTime + playerAttributes.slamDuration);
-            }
-        }
-        else{
-            if (playerState.grounded)
-            {
-                playerState.usingWatchOutEep = false;
             }
         }
         //Delegate
@@ -217,7 +208,7 @@ public class PlayerController : Resettable
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.contacts.Length == 0 || collision.contacts[0].point.y < bottom.position.y)
+        if (collision.contacts.Length == 0 || Utility.HitFloor(collision))
         {
             grounds.Remove(collision.gameObject);
             if (grounds.Count == 0)
@@ -249,7 +240,7 @@ public class PlayerController : Resettable
                 //player detecting themselves as a ground to stand on
                 continue;
             }
-            if (rch2d.point.y < bottom.position.y)
+            if (rch2d.normal.y > 0 && Mathf.Abs(rch2d.normal.y) > Mathf.Abs(rch2d.normal.x))
             {
                 return true;
             }
@@ -317,7 +308,10 @@ public class PlayerController : Resettable
     public override void reset()
     {
         stop();
-        playerState = new PlayerState();
+        playerState = new()
+        {
+            grounded = true,
+        };
         transform.position = origPos;
         ResetCooldowns();
         onPlayerStateChanged?.Invoke(playerState);
