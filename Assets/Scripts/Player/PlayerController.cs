@@ -171,11 +171,15 @@ public class PlayerController : Resettable
                 playerState.usingWatchOutEep = true;
                 playerState.jumping = false;
             }
-            if (Time.time < playerState.lastSlamTime + playerAttributes.slamDuration)
-            {
-                setBufferTime(playerState.lastSlamTime + playerAttributes.slamDuration);
-            }
         }
+        if (playerState.usingSlam && Time.time < playerState.lastSlamTime + playerAttributes.slamDuration)
+        {
+            setBufferTime(playerState.lastSlamTime + playerAttributes.slamDuration);
+        }
+        else
+        {
+            playerState.usingSlam = false;
+        }//
         //Delegate
         onPlayerStateChanged?.Invoke(playerState);
     }
@@ -199,6 +203,7 @@ public class PlayerController : Resettable
             {
                 playerState.usingWatchOutEep = false;
                 playerState.slamPos = bottom.position;
+                playerState.usingSlam = true;
                 playerState.lastSlamTime = Time.time;
                 setBufferTime(playerState.lastSlamTime + playerAttributes.slamDuration);
             }

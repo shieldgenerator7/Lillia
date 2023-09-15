@@ -68,7 +68,7 @@ public class WatchOutEep : Resettable
                 setPhase(Phase.SLAM);
             }
         }
-        if (Time.time >= playerState.lastSlamTime
+        if (playerState.usingSlam
             && Time.time <= playerAttributes.slamDuration + playerState.lastSlamTime
             )
         {

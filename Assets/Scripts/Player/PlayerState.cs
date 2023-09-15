@@ -72,6 +72,7 @@ public struct PlayerState
     public bool usingWatchOutEep;
     public Vector2 slamPos;
     public float lastSlamTime;
+    public bool usingSlam;
     //
     public float nextBufferCheckTime;
 
