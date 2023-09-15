@@ -29,7 +29,7 @@ MonoBehaviour:
   jumpForcePerStack: 0.75
   slamFallSpeed: 10
   slamDuration: 0.15
-  swirlSeedLaunchVector: {x: 2, y: 4}
+  swirlSeedLaunchVector: {x: 1, y: 6}
   swirlSeedRollSpeed: 5
   swirlSeedPickupRange: 2
   wallBounceSpeedUpFactor: 1.05
