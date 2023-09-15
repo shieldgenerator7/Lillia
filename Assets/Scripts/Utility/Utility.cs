@@ -34,6 +34,24 @@ public static class Utility
     }
     #endregion
 
+    public static bool HitWall(Collision2D collision)
+    {
+        Vector2 normal = collision.contacts[0].normal;
+        return Mathf.Abs(normal.x) > Mathf.Abs(normal.y);
+    }
+
+    public static bool HitFloor(Collision2D collision)
+    {
+        Vector2 normal = collision.contacts[0].normal;
+        return normal.y > 0 && Mathf.Abs(normal.y) > Mathf.Abs(normal.x);
+    }
+
+    public static bool HitCeiling(Collision2D collision)
+    {
+        Vector2 normal = collision.contacts[0].normal;
+        return normal.y < 0 && Mathf.Abs(normal.y) > Mathf.Abs(normal.x);
+    }
+
     //2022-07-09: copied from Stonicorn.Utility
     public static Plane raycastPlane = new Plane(Vector3.forward, Vector3.zero);
     public static Vector2 ScreenToWorldPoint(Vector3 screenPoint)

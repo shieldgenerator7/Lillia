@@ -92,11 +92,6 @@ public class SwirlSeedController : Resettable
         }
     }
 
-    bool hitWall(Collision2D collision)
-    {
-        return Mathf.Sign(collision.contacts[0].point.x - transform.position.x) == Mathf.Sign(state.velX);
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (state.phase == SwirlSeedState.Phase.ATTACHED) { return; }
@@ -105,7 +100,7 @@ public class SwirlSeedController : Resettable
             case SwirlSeedState.Phase.ATTACHED: break;
             case SwirlSeedState.Phase.FLYING:
                 //If it lands,
-                if (collision.contacts[0].point.y < transform.position.y)
+                if (Utility.HitFloor(collision))
                 {
                     //Make it roll
                     state.phase = SwirlSeedState.Phase.ROLLING;
@@ -113,7 +108,7 @@ public class SwirlSeedController : Resettable
                 break;
             case SwirlSeedState.Phase.ROLLING:
                 //If hit something that would stop it,
-                if (hitWall(collision))
+                if (Utility.HitWall(collision))
                 {
                     //Make it stop, teleport back to player
                     attach(true);
