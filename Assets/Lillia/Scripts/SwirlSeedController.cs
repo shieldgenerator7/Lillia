@@ -137,7 +137,7 @@ public class SwirlSeedController : Resettable
             return;
         }
         //Watch Out Eep collects Swirlseed
-        WatchOutEep watchOutEep = collision.transform.parent.GetComponent<WatchOutEep>();
+        WatchOutEep watchOutEep = collision.transform.parent?.GetComponent<WatchOutEep>();
         if (watchOutEep)
         {
             attach(true);
