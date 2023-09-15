@@ -171,15 +171,6 @@ public class PlayerController : Resettable
             playerState.jumping = false;
         }
         //Watch Out Eep!
-        if (!playerState.usingWatchOutEep && !playerState.grounded)
-        {
-            if (inputState.movementDirection.y < 0
-                && Mathf.Abs(inputState.movementDirection.x) <= 0.1f)
-            {
-                playerState.usingWatchOutEep = true;
-                playerState.jumping = false;
-            }
-        }
         if (playerState.usingSlam && Time.time <= playerState.lastSlamTime + playerAttributes.slamDuration)
         {
             setBufferTime(playerState.lastSlamTime + playerAttributes.slamDuration);
