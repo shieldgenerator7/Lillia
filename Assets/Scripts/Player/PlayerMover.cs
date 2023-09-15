@@ -56,12 +56,12 @@ public class PlayerMover : MonoBehaviour
         {
             if (Time.time == playerState.lastJumpTime)
             {
-            vel.y = attributes.jumpForce;
-            if (playerState.airJumpsUsed > 0 && !playerState.grounded)
-            {
-                vel.y += playerState.stacks * attributes.jumpForcePerStack;
-                vel.x = 0;
-            }
+                vel.y = attributes.jumpForce;
+                if (playerState.airJumpsUsed > 0 && !playerState.grounded)
+                {
+                    vel.y += playerState.stacks * attributes.jumpForcePerStack;
+                    vel.x = 0;
+                }
             }
             else if (playerState.airJumpsUsed > 0 && playerState.jumpConsumed)
             {
