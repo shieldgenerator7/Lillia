@@ -17,6 +17,8 @@ public class WatchOutEep : Resettable
     }
     public Phase phase;
 
+    public bool Diving => phase == Phase.DIVE;
+
     private PlayerState playerState;
 
     public void setPhase(Phase phase)
