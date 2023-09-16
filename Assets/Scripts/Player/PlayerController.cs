@@ -41,6 +41,12 @@ public class PlayerController : Resettable
             playerState.usingBloomingBlows = false;
             playerStateChanged = true;
         }
+        //Slam
+        if (playerState.usingSlam && fixedTime > playerState.lastSlamTime + playerAttributes.slamDuration)
+        {
+            playerState.usingSlam = false;
+            playerStateChanged = true;
+        }
         //Falling
         if (rb2d.velocity.y <= 0 && playerState.jumping)
         {
@@ -180,14 +186,6 @@ public class PlayerController : Resettable
                 playerState.jumping = false;
             }
         }
-        if (playerState.usingSlam && Time.time <= playerState.lastSlamTime + playerAttributes.slamDuration)
-        {
-            setBufferTime(playerState.lastSlamTime + playerAttributes.slamDuration);
-        }
-        else
-        {
-            playerState.usingSlam = false;
-        }
         //Delegate
         onPlayerStateChanged?.Invoke(playerState);
     }
@@ -213,7 +211,6 @@ public class PlayerController : Resettable
                 playerState.slamPos = bottom.position;
                 playerState.usingSlam = true;
                 playerState.lastSlamTime = Time.time;
-                setBufferTime(playerState.lastSlamTime + playerAttributes.slamDuration);
             }
             //
             onPlayerStateChanged?.Invoke(playerState);
