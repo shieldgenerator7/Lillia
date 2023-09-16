@@ -30,6 +30,7 @@ public class StatisticsManager : MonoBehaviour
     public void finishRun()
     {
         Debug.Log($"Adding run: time: {currentRun.duration}");
+        currentRun.finished = true;
         List<RunStats> runList = stats.getLevelRuns(levelInfo.id);
         if (runList.Contains(currentRun))
         {
@@ -52,7 +53,8 @@ public class StatisticsManager : MonoBehaviour
 
     private void _updateBestRun()
     {
-        List<RunStats> runs = stats.getLevelRuns(levelInfo.id);
+        List<RunStats> runs = stats.getLevelRuns(levelInfo.id)
+            .FindAll(run => run.finished);
         if (runs.Count > 0)
         {
             fastRun = runs.OrderBy(run => run.duration).First();
@@ -86,6 +88,9 @@ public class StatisticsManager : MonoBehaviour
 
     public void recordCollectable()
     {
-        currentRun.dreamCount++;
+        if (!currentRun.finished)
+        {
+            currentRun.dreamCount++;
+        }
     }
 }

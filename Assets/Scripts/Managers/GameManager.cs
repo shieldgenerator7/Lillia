@@ -183,6 +183,11 @@ public class GameManager : MonoBehaviour
     {
         gameTimer.stop();
         statisticsManager.finishRun();
+        levelContents.ForEach(
+            lc => lc.hittables.ForEach(
+                ht => ht.Available = false
+                )
+            );
         timerUI.update(statisticsManager, levelInfo);
         fileManager.save(statisticsManager.stats);
     }
