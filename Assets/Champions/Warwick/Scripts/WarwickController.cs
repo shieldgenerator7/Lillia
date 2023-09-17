@@ -52,6 +52,7 @@ public class WarwickController : Resettable
             vel.y = rb2d.velocity.y;
             rb2d.velocity = vel;
             state.moveSpeed += attr.moveSpeedIncrease * Time.fixedDeltaTime;
+            state.moveSpeed = Mathf.Min(state.moveSpeed, attr.moveSpeedMax);
         }
 
         //Fear
