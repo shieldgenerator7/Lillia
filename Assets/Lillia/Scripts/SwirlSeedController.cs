@@ -94,7 +94,7 @@ public class SwirlSeedController : Resettable
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (state.phase == SwirlSeedState.Phase.ATTACHED) { return; }
+        if (state.phase == SwirlSeedState.Phase.ATTACHED) { return; }        
         switch (state.phase)
         {
             case SwirlSeedState.Phase.ATTACHED: break;
@@ -117,6 +117,14 @@ public class SwirlSeedController : Resettable
             case SwirlSeedState.Phase.STOPPED: break;
             default: throw new UnityException("Unknown state! " + state.phase);
         }
+        Hittable hittable = collision.gameObject.GetComponent<Hittable>();
+        if (hittable)
+        {
+            if (!hittable.collectable)
+            {
+                attach(true);
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -126,6 +134,10 @@ public class SwirlSeedController : Resettable
         Hittable hittable = collision.GetComponent<Hittable>();
         if (hittable)
         {
+            if (!hittable.collectable)
+            {
+                attach(true);
+            }
             onHitSomething?.Invoke(hittable);
             return;
         }
