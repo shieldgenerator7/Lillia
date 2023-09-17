@@ -15,8 +15,8 @@ MonoBehaviour:
   moveSpeedInitial: 5
   moveSpeedIncrease: 1.1
   moveSpeedMax: 11
-  fearDelay: 0.5
-  fearDuration: 0.75
-  onHitMoveIncrease: -3.5
-  postFearMoveIncrease: 3
+  fearDelay: 0.8
+  fearDuration: 0.4
+  onHitMoveIncrease: -4
+  postFearMoveIncrease: 1.4
   howlDuration: 1

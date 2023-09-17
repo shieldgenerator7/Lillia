@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: WarwickSleepAttr
   m_EditorClassIdentifier: 
   stacksRequired: 4
-  stackDecayDelay: 10
-  stackDecayDelayPerStack: 2
+  stackDecayDelay: 4
+  stackDecayDelayPerStack: 7
   drowsyDuration: 2
