@@ -417,7 +417,7 @@ public class CustomMenu
         EditorBuildSettings.scenes = editorBuildSettingsScenes.ToArray();
     }
 
-    [MenuItem("SG7/Build/Pre-Build/Record Level Contents")]
+    [MenuItem("SG7/Build/Pre-Build/Record Level Contents &L")]
     public static bool RecordLevelContents()
     {
         int changedCount = 0;
