@@ -94,7 +94,7 @@ public class SwirlSeedController : Resettable
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (state.phase == SwirlSeedState.Phase.ATTACHED) { return; }        
+        if (state.phase == SwirlSeedState.Phase.ATTACHED) { return; }
         switch (state.phase)
         {
             case SwirlSeedState.Phase.ATTACHED: break;
@@ -123,6 +123,7 @@ public class SwirlSeedController : Resettable
             if (!hittable.collectable)
             {
                 attach(true);
+                onHitSomething?.Invoke(hittable);
             }
         }
     }
@@ -134,11 +135,10 @@ public class SwirlSeedController : Resettable
         Hittable hittable = collision.GetComponent<Hittable>();
         if (hittable)
         {
-            if (!hittable.collectable)
+            if (hittable.collectable)
             {
-                attach(true);
+                onHitSomething?.Invoke(hittable);
             }
-            onHitSomething?.Invoke(hittable);
             return;
         }
         //Blooming Blows collects Swirlseed
