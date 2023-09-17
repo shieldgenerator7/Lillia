@@ -94,10 +94,12 @@ public class WarwickController : Resettable
 
     private void updateSleepStacks(int stacks)
     {
+        //add extra stack if asleep
         if (sleepable.Asleep)
         {
             stacks++;
         }
+        //display stacks
         flowerAnimator.updateFlowers(stacks);
     }
 
@@ -140,6 +142,7 @@ public class WarwickController : Resettable
     {
         state.phase = WarwickState.Phase.HOWLING;
         state.phaseStartTime = Time.fixedTime;
-        animator.processState(state, sleepable.Asleep);
+        updateSleepStacks(0);
+        checkSleep(SleepState.Phase.AWAKE);
     }
 }

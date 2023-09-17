@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stacksRequired: 4
   stackDecayDelay: 10
-  stackDecayDelayPerStack: 1
-  drowsyDuration: 1
+  stackDecayDelayPerStack: 2
+  drowsyDuration: 2
