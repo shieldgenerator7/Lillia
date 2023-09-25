@@ -63,6 +63,10 @@ public class WatchOutEep : Resettable
                 setPhase(Phase.DIVE);
             }
         }
+        else
+        {
+            setPhase(Phase.INACTIVE);
+        }
         if (playerState.grounded)
         {
             if (phase == Phase.DIVE)
