@@ -97,7 +97,7 @@ public class SwirlSeedController : Resettable
         WatchOutEep watchOutEep = collision.transform.GetComponentInParent<WatchOutEep>();
         if (watchOutEep && !watchOutEep.Diving)
         {
-            throw new NotImplementedException("Need to put this part back in");
+            rb2d.velocityY = playerAttributes.swirlSeedKnockUpSpeed;
             return;
         }
     }

@@ -34,6 +34,7 @@ MonoBehaviour:
   swirlSeedBatVector: {x: 6, y: 1}
   swirlSeedRollSpeed: 5
   swirlSeedRollSpeedFast: 15
+  swirlSeedKnockUpSpeed: 5
   wallBounceSpeedUpFactor: 1.05
   wallBounceJumpFactor: 0.75
   wallBounceDuration: 0.2
