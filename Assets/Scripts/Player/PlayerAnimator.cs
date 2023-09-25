@@ -6,6 +6,7 @@ public class PlayerAnimator : Resettable
 {
     public Animator animator;
     public Transform playerTransform;
+    public SpriteRenderer swirlSeedRenderer;
 
     // Update is called once per frame
     public void UpdateAnimator(PlayerState playerState)
@@ -20,6 +21,8 @@ public class PlayerAnimator : Resettable
         {
             flip(lookDirection > 0);
         }
+        //Swirlseed
+        swirlSeedRenderer.enabled = !playerState.usedSwirlSeed;
     }
 
     void flip(bool right)

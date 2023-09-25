@@ -719,6 +719,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 3259904035858519184}
   playerTransform: {fileID: 8546214906423153129}
+  swirlSeedRenderer: {fileID: 3907252231793254276}
 --- !u!95 &3259904035858519184
 Animator:
   serializedVersion: 7
