@@ -23,6 +23,7 @@ public class PlayerController : Resettable
     public void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        playerState.swirlSeedAvailable = true;
     }
 
     public void FixedUpdate()
@@ -187,17 +188,23 @@ public class PlayerController : Resettable
             }
         }
         //Swirlseed
-        if (!playerState.usedSwirlSeed)
-        {
+        playerState.usingSwirlSeed = false;
             if (inputState.swirlseed)
             {
+        if (!playerState.usedSwirlSeed)
+        {
+                if (playerState.swirlSeedAvailable)
+                {
                 playerState.usingSwirlSeed = true;
                 playerState.usedSwirlSeed = true;
-            }
+                    playerState.lastSwirlSeedTime = Time.time;
+                    playerState.swirlSeedAvailable = false;
+                }
         }
+            }
         else
         {
-            playerState.usingSwirlSeed = false;
+            playerState.usedSwirlSeed = false;
         }
         //Delegate
         onPlayerStateChanged?.Invoke(playerState);
@@ -248,7 +255,7 @@ public class PlayerController : Resettable
         //Reset blooming blow cooldown
         playerState.nextBloomingBlowTime = -1;
         //Swirlseed availability
-        playerState.usedSwirlSeed = false;
+        playerState.swirlSeedAvailable = true;
     }
 
     public void ProcessHittable(Hittable hittable)
@@ -308,6 +315,7 @@ public class PlayerController : Resettable
         playerState = new()
         {
             grounded = true,
+            swirlSeedAvailable = true,
         };
         transform.position = origPos;
         ResetCooldowns();

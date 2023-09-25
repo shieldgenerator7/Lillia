@@ -11,7 +11,7 @@ public class SwirlSeed : MonoBehaviour
 
     public void updatePlayerState(PlayerState playerState)
     {
-        if (playerState.usingSwirlSeed)
+        if (playerState.usingSwirlSeed && playerState.lastSwirlSeedTime == Time.time)
         {
             launch(playerState.lookDirection.x);
         }

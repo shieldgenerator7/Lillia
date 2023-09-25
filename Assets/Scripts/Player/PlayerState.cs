@@ -76,6 +76,8 @@ public struct PlayerState
     //
     public bool usingSwirlSeed;
     public bool usedSwirlSeed;
+    public float lastSwirlSeedTime;
+    public bool swirlSeedAvailable;
     //
     public float nextBufferCheckTime;
 

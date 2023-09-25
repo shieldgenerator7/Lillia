@@ -22,7 +22,7 @@ public class PlayerAnimator : Resettable
             flip(lookDirection > 0);
         }
         //Swirlseed
-        swirlSeedRenderer.enabled = !playerState.usedSwirlSeed;
+        swirlSeedRenderer.enabled = playerState.swirlSeedAvailable;
     }
 
     void flip(bool right)
