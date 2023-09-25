@@ -249,6 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAttributes: {fileID: 11400000, guid: 61fecb23b0858ef4ba8ef93990c75fff, type: 2}
+  rb2d: {fileID: 7217300807321925190}
 --- !u!58 &5012979181146966012
 CircleCollider2D:
   m_ObjectHideFlags: 0

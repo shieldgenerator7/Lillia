@@ -720,11 +720,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hazards: []
   resettables:
-  - {fileID: 5218961431621589658}
   - {fileID: 1518226480}
   - {fileID: 5218961431621589655}
   - {fileID: 5218961431621589656}
-  - {fileID: 5218961431621589657}
+  - {fileID: 5218961431621589658}
   hittables: []
 --- !u!4 &2008366115
 Transform:
@@ -921,17 +920,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67a5092934f86214aafb536d813b5e9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5218961431621589657 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4811940642408707481, guid: bfe4cfff32a86364a9aebed9d9ed3552, type: 3}
-  m_PrefabInstance: {fileID: 5218961431621589654}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac6f9198be7e50e4094aae28c00eb457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &5218961431621589658 stripped
