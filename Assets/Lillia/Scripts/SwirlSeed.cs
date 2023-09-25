@@ -24,7 +24,7 @@ public class SwirlSeed : MonoBehaviour
         Vector2 vel = playerAttributes.swirlSeedLaunchVector;
         vel.x *= Mathf.Sign(dirX);
         rb2d.velocity = vel;
-        swirlSeed.transform.localPosition = Vector2.zero;
+        swirlSeed.transform.position = transform.position;
         SwirlSeedController ssc = swirlSeed.GetComponent<SwirlSeedController>();
         ssc.onHitSomething += (hittable) => onHitSomething?.Invoke(hittable);
     }
