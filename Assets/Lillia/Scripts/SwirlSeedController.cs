@@ -1,18 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SwirlSeedController : Resettable
 {
-
-    public Transform attachPoint;
-    public Rigidbody2D parentRB2D;
-    public Collider2D solidColl2D;
-
     public PlayerAttributes playerAttributes;
 
     private Rigidbody2D rb2d;
-    private Transform parent;
 
     private SwirlSeedState state = new();
     private PlayerState playerState;
@@ -22,7 +17,6 @@ public class SwirlSeedController : Resettable
     private void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        parent = transform.parent;
     }
 
     public void processInputState(InputState inputState)
@@ -32,14 +26,9 @@ public class SwirlSeedController : Resettable
             if (buttonDown) { return; }
             buttonDown = true;
             //If attached,
-            if (state.phase == SwirlSeedState.Phase.ATTACHED)
-            {
-                //Throw
-                attach(false);
                 Vector2 vel = playerAttributes.swirlSeedLaunchVector;
                 vel.x *= Mathf.Sign(playerState.lookDirection.x);
                 rb2d.velocity = vel;
-            }
         }
         else
         {
@@ -51,41 +40,16 @@ public class SwirlSeedController : Resettable
         this.playerState = playerState;
     }
 
-    public void attach(bool attach)
+    public void Throw()
     {
-        if (attach)
-        {
-            state.phase = SwirlSeedState.Phase.ATTACHED;
-            transform.parent = parent;
-            transform.position = attachPoint.transform.position;
-            state.velX = 0;
-            rb2d.velocity = Vector2.zero;
-            rb2d.angularVelocity = 0;
-            transform.rotation = Quaternion.identity;
-            rb2d.isKinematic = true;
-            solidColl2D.enabled = false;
-        }
-        else
-        {
-            if (state.phase == SwirlSeedState.Phase.ATTACHED)
-            {
                 state.phase = SwirlSeedState.Phase.FLYING;
                 state.velX = (
                     playerAttributes.swirlSeedRollSpeed * Mathf.Sign(playerState.lookDirection.x)
                     );
-            }
-            transform.parent = null;
-            rb2d.isKinematic = false;
-            solidColl2D.enabled = true;
-        }
-        onAttachedChanged?.Invoke(attach);
     }
-    public delegate void OnAttachedChanged(bool attach);
-    public event OnAttachedChanged onAttachedChanged;
 
     private void Update()
     {
-        if (state.phase == SwirlSeedState.Phase.ATTACHED) { return; }
         if (state.phase == SwirlSeedState.Phase.ROLLING)
         {
             rb2d.velocity = new Vector2(state.velX, rb2d.velocity.y);
@@ -94,10 +58,8 @@ public class SwirlSeedController : Resettable
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (state.phase == SwirlSeedState.Phase.ATTACHED) { return; }
         switch (state.phase)
         {
-            case SwirlSeedState.Phase.ATTACHED: break;
             case SwirlSeedState.Phase.FLYING:
                 //If it lands,
                 if (Utility.HitFloor(collision))
@@ -110,8 +72,7 @@ public class SwirlSeedController : Resettable
                 //If hit something that would stop it,
                 if (Utility.HitWall(collision))
                 {
-                    //Make it stop, teleport back to player
-                    attach(true);
+                    throw new NotImplementedException("Need to put this part back in");
                 }
                 break;
             case SwirlSeedState.Phase.STOPPED: break;
@@ -122,7 +83,6 @@ public class SwirlSeedController : Resettable
         {
             if (!hittable.collectable)
             {
-                attach(true);
                 onHitSomething?.Invoke(hittable);
             }
         }
@@ -131,7 +91,6 @@ public class SwirlSeedController : Resettable
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //dont process if attached
-        if (state.phase == SwirlSeedState.Phase.ATTACHED) { return; }
         Hittable hittable = collision.GetComponent<Hittable>();
         if (hittable)
         {
@@ -145,14 +104,14 @@ public class SwirlSeedController : Resettable
         BloomingBlows bloomingBlows = collision.GetComponent<BloomingBlows>();
         if (bloomingBlows)
         {
-            attach(true);
+            throw new NotImplementedException("Need to put this part back in");
             return;
         }
         //Watch Out Eep collects Swirlseed
         WatchOutEep watchOutEep = collision.transform.GetComponentInParent<WatchOutEep>();
         if (watchOutEep && !watchOutEep.Diving)
         {
-            attach(true);
+            throw new NotImplementedException("Need to put this part back in");
             return;
         }
     }
@@ -164,6 +123,6 @@ public class SwirlSeedController : Resettable
     }
     public override void reset()
     {
-        attach(true);
+        throw new NotImplementedException("Need to put this part back in");
     }
 }

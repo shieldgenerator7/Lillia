@@ -7,7 +7,6 @@ public struct SwirlSeedState
     public float velX;
     public enum Phase
     {
-        ATTACHED,
         FLYING,
         ROLLING,
         STOPPED,

@@ -181,7 +181,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7016736247030560509}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -248,9 +248,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac6f9198be7e50e4094aae28c00eb457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attachPoint: {fileID: 0}
-  parentRB2D: {fileID: 0}
-  solidColl2D: {fileID: 6311267705503563015}
   playerAttributes: {fileID: 11400000, guid: 61fecb23b0858ef4ba8ef93990c75fff, type: 2}
 --- !u!58 &5012979181146966012
 CircleCollider2D:

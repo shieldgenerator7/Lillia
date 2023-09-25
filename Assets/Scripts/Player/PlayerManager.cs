@@ -56,13 +56,6 @@ public class PlayerManager : Resettable
         playerInput.onInputStateChanged += swirlSeedController.processInputState;
         playerController.onPlayerStateChanged += swirlSeedController.updatePlayerState;
         swirlSeedController.onHitSomething += playerController.ProcessHittable;
-        swirlSeedController.onAttachedChanged += (attach) =>
-        {
-            if (attach)
-            {
-                playerController.ResetCooldowns();
-            }
-        };
     }
 
     public override void recordInitialState()
