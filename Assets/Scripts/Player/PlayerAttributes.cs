@@ -28,9 +28,11 @@ public class PlayerAttributes : ScriptableObject
     public float slamFallSpeed;
     public float slamDuration;
     [Header("Swirlseed")]
-    public Vector2 swirlSeedLaunchVector;
+    public Vector2 swirlSeedLaunchVector;//when initially throwing it
+    public Vector2 swirlSeedBatVector;//when batting it away with bloomingblows
     public float swirlSeedRollSpeed = 5;
     public float swirlSeedPickupRange = 2;
+    public float swirlSeedRollSpeedFast = 15;
     [Header("Wall Bounce")]
     public float wallBounceSpeedUpFactor;
     public float wallBounceJumpFactor;

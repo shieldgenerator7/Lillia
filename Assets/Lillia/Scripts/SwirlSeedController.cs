@@ -21,20 +21,25 @@ public class SwirlSeedController : Resettable
     }
     public event Action<SwirlSeedState.Phase> OnPhaseChanged;
 
-    private void Start()
-    {
-        Phase = SwirlSeedState.Phase.FLYING;
-        state.velX = (
-            playerAttributes.swirlSeedRollSpeed * Mathf.Sign(rb2d.velocity.x)
-            );
-    }
-
     private void Update()
     {
         if (state.phase == SwirlSeedState.Phase.ROLLING)
         {
             rb2d.velocity = new Vector2(state.velX, rb2d.velocity.y);
         }
+    }
+    public void Throw(bool initial, float dirX)
+    {
+        Phase = SwirlSeedState.Phase.FLYING;
+        Vector2 vel = (initial)
+            ? playerAttributes.swirlSeedLaunchVector
+            : playerAttributes.swirlSeedBatVector;
+        vel.x *= Mathf.Sign(dirX);
+        rb2d.velocity = vel;
+        state.velX = (initial)
+            ? playerAttributes.swirlSeedRollSpeed
+            : playerAttributes.swirlSeedRollSpeedFast;
+        state.velX *= Mathf.Sign(dirX);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -85,7 +90,7 @@ public class SwirlSeedController : Resettable
         BloomingBlows bloomingBlows = collision.GetComponent<BloomingBlows>();
         if (bloomingBlows)
         {
-            throw new NotImplementedException("Need to put this part back in");
+            Throw(false, bloomingBlows.transform.parent.localScale.x);
             return;
         }
         //Watch Out Eep collects Swirlseed
