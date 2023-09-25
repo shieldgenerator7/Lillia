@@ -524,6 +524,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 632372413}
   m_CullTransparentMesh: 1
+--- !u!114 &944121151 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8841871895768238615, guid: bfe4cfff32a86364a9aebed9d9ed3552, type: 3}
+  m_PrefabInstance: {fileID: 5218961431621589654}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8cb8108dcdcac847853f4c1c98e9192, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1029715211
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,6 +731,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hazards: []
   resettables:
+  - {fileID: 944121151}
   - {fileID: 1518226480}
   - {fileID: 5218961431621589655}
   - {fileID: 5218961431621589656}

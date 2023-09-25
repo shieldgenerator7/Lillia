@@ -7,7 +7,7 @@ using UnityEngine.Playables;
 public class SwirlSeed : MonoBehaviour
 {
     public PlayerAttributes playerAttributes;
-    public GameObject swirlSeedPrefab;
+    public Spawner spawner;
 
     public void updatePlayerState(PlayerState playerState)
     {
@@ -19,11 +19,17 @@ public class SwirlSeed : MonoBehaviour
 
     public void launch(float dirX)
     {
-        GameObject swirlSeed = Instantiate(swirlSeedPrefab);
-        swirlSeed.transform.position = transform.position;
-        SwirlSeedController ssc = swirlSeed.GetComponent<SwirlSeedController>();
-        ssc.onHitSomething += (hittable) => onHitSomething?.Invoke(hittable);
-        ssc.Throw(true, dirX);
+        SwirlSeedController swirlSeed = 
+            spawner.SpawnObject<SwirlSeedController>(transform.position);
+        swirlSeed.onHitSomething += (hittable) => onHitSomething?.Invoke(hittable);
+        swirlSeed.OnPhaseChanged += (phase) =>
+        {
+            if (phase == SwirlSeedState.Phase.STOPPED)
+            {
+                spawner.DestroyObject(swirlSeed.gameObject);
+            }
+        };
+        swirlSeed.Throw(true, dirX);
     }
 
 

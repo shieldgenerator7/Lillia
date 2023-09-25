@@ -1089,6 +1089,7 @@ GameObject:
   m_Component:
   - component: {fileID: 309624395026603054}
   - component: {fileID: 6818304383323785954}
+  - component: {fileID: 8841871895768238615}
   m_Layer: 7
   m_Name: Swirlseed
   m_TagString: Untagged
@@ -1125,4 +1126,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAttributes: {fileID: 11400000, guid: 61fecb23b0858ef4ba8ef93990c75fff, type: 2}
-  swirlSeedPrefab: {fileID: 7016736247030560509, guid: 998a48be5fb5cf143800d84eef835777, type: 3}
+  spawner: {fileID: 8841871895768238615}
+--- !u!114 &8841871895768238615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8574971758365861943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8cb8108dcdcac847853f4c1c98e9192, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 7016736247030560509, guid: 998a48be5fb5cf143800d84eef835777, type: 3}
