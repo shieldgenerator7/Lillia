@@ -10,9 +10,20 @@ public class SwirlSeedController : Resettable
 
     private SwirlSeedState state = new();
 
+    public SwirlSeedState.Phase Phase
+    {
+        get => state.phase;
+        set
+        {
+            state.phase = value;
+            OnPhaseChanged?.Invoke(state.phase);
+        }
+    }
+    public event Action<SwirlSeedState.Phase> OnPhaseChanged;
+
     private void Start()
     {
-        state.phase = SwirlSeedState.Phase.FLYING;
+        Phase = SwirlSeedState.Phase.FLYING;
         state.velX = (
             playerAttributes.swirlSeedRollSpeed * Mathf.Sign(rb2d.velocity.x)
             );
@@ -35,14 +46,14 @@ public class SwirlSeedController : Resettable
                 if (Utility.HitFloor(collision))
                 {
                     //Make it roll
-                    state.phase = SwirlSeedState.Phase.ROLLING;
+                    Phase = SwirlSeedState.Phase.ROLLING;
                 }
                 break;
             case SwirlSeedState.Phase.ROLLING:
                 //If hit something that would stop it,
                 if (Utility.HitWall(collision))
                 {
-                    throw new NotImplementedException("Need to put this part back in");
+                    Phase = SwirlSeedState.Phase.STOPPED;
                 }
                 break;
             case SwirlSeedState.Phase.STOPPED: break;
