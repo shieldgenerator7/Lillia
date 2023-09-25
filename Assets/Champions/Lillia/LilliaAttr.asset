@@ -31,7 +31,7 @@ MonoBehaviour:
   slamFallSpeed: 10
   slamDuration: 0.15
   swirlSeedLaunchVector: {x: 1, y: 6}
-  swirlSeedBatVector: {x: 6, y: 1}
+  swirlSeedBatVector: {x: 7, y: 3}
   swirlSeedRollSpeed: 5
   swirlSeedRollSpeedFast: 15
   swirlSeedKnockUpSpeed: 5
