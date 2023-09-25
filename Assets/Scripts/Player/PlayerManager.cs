@@ -19,6 +19,7 @@ public class PlayerManager : Resettable
             playerController.playerAttributes = playerAttributes;
             playerMover.attributes = playerAttributes;
             watchOutEep.playerAttributes = playerAttributes;
+            swirlSeed.playerAttributes = playerAttributes;
         }
     }
     private bool slow = false;
@@ -38,7 +39,7 @@ public class PlayerManager : Resettable
     public PlayerMover playerMover;
     public BloomingBlows bloomingBlows;
     public WatchOutEep watchOutEep;
-    public SwirlSeedController swirlSeedController;
+    public SwirlSeed swirlSeed;
     public PlayerAnimator playerAnimator;
     public FlowerAnimator flowerAnimator;
 
@@ -53,9 +54,8 @@ public class PlayerManager : Resettable
         bloomingBlows.onHitSomething += playerController.ProcessHittable;
         playerController.onPlayerStateChanged += watchOutEep.updatePlayerState;
         watchOutEep.OnHitSomething += playerController.ProcessHittable;
-        playerInput.onInputStateChanged += swirlSeedController.processInputState;
-        playerController.onPlayerStateChanged += swirlSeedController.updatePlayerState;
-        swirlSeedController.onHitSomething += playerController.ProcessHittable;
+        playerController.onPlayerStateChanged += swirlSeed.updatePlayerState;
+        swirlSeed.onHitSomething += playerController.ProcessHittable;
     }
 
     public override void recordInitialState()

@@ -74,6 +74,9 @@ public struct PlayerState
     public float lastSlamTime;
     public bool usingSlam;
     //
+    public bool usingSwirlSeed;
+    public bool usedSwirlSeed;
+    //
     public float nextBufferCheckTime;
 
     public override string ToString()

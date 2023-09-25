@@ -186,6 +186,19 @@ public class PlayerController : Resettable
                 playerState.jumping = false;
             }
         }
+        //Swirlseed
+        if (inputState.swirlseed)
+        {
+            if (!playerState.usedSwirlSeed)
+            {
+                playerState.usingSwirlSeed = true;
+                playerState.usedSwirlSeed = true;
+            }
+            else
+            {
+                playerState.usingSwirlSeed = false;
+            }
+        }
         //Delegate
         onPlayerStateChanged?.Invoke(playerState);
     }
@@ -234,6 +247,8 @@ public class PlayerController : Resettable
     {
         //Reset blooming blow cooldown
         playerState.nextBloomingBlowTime = -1;
+        //Swirlseed availability
+        playerState.usedSwirlSeed = false;
     }
 
     public void ProcessHittable(Hittable hittable)
