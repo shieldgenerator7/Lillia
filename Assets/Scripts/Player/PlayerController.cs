@@ -42,6 +42,13 @@ public class PlayerController : Resettable
             playerState.usingBloomingBlows = false;
             playerStateChanged = true;
         }
+        if (fixedTime >= playerState.nextBloomingBlowTime
+            && fixedTime - Time.fixedDeltaTime < playerState.nextBloomingBlowTime
+            )
+        {
+            //update visuals that rely on cooldown
+            playerStateChanged = true;
+        }
         //Slam
         if (playerState.usingSlam && fixedTime > playerState.lastSlamTime + playerAttributes.slamDuration)
         {

@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PlayerAnimator : Resettable
 {
+    public float fadeAlpha = 0.5f;
     public Animator animator;
     public Transform playerTransform;
     public SpriteRenderer swirlSeedRenderer;
+    public SpriteRenderer staffRenderer;
 
     // Update is called once per frame
     public void UpdateAnimator(PlayerState playerState)
@@ -21,8 +23,15 @@ public class PlayerAnimator : Resettable
         {
             flip(lookDirection > 0);
         }
+        //Staff
+        staffRenderer.enabled = !playerState.usingBloomingBlows;
+        Color color = staffRenderer.color;
+        color.a = (Time.time >= playerState.nextBloomingBlowTime) 
+            ? 1 
+            : fadeAlpha;
+        staffRenderer.color = color;
         //Swirlseed
-        swirlSeedRenderer.enabled = playerState.swirlSeedAvailable;
+        swirlSeedRenderer.enabled = playerState.swirlSeedAvailable && !playerState.usingBloomingBlows;
     }
 
     void flip(bool right)
