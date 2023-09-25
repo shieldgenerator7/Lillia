@@ -19,7 +19,7 @@ public class SwirlSeed : MonoBehaviour
 
     public void launch(float dirX)
     {
-        SwirlSeedController swirlSeed = 
+        SwirlSeedController swirlSeed =
             spawner.SpawnObject<SwirlSeedController>(transform.position);
         swirlSeed.onHitSomething += (hittable) => onHitSomething?.Invoke(hittable);
         swirlSeed.OnPhaseChanged += (phase) =>

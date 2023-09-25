@@ -189,19 +189,19 @@ public class PlayerController : Resettable
         }
         //Swirlseed
         playerState.usingSwirlSeed = false;
-            if (inputState.swirlseed)
-            {
-        if (!playerState.usedSwirlSeed)
+        if (inputState.swirlseed)
         {
+            if (!playerState.usedSwirlSeed)
+            {
                 if (playerState.swirlSeedAvailable)
                 {
-                playerState.usingSwirlSeed = true;
-                playerState.usedSwirlSeed = true;
+                    playerState.usingSwirlSeed = true;
+                    playerState.usedSwirlSeed = true;
                     playerState.lastSwirlSeedTime = Time.time;
                     playerState.swirlSeedAvailable = false;
                 }
-        }
             }
+        }
         else
         {
             playerState.usedSwirlSeed = false;

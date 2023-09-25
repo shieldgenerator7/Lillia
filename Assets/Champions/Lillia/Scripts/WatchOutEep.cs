@@ -81,7 +81,7 @@ public class WatchOutEep : Resettable
             setPhase(Phase.SLAM);
 
         }
-        else if (phase== Phase.SLAM)
+        else if (phase == Phase.SLAM)
         {
             setPhase(Phase.INACTIVE);
         }
