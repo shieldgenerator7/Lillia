@@ -187,18 +187,18 @@ public class PlayerController : Resettable
             }
         }
         //Swirlseed
-            if (!playerState.usedSwirlSeed)
-            {
-        if (inputState.swirlseed)
+        if (!playerState.usedSwirlSeed)
         {
+            if (inputState.swirlseed)
+            {
                 playerState.usingSwirlSeed = true;
                 playerState.usedSwirlSeed = true;
+            }
         }
-            }
-            else
-            {
-                playerState.usingSwirlSeed = false;
-            }
+        else
+        {
+            playerState.usingSwirlSeed = false;
+        }
         //Delegate
         onPlayerStateChanged?.Invoke(playerState);
     }

@@ -12,10 +12,10 @@ public class SwirlSeedController : Resettable
 
     private void Start()
     {
-                state.phase = SwirlSeedState.Phase.FLYING;
-                state.velX = (
-                    playerAttributes.swirlSeedRollSpeed * Mathf.Sign(rb2d.velocity.x)
-                    );
+        state.phase = SwirlSeedState.Phase.FLYING;
+        state.velX = (
+            playerAttributes.swirlSeedRollSpeed * Mathf.Sign(rb2d.velocity.x)
+            );
     }
 
     private void Update()
