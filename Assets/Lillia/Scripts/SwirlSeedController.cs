@@ -6,45 +6,15 @@ using UnityEngine;
 public class SwirlSeedController : Resettable
 {
     public PlayerAttributes playerAttributes;
-
-    private Rigidbody2D rb2d;
+    public Rigidbody2D rb2d;
 
     private SwirlSeedState state = new();
-    private PlayerState playerState;
-
-    private bool buttonDown = false;
 
     private void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>();
-    }
-
-    public void processInputState(InputState inputState)
-    {
-        if (inputState.swirlseed)
-        {
-            if (buttonDown) { return; }
-            buttonDown = true;
-            //If attached,
-                Vector2 vel = playerAttributes.swirlSeedLaunchVector;
-                vel.x *= Mathf.Sign(playerState.lookDirection.x);
-                rb2d.velocity = vel;
-        }
-        else
-        {
-            buttonDown = false;
-        }
-    }
-    public void updatePlayerState(PlayerState playerState)
-    {
-        this.playerState = playerState;
-    }
-
-    public void Throw()
-    {
                 state.phase = SwirlSeedState.Phase.FLYING;
                 state.velX = (
-                    playerAttributes.swirlSeedRollSpeed * Mathf.Sign(playerState.lookDirection.x)
+                    playerAttributes.swirlSeedRollSpeed * Mathf.Sign(rb2d.velocity.x)
                     );
     }
 
