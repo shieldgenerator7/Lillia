@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     public TimerUI timerUI;
     public Image imgPaused;
+    public GameObject splashScreen;
 
     private List<LevelContents> levelContents;
     private LevelInfo levelInfo;
@@ -121,6 +122,13 @@ public class GameManager : MonoBehaviour
             .FindAll(rst => rst.reactsToPlayerStart)
             .ForEach(rst => rst.levelStart())
             );
+        if (splashScreen.activeSelf)
+        {
+            splashScreen.SetActive(false);
+        }
+        else
+        {
+        }
     }
 
     void onHazardHit(Hazard hazard)
