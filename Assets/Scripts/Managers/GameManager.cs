@@ -113,21 +113,21 @@ public class GameManager : MonoBehaviour
     }
     void onReset_Input(InputState inputState)
     {
-        //Start
-        StartRun();
-        //
-        playerInput.onInputStateChanged -= onReset_Input;
-        //
-        levelContents.ForEach(lc => lc.resettables
-            .FindAll(rst => rst.reactsToPlayerStart)
-            .ForEach(rst => rst.levelStart())
-            );
         if (splashScreen.activeSelf)
         {
             splashScreen.SetActive(false);
         }
         else
         {
+            //Start
+            StartRun();
+            //
+            playerInput.onInputStateChanged -= onReset_Input;
+            //
+            levelContents.ForEach(lc => lc.resettables
+                .FindAll(rst => rst.reactsToPlayerStart)
+                .ForEach(rst => rst.levelStart())
+                );
         }
     }
 
